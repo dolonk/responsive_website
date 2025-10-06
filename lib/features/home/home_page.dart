@@ -8,7 +8,7 @@ import '../../utility/responsive/responsive_widget.dart';
 import '../../utility/responsive/section_container.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+  const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +20,7 @@ class HomePage extends StatelessWidget {
           print('Tapped: $item');
         },
       ),
-      drawer: ResponsiveHelper.isMobile(context)
+      drawer: DeviceType.isMobile
           ? Drawer(
               child: ListView(
                 children: [

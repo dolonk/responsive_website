@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:responsive_website/utility/responsive/responsive_helper.dart';
+import 'package:responsive_website/utility/default_sizes/default_sizes.dart';
 
 class SectionContainer extends StatelessWidget {
   final Widget child;
@@ -13,9 +13,7 @@ class SectionContainer extends StatelessWidget {
     return Container(
       width: double.infinity,
       color: backgroundColor ?? Colors.white,
-      padding:
-          padding ??
-          EdgeInsets.symmetric(horizontal: ResponsiveHelper.isMobile(context) ? 20 : 80, vertical: 60),
+      padding: padding ?? EdgeInsets.symmetric(horizontal: DSizes.paddingMd, vertical: DSizes.paddingLg),
       child: child,
     );
   }

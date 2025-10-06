@@ -1,15 +1,20 @@
 import 'package:flutter/material.dart';
 
-class ResponsiveHelper {
-  static bool isMobile(BuildContext context) => MediaQuery.of(context).size.width < 650;
+import '../../main.dart';
 
-  static bool isTablet(BuildContext context) =>
-      MediaQuery.of(context).size.width >= 650 && MediaQuery.of(context).size.width < 1100;
+class DeviceType {
+  // Get global context
+  static BuildContext? get globalContext => navigatorKey.currentContext;
 
-  static bool isDesktop(BuildContext context) => MediaQuery.of(context).size.width >= 1100;
+  // Check if context is available
+  static bool get hasContext => navigatorKey.currentContext != null;
 
-  static double getWidth(BuildContext context) => MediaQuery.of(context).size.width;
+  // Get screen width and height
+  static double get originalWidth => MediaQuery.of(globalContext!).size.width;
+  static double get originalHeight => MediaQuery.of(globalContext!).size.height;
 
-  static double getHeight(BuildContext context) => MediaQuery.of(context).size.height;
+  // Device type checks
+  static bool get isMobile => originalWidth < 650;
+  static bool get isTablet => originalWidth >= 650 && originalWidth < 1100;
+  static bool get isDesktop => originalWidth >= 1100;
 }
-
