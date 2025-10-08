@@ -1,433 +1,233 @@
+import 'package:flutter/widgets.dart';
 import '../responsive/responsive_helper.dart';
 
 class DSizes {
-  // Padding and margin
-  static double paddingXs = _ResponsiveHelperSizes.getPadding('xs');
-  static double paddingSm = _ResponsiveHelperSizes.getPadding('sm');
-  static double paddingMd = _ResponsiveHelperSizes.getPadding('md');
-  static double paddingLg = _ResponsiveHelperSizes.getPadding('lg');
-  static double paddingXl = _ResponsiveHelperSizes.getPadding('xl');
+  factory DSizes.of(BuildContext context) => DSizes._fromContext(context);
+
+  // Padding sizes
+  final double paddingXs;
+  final double paddingSm;
+  final double paddingMd;
+  final double paddingLg;
+  final double paddingXl;
 
   // Icon sizes
-  static double iconXs = _ResponsiveHelperSizes.getIconSize('xs');
-  static double iconSm = _ResponsiveHelperSizes.getIconSize('sm');
-  static double iconMd = _ResponsiveHelperSizes.getIconSize('md');
-  static double iconLg = _ResponsiveHelperSizes.getIconSize('lg');
+  final double iconXs;
+  final double iconSm;
+  final double iconMd;
+  final double iconLg;
 
   // Font sizes
-  static double fontSizeSm = _ResponsiveHelperSizes.getFontSize('sm');
-  static double fontSizeMd = _ResponsiveHelperSizes.getFontSize('md');
-  static double fontSizeLg = _ResponsiveHelperSizes.getFontSize('lg');
+  final double fontSizeSm;
+  final double fontSizeMd;
+  final double fontSizeLg;
 
   // Button sizes
-  static Map<String, double> buttonSize = _ResponsiveHelperSizes.getButtonSize();
+  final double buttonRadius;
+  final double buttonHeight;
+  final double buttonWidth;
+  final double buttonElevation;
 
-  // Spacing
-  static double defaultSpace = _ResponsiveHelperSizes.getSpacing('default');
-  static double spaceBtwItems = _ResponsiveHelperSizes.getSpacing('items');
-  static double spaceBtwSections = _ResponsiveHelperSizes.getSpacing('sections');
+  // Spacing sizes
+  final double defaultSpace;
+  final double spaceBtwItems;
+  final double spaceBtwSections;
 
-  // Border radius
-  static double borderRadiusSm = _ResponsiveHelperSizes.getBorderRadius('sm');
-  static double borderRadiusMd = _ResponsiveHelperSizes.getBorderRadius('md');
-  static double borderRadiusLg = _ResponsiveHelperSizes.getBorderRadius('lg');
+  // Border radius sizes
+  final double borderRadiusSm;
+  final double borderRadiusMd;
+  final double borderRadiusLg;
+
+  // Private named constructor with all finals initialized
+  DSizes._internal({
+    // Padding sizes
+    required this.paddingXs,
+    required this.paddingSm,
+    required this.paddingMd,
+    required this.paddingLg,
+    required this.paddingXl,
+
+    // Icon sizes
+    required this.iconXs,
+    required this.iconSm,
+    required this.iconMd,
+    required this.iconLg,
+
+    // Font sizes
+    required this.fontSizeSm,
+    required this.fontSizeMd,
+    required this.fontSizeLg,
+
+    // Button sizes
+    required this.buttonRadius,
+    required this.buttonHeight,
+    required this.buttonWidth,
+    required this.buttonElevation,
+
+    // Spacing sizes
+    required this.defaultSpace,
+    required this.spaceBtwItems,
+    required this.spaceBtwSections,
+
+    // Border radius sizes
+    required this.borderRadiusSm,
+    required this.borderRadiusMd,
+    required this.borderRadiusLg,
+  });
+
+  // Build DSizes instance dynamically based on context
+  factory DSizes._fromContext(BuildContext context) {
+    final mobile = _MobileSizes();
+    final tablet = _TabletSizes();
+    final desktop = _DesktopSizes();
+
+    T res<T>(T Function(_MobileSizes m) m, T Function(_TabletSizes t) t, T Function(_DesktopSizes d) d) {
+      return ResponsiveHelper.value(context, mobile: m(mobile), tablet: t(tablet), desktop: d(desktop));
+    }
+
+    return DSizes._internal(
+      // Padding sizes
+      paddingXs: res((m) => m.paddingXs, (t) => t.paddingXs, (d) => d.paddingXs),
+      paddingSm: res((m) => m.paddingSm, (t) => t.paddingSm, (d) => d.paddingSm),
+      paddingMd: res((m) => m.paddingMd, (t) => t.paddingMd, (d) => d.paddingMd),
+      paddingLg: res((m) => m.paddingLg, (t) => t.paddingLg, (d) => d.paddingLg),
+      paddingXl: res((m) => m.paddingXl, (t) => t.paddingXl, (d) => d.paddingXl),
+
+      // Icon sizes
+      iconXs: res((m) => m.iconXs, (t) => t.iconXs, (d) => d.iconXs),
+      iconSm: res((m) => m.iconSm, (t) => t.iconSm, (d) => d.iconSm),
+      iconMd: res((m) => m.iconMd, (t) => t.iconMd, (d) => d.iconMd),
+      iconLg: res((m) => m.iconLg, (t) => t.iconLg, (d) => d.iconLg),
+
+      // Font sizes
+      fontSizeSm: res((m) => m.fontSizeSm, (t) => t.fontSizeSm, (d) => d.fontSizeSm),
+      fontSizeMd: res((m) => m.fontSizeMd, (t) => t.fontSizeMd, (d) => d.fontSizeMd),
+      fontSizeLg: res((m) => m.fontSizeLg, (t) => t.fontSizeLg, (d) => d.fontSizeLg),
+
+      // Button sizes
+      buttonRadius: res((m) => m.buttonRadius, (t) => t.buttonRadius, (d) => d.buttonRadius),
+      buttonHeight: res((m) => m.buttonHeight, (t) => t.buttonHeight, (d) => d.buttonHeight),
+      buttonWidth: res((m) => m.buttonWidth, (t) => t.buttonWidth, (d) => d.buttonWidth),
+      buttonElevation: res((m) => m.buttonElevation, (t) => t.buttonElevation, (d) => d.buttonElevation),
+
+      // Spacing sizes
+      defaultSpace: res((m) => m.defaultSpace, (t) => t.defaultSpace, (d) => d.defaultSpace),
+      spaceBtwItems: res((m) => m.spaceBtwItems, (t) => t.spaceBtwItems, (d) => d.spaceBtwItems),
+      spaceBtwSections: res((m) => m.spaceBtwSections, (t) => t.spaceBtwSections, (d) => d.spaceBtwSections),
+
+      // Border radius sizes
+      borderRadiusSm: res((m) => m.borderRadiusSm, (t) => t.borderRadiusSm, (d) => d.borderRadiusSm),
+      borderRadiusMd: res((m) => m.borderRadiusMd, (t) => t.borderRadiusMd, (d) => d.borderRadiusMd),
+      borderRadiusLg: res((m) => m.borderRadiusLg, (t) => t.borderRadiusLg, (d) => d.borderRadiusLg),
+    );
+  }
 }
 
-// ============ Responsive Sizes Helper ============
-class _ResponsiveHelperSizes {
-  // Get responsive padding based on screen size
-  static double getPadding(String size) {
-    if (DeviceType.isDesktop) {
-      return _DesktopSizes.getPadding(size);
-    } else if (DeviceType.isTablet) {
-      return _TabletSizes.getPadding(size);
-    } else {
-      return _MobileSizes.getPadding(size);
-    }
-  }
-
-  // Get responsive icon size
-  static double getIconSize(String size) {
-    if (DeviceType.isDesktop) {
-      return _DesktopSizes.getIconSize(size);
-    } else if (DeviceType.isTablet) {
-      return _TabletSizes.getIconSize(size);
-    } else {
-      return _MobileSizes.getIconSize(size);
-    }
-  }
-
-  // Get responsive font size
-  static double getFontSize(String size) {
-    if (DeviceType.isDesktop) {
-      return _DesktopSizes.getFontSize(size);
-    } else if (DeviceType.isTablet) {
-      return _TabletSizes.getFontSize(size);
-    } else {
-      return _MobileSizes.getFontSize(size);
-    }
-  }
-
-  // Get responsive spacing
-  static double getSpacing(String type) {
-    if (DeviceType.isDesktop) {
-      return _DesktopSizes.getSpacing(type);
-    } else if (DeviceType.isTablet) {
-      return _TabletSizes.getSpacing(type);
-    } else {
-      return _MobileSizes.getSpacing(type);
-    }
-  }
-
-  // Get responsive border radius
-  static double getBorderRadius(String size) {
-    if (DeviceType.isDesktop) {
-      return _DesktopSizes.getBorderRadius(size);
-    } else if (DeviceType.isTablet) {
-      return _TabletSizes.getBorderRadius(size);
-    } else {
-      return _MobileSizes.getBorderRadius(size);
-    }
-  }
-
-  // Get button dimensions
-  static Map<String, double> getButtonSize() {
-    if (DeviceType.isDesktop) {
-      return _DesktopSizes.buttonSize;
-    } else if (DeviceType.isTablet) {
-      return _TabletSizes.buttonSize;
-    } else {
-      return _MobileSizes.buttonSize;
-    }
-  }
-}
-
-// ============ Mobile Sizes ============
+/// ============== DEVICE-SPECIFIC SIZE DEFINITIONS =================
 class _MobileSizes {
-  // Padding and margin
-  static const double paddingXs = 4.0;
-  static const double paddingSm = 8.0;
-  static const double paddingMd = 16.0;
-  static const double paddingLg = 24.0;
-  static const double paddingXl = 32.0;
-
-  static double getPadding(String size) {
-    switch (size) {
-      case 'xs':
-        return paddingXs;
-      case 'sm':
-        return paddingSm;
-      case 'md':
-        return paddingMd;
-      case 'lg':
-        return paddingLg;
-      case 'xl':
-        return paddingXl;
-      default:
-        return paddingMd;
-    }
-  }
+  // Padding sizes
+  final double paddingXs = 4.0;
+  final double paddingSm = 8.0;
+  final double paddingMd = 16.0;
+  final double paddingLg = 24.0;
+  final double paddingXl = 32.0;
 
   // Icon sizes
-  static const double iconXs = 12.0;
-  static const double iconSm = 16.0;
-  static const double iconMd = 24.0;
-  static const double iconLg = 32.0;
-
-  static double getIconSize(String size) {
-    switch (size) {
-      case 'xs':
-        return iconXs;
-      case 'sm':
-        return iconSm;
-      case 'md':
-        return iconMd;
-      case 'lg':
-        return iconLg;
-      default:
-        return iconMd;
-    }
-  }
+  final double iconXs = 12.0;
+  final double iconSm = 16.0;
+  final double iconMd = 24.0;
+  final double iconLg = 32.0;
 
   // Font sizes
-  static const double fontSizeSm = 14.0;
-  static const double fontSizeMd = 16.0;
-  static const double fontSizeLg = 18.0;
-
-  static double getFontSize(String size) {
-    switch (size) {
-      case 'sm':
-        return fontSizeSm;
-      case 'md':
-        return fontSizeMd;
-      case 'lg':
-        return fontSizeLg;
-      default:
-        return fontSizeMd;
-    }
-  }
+  final double fontSizeSm = 14.0;
+  final double fontSizeMd = 16.0;
+  final double fontSizeLg = 18.0;
 
   // Button sizes
-  static const Map<String, double> buttonSize = {
-    'radius': 6.0,
-    'height': 44.0,
-    'width': 120.0,
-    'elevation': 4.0,
-  };
+  final double buttonRadius = 6.0;
+  final double buttonHeight = 44.0;
+  final double buttonWidth = 120.0;
+  final double buttonElevation = 4.0;
 
-  // Spacing
-  static const double defaultSpace = 24.0;
-  static const double spaceBtwItems = 16.0;
-  static const double spaceBtwSections = 32.0;
+  // Spacing sizes
+  final double defaultSpace = 24.0;
+  final double spaceBtwItems = 16.0;
+  final double spaceBtwSections = 32.0;
 
-  static double getSpacing(String type) {
-    switch (type) {
-      case 'default':
-        return defaultSpace;
-      case 'items':
-        return spaceBtwItems;
-      case 'sections':
-        return spaceBtwSections;
-      default:
-        return defaultSpace;
-    }
-  }
-
-  // Border radius
-  static const double borderRadiusSm = 4.0;
-  static const double borderRadiusMd = 8.0;
-  static const double borderRadiusLg = 12.0;
-
-  static double getBorderRadius(String size) {
-    switch (size) {
-      case 'sm':
-        return borderRadiusSm;
-      case 'md':
-        return borderRadiusMd;
-      case 'lg':
-        return borderRadiusLg;
-      default:
-        return borderRadiusMd;
-    }
-  }
+  // Border radius sizes
+  final double borderRadiusSm = 4.0;
+  final double borderRadiusMd = 8.0;
+  final double borderRadiusLg = 12.0;
 }
 
-// ============ Tablet Sizes ============
 class _TabletSizes {
-  // Padding and margin (20% larger than mobile)
-  static const double paddingXs = 5.0;
-  static const double paddingSm = 10.0;
-  static const double paddingMd = 20.0;
-  static const double paddingLg = 30.0;
-  static const double paddingXl = 40.0;
-
-  static double getPadding(String size) {
-    switch (size) {
-      case 'xs':
-        return paddingXs;
-      case 'sm':
-        return paddingSm;
-      case 'md':
-        return paddingMd;
-      case 'lg':
-        return paddingLg;
-      case 'xl':
-        return paddingXl;
-      default:
-        return paddingMd;
-    }
-  }
+  // Padding sizes
+  final double paddingXs = 5.0;
+  final double paddingSm = 10.0;
+  final double paddingMd = 20.0;
+  final double paddingLg = 30.0;
+  final double paddingXl = 40.0;
 
   // Icon sizes
-  static const double iconXs = 14.0;
-  static const double iconSm = 20.0;
-  static const double iconMd = 28.0;
-  static const double iconLg = 38.0;
-
-  static double getIconSize(String size) {
-    switch (size) {
-      case 'xs':
-        return iconXs;
-      case 'sm':
-        return iconSm;
-      case 'md':
-        return iconMd;
-      case 'lg':
-        return iconLg;
-      default:
-        return iconMd;
-    }
-  }
+  final double iconXs = 14.0;
+  final double iconSm = 20.0;
+  final double iconMd = 28.0;
+  final double iconLg = 38.0;
 
   // Font sizes
-  static const double fontSizeSm = 15.0;
-  static const double fontSizeMd = 17.0;
-  static const double fontSizeLg = 20.0;
-
-  static double getFontSize(String size) {
-    switch (size) {
-      case 'sm':
-        return fontSizeSm;
-      case 'md':
-        return fontSizeMd;
-      case 'lg':
-        return fontSizeLg;
-      default:
-        return fontSizeMd;
-    }
-  }
+  final double fontSizeSm = 15.0;
+  final double fontSizeMd = 17.0;
+  final double fontSizeLg = 20.0;
 
   // Button sizes
-  static const Map<String, double> buttonSize = {
-    'radius': 8.0,
-    'height': 48.0,
-    'width': 140.0,
-    'elevation': 4.0,
-  };
+  final double buttonRadius = 8.0;
+  final double buttonHeight = 48.0;
+  final double buttonWidth = 140.0;
+  final double buttonElevation = 4.0;
 
-  // Spacing
-  static const double defaultSpace = 30.0;
-  static const double spaceBtwItems = 20.0;
-  static const double spaceBtwSections = 40.0;
+  // Spacing sizes
+  final double defaultSpace = 30.0;
+  final double spaceBtwItems = 20.0;
+  final double spaceBtwSections = 40.0;
 
-  static double getSpacing(String type) {
-    switch (type) {
-      case 'default':
-        return defaultSpace;
-      case 'items':
-        return spaceBtwItems;
-      case 'sections':
-        return spaceBtwSections;
-      default:
-        return defaultSpace;
-    }
-  }
-
-  // Border radius
-  static const double borderRadiusSm = 6.0;
-  static const double borderRadiusMd = 10.0;
-  static const double borderRadiusLg = 14.0;
-
-  static double getBorderRadius(String size) {
-    switch (size) {
-      case 'sm':
-        return borderRadiusSm;
-      case 'md':
-        return borderRadiusMd;
-      case 'lg':
-        return borderRadiusLg;
-      default:
-        return borderRadiusMd;
-    }
-  }
+  // Border radius sizes
+  final double borderRadiusSm = 6.0;
+  final double borderRadiusMd = 10.0;
+  final double borderRadiusLg = 14.0;
 }
 
-// ============ Desktop Sizes ============
 class _DesktopSizes {
-  // Padding and margin (50% larger than mobile)
-  static const double paddingXs = 6.0;
-  static const double paddingSm = 12.0;
-  static const double paddingMd = 24.0;
-  static const double paddingLg = 36.0;
-  static const double paddingXl = 48.0;
-
-  static double getPadding(String size) {
-    switch (size) {
-      case 'xs':
-        return paddingXs;
-      case 'sm':
-        return paddingSm;
-      case 'md':
-        return paddingMd;
-      case 'lg':
-        return paddingLg;
-      case 'xl':
-        return paddingXl;
-      default:
-        return paddingMd;
-    }
-  }
+  // Padding sizes
+  final double paddingXs = 6.0;
+  final double paddingSm = 12.0;
+  final double paddingMd = 24.0;
+  final double paddingLg = 36.0;
+  final double paddingXl = 48.0;
 
   // Icon sizes
-  static const double iconXs = 16.0;
-  static const double iconSm = 24.0;
-  static const double iconMd = 32.0;
-  static const double iconLg = 48.0;
-
-  static double getIconSize(String size) {
-    switch (size) {
-      case 'xs':
-        return iconXs;
-      case 'sm':
-        return iconSm;
-      case 'md':
-        return iconMd;
-      case 'lg':
-        return iconLg;
-      default:
-        return iconMd;
-    }
-  }
+  final double iconXs = 16.0;
+  final double iconSm = 24.0;
+  final double iconMd = 32.0;
+  final double iconLg = 48.0;
 
   // Font sizes
-  static const double fontSizeSm = 16.0;
-  static const double fontSizeMd = 18.0;
-  static const double fontSizeLg = 22.0;
-
-  static double getFontSize(String size) {
-    switch (size) {
-      case 'sm':
-        return fontSizeSm;
-      case 'md':
-        return fontSizeMd;
-      case 'lg':
-        return fontSizeLg;
-      default:
-        return fontSizeMd;
-    }
-  }
+  final double fontSizeSm = 16.0;
+  final double fontSizeMd = 18.0;
+  final double fontSizeLg = 22.0;
 
   // Button sizes
-  static const Map<String, double> buttonSize = {
-    'radius': 8.0,
-    'height': 52.0,
-    'width': 160.0,
-    'elevation': 4.0,
-  };
+  final double buttonRadius = 8.0;
+  final double buttonHeight = 52.0;
+  final double buttonWidth = 160.0;
+  final double buttonElevation = 4.0;
 
-  // Spacing
-  static const double defaultSpace = 36.0;
-  static const double spaceBtwItems = 24.0;
-  static const double spaceBtwSections = 48.0;
+  // Spacing sizes
+  final double defaultSpace = 36.0;
+  final double spaceBtwItems = 24.0;
+  final double spaceBtwSections = 48.0;
 
-  static double getSpacing(String type) {
-    switch (type) {
-      case 'default':
-        return defaultSpace;
-      case 'items':
-        return spaceBtwItems;
-      case 'sections':
-        return spaceBtwSections;
-      default:
-        return defaultSpace;
-    }
-  }
-
-  // Border radius
-  static const double borderRadiusSm = 6.0;
-  static const double borderRadiusMd = 12.0;
-  static const double borderRadiusLg = 16.0;
-
-  static double getBorderRadius(String size) {
-    switch (size) {
-      case 'sm':
-        return borderRadiusSm;
-      case 'md':
-        return borderRadiusMd;
-      case 'lg':
-        return borderRadiusLg;
-      default:
-        return borderRadiusMd;
-    }
-  }
+  // Border radius sizes
+  final double borderRadiusSm = 6.0;
+  final double borderRadiusMd = 12.0;
+  final double borderRadiusLg = 16.0;
 }

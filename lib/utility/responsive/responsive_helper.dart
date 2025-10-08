@@ -1,20 +1,56 @@
 import 'package:flutter/material.dart';
 
-import '../../main.dart';
+class ResponsiveHelper {
+  ResponsiveHelper._();
 
-class DeviceType {
-  // Get global context
-  static BuildContext? get globalContext => navigatorKey.currentContext;
+  // 📱 Breakpoints (customize করতে পারবে)
+  static const double mobileBreakpoint = 650;
+  static const double tabletBreakpoint = 1100;
 
-  // Check if context is available
-  static bool get hasContext => navigatorKey.currentContext != null;
+  // ✅ Context-based device type checks (RECOMMENDED)
+  static bool isMobile(BuildContext context) => MediaQuery.of(context).size.width < mobileBreakpoint;
 
-  // Get screen width and height
-  static double get originalWidth => MediaQuery.of(globalContext!).size.width;
-  static double get originalHeight => MediaQuery.of(globalContext!).size.height;
+  static bool isTablet(BuildContext context) =>
+      MediaQuery.of(context).size.width >= mobileBreakpoint &&
+      MediaQuery.of(context).size.width < tabletBreakpoint;
 
-  // Device type checks
-  static bool get isMobile => originalWidth < 650;
-  static bool get isTablet => originalWidth >= 650 && originalWidth < 1100;
-  static bool get isDesktop => originalWidth >= 1100;
+  static bool isDesktop(BuildContext context) => MediaQuery.of(context).size.width >= tabletBreakpoint;
+
+  // ✅ Get screen dimensions
+  static double getWidth(BuildContext context) => MediaQuery.of(context).size.width;
+
+  static double getHeight(BuildContext context) => MediaQuery.of(context).size.height;
+
+  // ✅ Responsive value picker
+  /// Example: ResponsiveHelper.value(context, mobile: 16, tablet: 20, desktop: 24)
+  static T value<T>(BuildContext context, {required T mobile, T? tablet, required T desktop}) {
+    if (isDesktop(context)) return desktop;
+    if (isTablet(context)) return tablet ?? mobile;
+    return mobile;
+  }
+
+  // ✅ Responsive widget builder
+  static Widget builder({
+    required BuildContext context,
+    required Widget mobile,
+    Widget? tablet,
+    required Widget desktop,
+  }) {
+    if (isDesktop(context)) return desktop;
+    if (isTablet(context)) return tablet ?? mobile;
+    return mobile;
+  }
+}
+
+extension ResponsiveContext on BuildContext {
+  bool get isMobile => ResponsiveHelper.isMobile(this);
+  bool get isTablet => ResponsiveHelper.isTablet(this);
+  bool get isDesktop => ResponsiveHelper.isDesktop(this);
+
+  double get screenWidth => ResponsiveHelper.getWidth(this);
+  double get screenHeight => ResponsiveHelper.getHeight(this);
+
+  // Responsive value shorthand
+  T responsive<T>({required T mobile, T? tablet, required T desktop}) =>
+      ResponsiveHelper.value(this, mobile: mobile, tablet: tablet, desktop: desktop);
 }

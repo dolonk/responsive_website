@@ -13,7 +13,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(),
-      drawer: DeviceType.isMobile
+      drawer: context.isMobile
           ? Drawer(
               child: ListView(
                 children: [

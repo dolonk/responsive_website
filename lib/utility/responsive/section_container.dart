@@ -10,10 +10,11 @@ class SectionContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final s = DSizes.of(context);
     return Container(
       width: double.infinity,
       color: backgroundColor ?? Colors.white,
-      padding: padding ?? EdgeInsets.symmetric(horizontal: DSizes.paddingMd, vertical: DSizes.paddingLg),
+      padding: padding ?? EdgeInsets.symmetric(horizontal: s.paddingMd, vertical: s.paddingLg),
       child: child,
     );
   }
