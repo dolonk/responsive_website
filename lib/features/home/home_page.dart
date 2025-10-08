@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-
-import '../../common_function/app_bar/custome_appbar.dart';
-import '../../common_function/style/custome_button.dart';
-import '../../common_function/style/custome_card.dart';
+import '../../common_function/app_bar/custom_appbar.dart';
+import '../../common_function/style/custom_button.dart';
+import '../../common_function/style/custom_card.dart';
 import '../../utility/responsive/responsive_helper.dart';
 import '../../utility/responsive/responsive_widget.dart';
 import '../../utility/responsive/section_container.dart';
@@ -13,13 +12,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(
-        title: 'My Website',
-        menuItems: const ['Home', 'About', 'Services', 'Contact'],
-        onMenuItemTap: (item) {
-          print('Tapped: $item');
-        },
-      ),
+      appBar: CustomAppBar(),
       drawer: DeviceType.isMobile
           ? Drawer(
               child: ListView(
