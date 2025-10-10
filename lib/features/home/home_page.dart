@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../common_function/app_bar/custom_appbar.dart';
+import '../../common_function/base_screen/app_bar/custom_appbar.dart';
+import '../../common_function/base_screen/footer/custom_footer.dart';
 import '../../common_function/style/custom_button.dart';
 import '../../common_function/style/custom_card.dart';
 import '../../utility/responsive/responsive_helper.dart';
@@ -47,14 +48,7 @@ class HomePage extends StatelessWidget {
             ),
 
             // Footer
-            SectionContainer(
-              backgroundColor: Colors.grey[900],
-              child: Text(
-                '© 2024 My Website. All rights reserved.',
-                style: TextStyle(color: Colors.white),
-                textAlign: TextAlign.center,
-              ),
-            ),
+            FooterSection()
           ],
         ),
       ),

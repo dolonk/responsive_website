@@ -29,7 +29,7 @@ class ResponsiveHelper {
     return mobile;
   }
 
-  // ✅ Responsive widget builder
+  /*  // ✅ Responsive widget builder
   static Widget builder({
     required BuildContext context,
     required Widget mobile,
@@ -39,7 +39,7 @@ class ResponsiveHelper {
     if (isDesktop(context)) return desktop;
     if (isTablet(context)) return tablet ?? mobile;
     return mobile;
-  }
+  }*/
 }
 
 extension ResponsiveContext on BuildContext {
@@ -53,4 +53,8 @@ extension ResponsiveContext on BuildContext {
   // Responsive value shorthand
   T responsive<T>({required T mobile, T? tablet, required T desktop}) =>
       ResponsiveHelper.value(this, mobile: mobile, tablet: tablet, desktop: desktop);
+
+  /*  // Responsive widget shorthand
+  Widget responsiveWidget({required Widget mobile, Widget? tablet, required Widget desktop}) =>
+      ResponsiveHelper.builder(context: this, mobile: mobile, tablet: tablet, desktop: desktop);*/
 }

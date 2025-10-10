@@ -5,6 +5,7 @@ import 'features/home/home_page.dart';
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
 void main() {
+  //runApp(const MyApp());
   runApp(DevicePreview(enabled: true, builder: (context) => const MyApp()));
 }
 

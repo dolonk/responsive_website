@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import '../../../utility/default_sizes/default_sizes.dart';
 import 'package:responsive_website/utility/responsive/responsive_helper.dart';
-import '../../utility/default_sizes/default_sizes.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   const CustomAppBar({super.key});
@@ -17,7 +17,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       title: context.isMobile
           ? Text(
               'My Portfolio',
-              style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: s.fontSizeLg),
+              style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: s.bodyLarge),
             )
           : Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -25,7 +25,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                 // Left side - Logo/Title
                 Text(
                   'My Portfolio',
-                  style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: s.fontSizeLg),
+                  style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: s.bodyLarge),
                 ),
                 // Center - Menu items
                 Row(
@@ -36,7 +36,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                           onPressed: () => _onMenuItemTap(item),
                           child: Text(
                             item,
-                            style: TextStyle(color: Colors.black87, fontSize: s.fontSizeMd),
+                            style: TextStyle(color: Colors.black87, fontSize: s.bodyLarge),
                           ),
                         ),
                       )
