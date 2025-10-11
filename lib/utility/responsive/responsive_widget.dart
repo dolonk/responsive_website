@@ -14,7 +14,7 @@ class ResponsiveWidget extends StatelessWidget {
         if (constraints.maxWidth >= 1100) {
           return desktop;
         } else if (constraints.maxWidth >= 650) {
-          return tablet ?? mobile;
+          return tablet ?? desktop;
         } else {
           return mobile;
         }

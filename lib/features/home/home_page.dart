@@ -1,71 +1,37 @@
 import 'package:flutter/material.dart';
-import '../../common_function/base_screen/app_bar/custom_appbar.dart';
-import '../../common_function/base_screen/footer/custom_footer.dart';
 import '../../common_function/style/custom_button.dart';
 import '../../common_function/style/custom_card.dart';
-import '../../utility/responsive/responsive_helper.dart';
 import '../../utility/responsive/responsive_widget.dart';
 import '../../utility/responsive/section_container.dart';
+import 'package:responsive_website/common_function/base_screen/base_screen.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: CustomAppBar(),
-      drawer: context.isMobile
-          ? Drawer(
-              child: ListView(
-                children: [
-                  const DrawerHeader(
-                    decoration: BoxDecoration(color: Colors.blue),
-                    child: Text('Menu', style: TextStyle(color: Colors.white, fontSize: 24)),
-                  ),
-                  ..._buildDrawerItems(),
-                ],
-              ),
-            )
-          : null,
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            // Hero Section
-            SectionContainer(
-              backgroundColor: Colors.blue[50],
-              child: ResponsiveWidget(mobile: _buildHeroMobile(), desktop: _buildHeroDesktop()),
-            ),
+    return BaseScreen(
+      child: Column(
+        children: [
+          // Hero Section
+          SectionContainer(
+            backgroundColor: Colors.blue[50],
+            child: ResponsiveWidget(mobile: _buildHeroMobile(), desktop: _buildHeroDesktop()),
+          ),
 
-            // Services Section
-            SectionContainer(
-              child: Column(
-                children: [
-                  const Text('Our Services', style: TextStyle(fontSize: 36, fontWeight: FontWeight.bold)),
-                  const SizedBox(height: 40),
-                  ResponsiveWidget(mobile: _buildServicesMobile(), desktop: _buildServicesDesktop()),
-                ],
-              ),
+          // Services Section
+          SectionContainer(
+            child: Column(
+              children: [
+                const Text('Our Services', style: TextStyle(fontSize: 36, fontWeight: FontWeight.bold)),
+                const SizedBox(height: 40),
+                ResponsiveWidget(mobile: _buildServicesMobile(), desktop: _buildServicesDesktop()),
+              ],
             ),
-
-            // Footer
-            FooterSection()
-          ],
-        ),
+          ),
+        ],
       ),
     );
-  }
-
-  List<Widget> _buildDrawerItems() {
-    return ['Home', 'About', 'Services', 'Contact']
-        .map(
-          (item) => ListTile(
-            title: Text(item),
-            onTap: () {
-              print('Drawer tapped: $item');
-            },
-          ),
-        )
-        .toList();
   }
 
   Widget _buildHeroMobile() {

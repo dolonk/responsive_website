@@ -1,48 +1,60 @@
 import 'package:flutter/material.dart';
-import 'package:responsive_website/utility/responsive/responsive_helper.dart';
+import 'package:responsive_website/utility/responsive/responsive_widget.dart';
+import 'package:responsive_website/utility/responsive/section_container.dart';
 import '../../../utility/default_sizes/default_sizes.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class FooterSection extends StatelessWidget {
   const FooterSection({super.key});
 
-  // Fixed values for a clean look
-  static const Color footerBgColor = Color(0xFF1D1D1D);
-  static const double horizontalPadding = 120.0;
-  static const double contentSpacing = 80.0;
-
   @override
   Widget build(BuildContext context) {
     final s = context.sizes;
-    return Container(
-      color: footerBgColor,
+    return SectionContainer(
+      backgroundColor: const Color(0xFF1D1D1D),
       padding: EdgeInsets.all(s.paddingMd),
-      child: Column(
-        children: [
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // Logo and Tagline (Expanded use kora holo jate sufficient space pai)
-              Expanded(flex: 2, child: _buildLogoAndTagline(context)),
+      child: ResponsiveWidget(
+        mobile: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            _buildLogoAndTagline(context),
+            SizedBox(height: s.spaceBtwItems),
 
-              // Quick Links
-              Expanded(flex: 1, child: _buildQuickLinks(context)),
-
-              // Contact Info
-              Expanded(flex: 1, child: _buildContactInfo(context)),
-            ],
-          ),
-
-          SizedBox(height: 40),
-
-          // Divider
-          Divider(color: Colors.white10, thickness: 1.0, height: 1.0),
-
-          SizedBox(height: 20),
-
-          // 2. Bottom Bar: Copyright, Privacy, Terms
-          _buildBottomBar(context),
-        ],
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: s.paddingMd),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Expanded(
+                      flex: 1,
+                      child: _buildQuickLinks(context)),
+                  Expanded(
+                      flex: 2,child: _buildContactInfo(context)),
+                ],
+              ),
+            ),
+            SizedBox(height: 20),
+            const Divider(color: Colors.white10, thickness: 1, height: 1),
+            SizedBox(height: 20),
+            _buildBottomBar(context),
+          ],
+        ),
+        desktop: Column(
+          children: [
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Expanded(flex: 2, child: _buildLogoAndTagline(context)),
+                Expanded(flex: 1, child: _buildQuickLinks(context)),
+                Expanded(flex: 1, child: _buildContactInfo(context)),
+              ],
+            ),
+            SizedBox(height: 40),
+            const Divider(color: Colors.white10, thickness: 1, height: 1),
+            SizedBox(height: 20),
+            _buildBottomBar(context),
+          ],
+        ),
       ),
     );
   }
@@ -146,10 +158,9 @@ class FooterSection extends StatelessWidget {
         Row(
           children: [
             _buildSocialIcon(context, FontAwesomeIcons.linkedin),
-            _buildSocialIcon(context, FontAwesomeIcons.facebook),
-            _buildSocialIcon(context, FontAwesomeIcons.instagram),
             _buildSocialIcon(context, FontAwesomeIcons.github),
-            _buildSocialIcon(context, FontAwesomeIcons.twitter),
+            _buildSocialIcon(context, FontAwesomeIcons.whatsapp),
+            _buildSocialIcon(context, FontAwesomeIcons.instagram),
           ],
         ),
       ],
@@ -159,10 +170,10 @@ class FooterSection extends StatelessWidget {
   // Helper method for social icons
   Widget _buildSocialIcon(BuildContext context, IconData icon) {
     return Padding(
-      padding: EdgeInsets.only(right: context.responsive(mobile: 6, tablet: 16, desktop: 20)),
+      padding: EdgeInsets.only(right: context.sizes.paddingMd),
       child: GestureDetector(
         onTap: () {},
-        child: Icon(icon, color: Colors.white70, size: context.sizes.iconSm),
+        child: Icon(icon, color: Colors.white70, size: context.sizes.iconMd),
       ),
     );
   }
