@@ -4,34 +4,27 @@ class DColors {
   DColors._();
 
   // 🌑 Backgrounds
-  static const Color scaffold = Color(0xFF0F0F0F);
-  static const Color card = Color(0xFF1A1A1A);
-  static const Color gradientDark = Color(0xFF1B0D26);
+  static const Color background = Color(0xFF060606);
+  static const Color secondaryBackground = Color(0xFF000000);
+  static const Color sectionBackground = Color(0x14FF014F);
 
-  // 🌈 Primary Colors
-  static const Color primary = Color(0xFFFF014F);
-  static const Color secondary = Color(0xFF08D9D6);
+  // card background
+  static const Color cardBackground = Color(0xFF1D1D1D);
+  static const Color secondaryCard = Color(0xFF0F0F0F);
+
+  // button Colors
+  static const Color primaryButton = Color(0xFFFF014F);
 
   // border
-  static const Color border = Color(0x40FF014F);
+  static const Color buttonBorder = Color(0xFFFF014F);
+  static const Color cardBorder = Color(0x40FF014F);
 
   // 📝 Text
   static const Color textPrimary = Color(0xFFFAFAFA);
   static const Color textSecondary = Color(0xFF9F9F9F);
-  static const Color title = Colors.white;
-
-  // 🔘 Buttons
-  static const Color buttonBackground = primary;
-  static const Color buttonText = Colors.white;
-
-  // ⭐ Stats/Highlight Text
-  static const Color highlight = Color(0xFFFFC107);
-  static const Color statNumber = Color(0xFFFFFFFF);
-  static const Color statLabel = Color(0xFFAAAAAA);
 
   // 💬 Testimonials
   static const Color testimonialBg = Color(0xFF1A1A1A);
-  static const Color testimonialText = textSecondary;
 
   // 🖼️ Gradient Helper
   static const Gradient pinkGradient = LinearGradient(

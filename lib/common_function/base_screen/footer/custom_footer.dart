@@ -14,8 +14,9 @@ class FooterSection extends StatelessWidget {
       backgroundColor: const Color(0xFF1D1D1D),
       padding: EdgeInsets.all(s.paddingMd),
       child: ResponsiveWidget(
+        /// Mobile Layout
         mobile: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             _buildLogoAndTagline(context),
             SizedBox(height: s.spaceBtwItems),
@@ -25,11 +26,8 @@ class FooterSection extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Expanded(
-                      flex: 1,
-                      child: _buildQuickLinks(context)),
-                  Expanded(
-                      flex: 2,child: _buildContactInfo(context)),
+                  Expanded(flex: 1, child: _buildQuickLinks(context)),
+                  Expanded(flex: 2, child: _buildContactInfo(context)),
                 ],
               ),
             ),
@@ -39,6 +37,8 @@ class FooterSection extends StatelessWidget {
             _buildBottomBar(context),
           ],
         ),
+
+        /// Desktop Layout
         desktop: Column(
           children: [
             Row(
