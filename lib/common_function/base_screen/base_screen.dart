@@ -30,36 +30,28 @@ class BaseScreen extends StatelessWidget {
       appBar: const CustomAppBar(),
       drawer: context.isMobile
           ? Drawer(
-        child: ListView(
-          children: [
-            const DrawerHeader(
-              decoration: BoxDecoration(color: Colors.blue),
-              child: Text('Menu', style: TextStyle(color: Colors.white, fontSize: 24)),
-            ),
-            ..._drawerItems(),
-          ],
-        ),
-      )
+              child: ListView(
+                children: [
+                  const DrawerHeader(
+                    decoration: BoxDecoration(color: Colors.blue),
+                    child: Text('Menu', style: TextStyle(color: Colors.white, fontSize: 24)),
+                  ),
+                  ..._drawerItems(),
+                ],
+              ),
+            )
           : null,
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            child,
-            const FooterSection(),
-          ],
-        ),
-      ),
+      body: SingleChildScrollView(child: Column(children: [child, const FooterSection()])),
       floatingActionButton: floatingActionButton,
       floatingActionButtonLocation: floatingActionButtonLocation,
     );
   }
 
-  List<Widget> _drawerItems() => ['Home', 'About', 'Services', 'Projects', 'Contact']
-      .map(
-        (e) => ListTile(
-      title: Text(e),
-      onTap: () => print('Drawer $e tapped'),
-    ),
-  )
-      .toList();
+  List<Widget> _drawerItems() => [
+    'Home',
+    'About',
+    'Services',
+    'Projects',
+    'Contact',
+  ].map((e) => ListTile(title: Text(e), onTap: () => print('Drawer $e tapped'))).toList();
 }

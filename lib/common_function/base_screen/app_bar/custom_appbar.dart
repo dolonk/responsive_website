@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../../utility/default_sizes/default_sizes.dart';
+import 'package:responsive_website/utility/constants/colors.dart';
+import 'package:responsive_website/utility/default_sizes/font_size.dart';
 import 'package:responsive_website/utility/responsive/responsive_helper.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -10,23 +11,18 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    final s = DSizes.of(context);
     return AppBar(
       elevation: 0,
-      backgroundColor: Colors.white,
+      backgroundColor: DColors.background,
+      iconTheme: const IconThemeData(color: Colors.white),
+      centerTitle: true,
       title: context.isMobile
-          ? Text(
-              'My Portfolio',
-              style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: s.bodyLarge),
-            )
+          ? Text('My Portfolio', style: context.fonts.displayMedium)
           : Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 // Left side - Logo/Title
-                Text(
-                  'My Portfolio',
-                  style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: s.bodyLarge),
-                ),
+                Text('My Portfolio', style: context.fonts.bodyLarge),
                 // Center - Menu items
                 Row(
                   mainAxisSize: MainAxisSize.min,
@@ -34,19 +30,15 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                       .map(
                         (item) => TextButton(
                           onPressed: () => _onMenuItemTap(item),
-                          child: Text(
-                            item,
-                            style: TextStyle(color: Colors.black87, fontSize: s.bodyLarge),
-                          ),
+                          child: Text(item, style: context.fonts.bodyLarge),
                         ),
                       )
                       .toList(),
                 ),
                 // Right side - Spacer for balance
-                const SizedBox(width: 100),
+                //const SizedBox(width: 100),
               ],
             ),
-      iconTheme: const IconThemeData(color: Colors.black),
     );
   }
 

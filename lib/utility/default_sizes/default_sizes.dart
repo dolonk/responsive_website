@@ -33,7 +33,7 @@ class DSizes {
   final double borderRadiusMd;
   final double borderRadiusLg;
 
-  // ✅ Display font sizes (Hero section)
+  /*// ✅ Display font sizes (Hero section)
   final double displayLarge;
   final double displayMedium;
   final double displaySmall;
@@ -56,7 +56,7 @@ class DSizes {
   // ✅ Label font sizes (Small text, captions)
   final double labelLarge;
   final double labelMedium;
-  final double labelSmall;
+  final double labelSmall;*/
 
   // Private named constructor with all finals initialized
   DSizes._internal({
@@ -89,7 +89,7 @@ class DSizes {
     required this.borderRadiusMd,
     required this.borderRadiusLg,
 
-    // ✅ Display font sizes
+   /* // ✅ Display font sizes
     required this.displayLarge,
     required this.displayMedium,
     required this.displaySmall,
@@ -112,7 +112,7 @@ class DSizes {
     // ✅ Label font sizes
     required this.labelLarge,
     required this.labelMedium,
-    required this.labelSmall,
+    required this.labelSmall,*/
   });
 
   // Build DSizes instance dynamically based on context
@@ -154,7 +154,7 @@ class DSizes {
       borderRadiusSm: res((m) => m.borderRadiusSm, (t) => t.borderRadiusSm, (d) => d.borderRadiusSm),
       borderRadiusMd: res((m) => m.borderRadiusMd, (t) => t.borderRadiusMd, (d) => d.borderRadiusMd),
       borderRadiusLg: res((m) => m.borderRadiusLg, (t) => t.borderRadiusLg, (d) => d.borderRadiusLg),
-
+/*
       // ✅ Display font sizes
       displayLarge: res((m) => m.displayLarge, (t) => t.displayLarge, (d) => d.displayLarge),
       displayMedium: res((m) => m.displayMedium, (t) => t.displayMedium, (d) => d.displayMedium),
@@ -178,7 +178,7 @@ class DSizes {
       // ✅ Label font sizes
       labelLarge: res((m) => m.labelLarge, (t) => t.labelLarge, (d) => d.labelLarge),
       labelMedium: res((m) => m.labelMedium, (t) => t.labelMedium, (d) => d.labelMedium),
-      labelSmall: res((m) => m.labelSmall, (t) => t.labelSmall, (d) => d.labelSmall),
+      labelSmall: res((m) => m.labelSmall, (t) => t.labelSmall, (d) => d.labelSmall),*/
     );
   }
 }
@@ -357,25 +357,4 @@ extension ResponsiveSizesShorthand on BuildContext {
   DSizes get sizes => DSizes.of(this);
 }
 
-/*
-Mobile  →  Tablet  →  Desktop
-32      →  40      →  48        (displayLarge)
-28      →  36      →  44        (displayMedium)
-24      →  32      →  40        (displaySmall)
 
-22      →  28      →  32        (headlineLarge)
-20      →  26      →  28        (headlineMedium)
-18      →  24      →  26        (headlineSmall)
-
-18      →  22      →  26        (titleLarge)
-16      →  20      →  24        (titleMedium)
-14      →  18      →  22        (titleSmall)
-
-16      →  18      →  20        (bodyLarge)
-14      →  16      →  18        (bodyMedium)
-12      →  14      →  16        (bodySmall)
-
-14      →  14      →  16        (labelLarge)
-12      →  12      →  14        (labelMedium)
-10      →  10      →  12        (labelSmall)
-*/

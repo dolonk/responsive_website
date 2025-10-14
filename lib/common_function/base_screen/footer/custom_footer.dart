@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:responsive_website/utility/default_sizes/font_size.dart';
+import 'package:responsive_website/utility/responsive/responsive_helper.dart';
 import 'package:responsive_website/utility/responsive/responsive_widget.dart';
 import 'package:responsive_website/utility/responsive/section_container.dart';
 import '../../../utility/default_sizes/default_sizes.dart';
@@ -19,12 +21,13 @@ class FooterSection extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             _buildLogoAndTagline(context),
-            SizedBox(height: s.spaceBtwItems),
+            SizedBox(height: s.defaultSpace),
 
             Padding(
               padding: EdgeInsets.symmetric(horizontal: s.paddingMd),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Expanded(flex: 1, child: _buildQuickLinks(context)),
                   Expanded(flex: 2, child: _buildContactInfo(context)),
@@ -61,71 +64,52 @@ class FooterSection extends StatelessWidget {
 
   // --- 1. Logo and Tagline Widget ---
   Widget _buildLogoAndTagline(BuildContext context) {
-    final s = context.sizes;
+    final font = context.fonts;
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: context.isMobile ? CrossAxisAlignment.center : CrossAxisAlignment.start,
       children: [
-        Text(
-          'LOGO',
-          style: TextStyle(color: Color(0xFFF44336), fontSize: s.titleMedium, fontWeight: FontWeight.bold),
-        ),
-        SizedBox(height: 20),
-        // Text.rich use kora holo shob part ke ekshathe rakhar jonno (cleaner)
-        Text.rich(
-          TextSpan(
-            style: TextStyle(fontFamily: 'RobotoMono', height: 1.3), // Font family adjust kora jete pare
-            children: [
-              TextSpan(
-                text: 'Get Ready',
-                style: TextStyle(
-                  fontSize: s.displaySmall,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                  letterSpacing: 1.5,
+        Text('LOGO', style: font.titleLarge),
+        SizedBox(height: context.sizes.spaceBtwItems),
+
+        context.isMobile
+            ? Text('Get Ready To Create Great', style: font.bodyMedium)
+            : Text.rich(
+                TextSpan(
+                  children: [
+                    TextSpan(text: 'Get Ready', style: font.displayMedium),
+                    TextSpan(
+                      text: ' To Create\n',
+                      style: font.displaySmall.copyWith(fontWeight: FontWeight.w400),
+                    ),
+                    TextSpan(
+                      text: 'Great',
+                      style: font.displaySmall.copyWith(fontWeight: FontWeight.w400),
+                    ),
+                  ],
                 ),
               ),
-              TextSpan(
-                text: ' To Create\n',
-                style: TextStyle(fontSize: s.displayMedium, fontWeight: FontWeight.w100, color: Colors.white),
-              ),
-              TextSpan(
-                text: 'Great',
-                style: TextStyle(fontSize: s.displayMedium, fontWeight: FontWeight.bold, color: Colors.white),
-              ),
-            ],
-          ),
-        ),
       ],
     );
   }
 
   // --- 2. Quick Links Widget ---
   Widget _buildQuickLinks(BuildContext context) {
-    // Data List-ta static variable hishebe rakha holo
     const List<String> links = ['Home', 'Project', 'Blog', 'About'];
 
     return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          'Quick Link',
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: context.sizes.bodyMedium,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
+        Text('Quick Link', style: context.fonts.bodyMedium),
         const SizedBox(height: 20),
-        // List of links using map for clean iteration
+
+        // List of links
         ...links.map(
           (link) => Padding(
             padding: const EdgeInsets.only(bottom: 12.0),
             child: GestureDetector(
               onTap: () {},
-              child: Text(
-                link,
-                style: TextStyle(color: Colors.white70, fontSize: context.sizes.bodySmall),
-              ),
+              child: Text(link, style: context.fonts.bodySmall),
             ),
           ),
         ),
@@ -135,24 +119,19 @@ class FooterSection extends StatelessWidget {
 
   // --- 3. Contact Info Widget ---
   Widget _buildContactInfo(BuildContext context) {
-    TextStyle linkStyle = TextStyle(color: Colors.white70, fontSize: context.sizes.bodySmall);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          'Contact',
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: context.sizes.bodyMedium,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
+        Text('Contact', style: context.fonts.bodyMedium),
         const SizedBox(height: 20),
-        Text('+880 12345 6479', style: linkStyle),
+        Text('+880 12345 6479', style: context.fonts.bodyMedium),
         const SizedBox(height: 10),
-        Text('Email@gmail.com', style: linkStyle),
+        Text('Email@gmail.com', style: context.fonts.bodyMedium),
         const SizedBox(height: 10),
-        Text('Nilphamari sadar, Nilphamari, Rangpur\nDhaka, Bangladesh-5300', style: linkStyle),
+        Text(
+          'Nilphamari sadar, Nilphamari, Rangpur\nDhaka, Bangladesh-5300',
+          style: context.fonts.bodyMedium,
+        ),
         const SizedBox(height: 20),
         // Social Media Icons
         Row(
@@ -180,12 +159,10 @@ class FooterSection extends StatelessWidget {
 
   // --- 4. Bottom Bar Widget ---
   Widget _buildBottomBar(BuildContext context) {
-    TextStyle bottomBarTextStyle = TextStyle(color: Colors.white54, fontSize: context.sizes.bodySmall);
-
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text('© 2025 LocationIQ', style: bottomBarTextStyle),
+        Text('© 2025 LocationIQ', style: context.fonts.bodySmall),
         Row(
           children: [
             _buildBottomLink(context, 'Privacy policy'),
@@ -199,12 +176,11 @@ class FooterSection extends StatelessWidget {
 
   // Helper method for bottom links
   Widget _buildBottomLink(BuildContext context, String title) {
-    TextStyle style = TextStyle(color: Colors.white54, fontSize: context.sizes.bodySmall);
     return MouseRegion(
       cursor: SystemMouseCursors.click,
       child: GestureDetector(
         onTap: () {},
-        child: Text(title, style: style),
+        child: Text(title, style: context.fonts.bodySmall),
       ),
     );
   }
