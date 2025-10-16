@@ -290,7 +290,7 @@ class _DesktopFonts {
   );
   late final TextStyle headlineMedium = GoogleFonts.rajdhani(
     fontSize: 28,
-    fontWeight: FontWeight.w600,
+    fontWeight: FontWeight.w700,
     color: DColors.textPrimary,
   );
   late final TextStyle headlineSmall = GoogleFonts.rajdhani(
@@ -341,7 +341,7 @@ class _DesktopFonts {
   );
   late final TextStyle labelMedium = GoogleFonts.rubik(
     fontSize: 14,
-    fontWeight: FontWeight.w500,
+    fontWeight: FontWeight.w400,
     color: DColors.textPrimary,
   );
   late final TextStyle labelSmall = GoogleFonts.rubik(
@@ -354,6 +354,69 @@ class _DesktopFonts {
 /// ✅ Quick access extension
 extension AppFontsShorthand on BuildContext {
   AppFonts get fonts => AppFonts.of(this);
+}
+
+extension TextStyleCustom on TextStyle {
+  /// 🔹 Rajdhani font with customizable properties
+  TextStyle rajdhani({
+    double? fontSize,
+    FontWeight? fontWeight,
+    Color? color,
+    double? letterSpacing,
+    double? height,
+    TextDecoration? decoration,
+    Color? decorationColor,
+    FontStyle? fontStyle,
+  }) {
+    return GoogleFonts.rajdhani(
+      fontSize: fontSize ?? this.fontSize,
+      fontWeight: fontWeight ?? this.fontWeight,
+      color: color ?? this.color,
+      letterSpacing: letterSpacing ?? this.letterSpacing,
+      height: height ?? this.height,
+      decoration: decoration ?? this.decoration,
+      decorationColor: decorationColor ?? this.decorationColor,
+      fontStyle: fontStyle ?? this.fontStyle,
+    );
+  }
+
+  /// 🔹 Rubik font with customizable properties
+  TextStyle rubik({
+    double? fontSize,
+    FontWeight? fontWeight,
+    Color? color,
+    double? letterSpacing,
+    double? height,
+    TextDecoration? decoration,
+    Color? decorationColor,
+    FontStyle? fontStyle,
+  }) {
+    return GoogleFonts.rubik(
+      fontSize: fontSize ?? this.fontSize,
+      fontWeight: fontWeight ?? this.fontWeight,
+      color: color ?? this.color,
+      letterSpacing: letterSpacing ?? this.letterSpacing,
+      height: height ?? this.height,
+      decoration: decoration ?? this.decoration,
+      decorationColor: decorationColor ?? this.decorationColor,
+      fontStyle: fontStyle ?? this.fontStyle,
+    );
+  }
+
+  /// 🔹 Quick weight changer (keeps current font family if possible)
+  TextStyle weight(FontWeight w) {
+    return copyWith(fontWeight: w);
+  }
+
+  /// 🔹 Quick color changer
+  TextStyle withColor(Color c) {
+    return copyWith(color: c);
+  }
+
+  /// 🔹 Quick size changer
+  TextStyle withSize(double s) {
+    return copyWith(fontSize: s);
+  }
 }
 
 /*

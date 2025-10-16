@@ -17,28 +17,18 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       iconTheme: const IconThemeData(color: Colors.white),
       centerTitle: true,
       title: context.isMobile
-          ? Text('My Portfolio', style: context.fonts.displayMedium)
+          ? Text('Build Storm', style: context.fonts.displayMedium)
           : Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                // Left side - Logo/Title
-                Text('My Portfolio', style: context.fonts.bodyLarge),
-                // Center - Menu items
-                Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: ['Home', 'About', 'Services', 'Projects', 'Contact']
-                      .map(
-                        (item) => TextButton(
-                          onPressed: () => _onMenuItemTap(item),
-                          child: Text(item, style: context.fonts.bodyLarge),
-                        ),
-                      )
-                      .toList(),
-                ),
-                // Right side - Spacer for balance
-                //const SizedBox(width: 100),
-              ],
-            ),
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: ['Home', 'About', 'Services', 'Projects', 'Contact']
+                .map(
+                  (item) => TextButton(
+                    onPressed: () => _onMenuItemTap(item),
+                    child: Text(item, style: context.fonts.bodySmall),
+                  ),
+                )
+                .toList(),
+          ),
     );
   }
 

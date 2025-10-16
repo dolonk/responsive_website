@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import '../../../utility/default_sizes/default_sizes.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:responsive_website/utility/default_sizes/font_size.dart';
 import 'package:responsive_website/utility/responsive/responsive_helper.dart';
 import 'package:responsive_website/utility/responsive/responsive_widget.dart';
 import 'package:responsive_website/utility/responsive/section_container.dart';
-import '../../../utility/default_sizes/default_sizes.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class FooterSection extends StatelessWidget {
   const FooterSection({super.key});
@@ -76,14 +76,14 @@ class FooterSection extends StatelessWidget {
             : Text.rich(
                 TextSpan(
                   children: [
-                    TextSpan(text: 'Get Ready', style: font.displayMedium),
+                    TextSpan(text: 'Get Ready', style: font.displayLarge),
                     TextSpan(
                       text: ' To Create\n',
-                      style: font.displaySmall.copyWith(fontWeight: FontWeight.w400),
+                      style: font.displayLarge.rajdhani(fontWeight: FontWeight.w400),
                     ),
                     TextSpan(
                       text: 'Great',
-                      style: font.displaySmall.copyWith(fontWeight: FontWeight.w400),
+                      style: font.displayLarge.rajdhani(fontWeight: FontWeight.w400),
                     ),
                   ],
                 ),
@@ -100,7 +100,7 @@ class FooterSection extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text('Quick Link', style: context.fonts.bodyMedium),
+        Text('Quick Link', style: context.fonts.headlineMedium),
         const SizedBox(height: 20),
 
         // List of links
@@ -109,7 +109,7 @@ class FooterSection extends StatelessWidget {
             padding: const EdgeInsets.only(bottom: 12.0),
             child: GestureDetector(
               onTap: () {},
-              child: Text(link, style: context.fonts.bodySmall),
+              child: Text(link, style: context.fonts.labelMedium),
             ),
           ),
         ),
@@ -122,15 +122,15 @@ class FooterSection extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text('Contact', style: context.fonts.bodyMedium),
+        Text('Contact', style: context.fonts.headlineMedium),
         const SizedBox(height: 20),
-        Text('+880 12345 6479', style: context.fonts.bodyMedium),
+        Text('+880 12345 6479', style: context.fonts.labelMedium),
         const SizedBox(height: 10),
-        Text('Email@gmail.com', style: context.fonts.bodyMedium),
+        Text('Email@gmail.com', style: context.fonts.labelMedium),
         const SizedBox(height: 10),
         Text(
           'Nilphamari sadar, Nilphamari, Rangpur\nDhaka, Bangladesh-5300',
-          style: context.fonts.bodyMedium,
+          style: context.fonts.labelMedium,
         ),
         const SizedBox(height: 20),
         // Social Media Icons
@@ -152,7 +152,7 @@ class FooterSection extends StatelessWidget {
       padding: EdgeInsets.only(right: context.sizes.paddingMd),
       child: GestureDetector(
         onTap: () {},
-        child: Icon(icon, color: Colors.white70, size: context.sizes.iconMd),
+        child: Icon(icon, color: Colors.white70, size: context.sizes.iconXs),
       ),
     );
   }
@@ -162,14 +162,9 @@ class FooterSection extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text('© 2025 LocationIQ', style: context.fonts.bodySmall),
-        Row(
-          children: [
-            _buildBottomLink(context, 'Privacy policy'),
-            const SizedBox(width: 40),
-            _buildBottomLink(context, 'Terms & Conditions'),
-          ],
-        ),
+        Text('© 2025 LocationIQ', style: context.fonts.labelMedium),
+        _buildBottomLink(context, 'Privacy policy'),
+        _buildBottomLink(context, 'Terms & Conditions'),
       ],
     );
   }
@@ -180,7 +175,7 @@ class FooterSection extends StatelessWidget {
       cursor: SystemMouseCursors.click,
       child: GestureDetector(
         onTap: () {},
-        child: Text(title, style: context.fonts.bodySmall),
+        child: Text(title, style: context.fonts.labelMedium),
       ),
     );
   }
