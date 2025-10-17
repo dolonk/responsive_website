@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:responsive_website/features/home/widgets/hero_section.dart';
+import 'package:responsive_website/utility/constants/colors.dart';
 import '../../common_function/style/custom_button.dart';
 import '../../common_function/style/custom_card.dart';
 import '../../utility/responsive/responsive_widget.dart';
@@ -14,10 +16,7 @@ class HomePage extends StatelessWidget {
       child: Column(
         children: [
           // Hero Section
-          SectionContainer(
-            backgroundColor: Colors.blue[50],
-            child: ResponsiveWidget(mobile: _buildHeroMobile(), desktop: _buildHeroDesktop()),
-          ),
+          HeroSection(),
 
           // Services Section
           SectionContainer(
@@ -34,60 +33,6 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  Widget _buildHeroMobile() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        const Text(
-          'Welcome to Our Website',
-          style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
-          textAlign: TextAlign.center,
-        ),
-        const SizedBox(height: 20),
-        Text(
-          'Build amazing responsive websites with Flutter',
-          style: TextStyle(fontSize: 18, color: Colors.grey[700]),
-          textAlign: TextAlign.center,
-        ),
-        const SizedBox(height: 30),
-        CustomButton(text: 'Get Started', onPressed: () {}, width: double.infinity),
-      ],
-    );
-  }
-
-  Widget _buildHeroDesktop() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Text(
-                'Welcome to Our Website',
-                style: TextStyle(fontSize: 48, fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(height: 20),
-              Text(
-                'Build amazing responsive websites with Flutter',
-                style: TextStyle(fontSize: 20, color: Colors.grey[700]),
-              ),
-              const SizedBox(height: 30),
-              CustomButton(text: 'Get Started', onPressed: () {}, width: 200),
-            ],
-          ),
-        ),
-        const SizedBox(width: 50),
-        Expanded(
-          child: Container(
-            height: 400,
-            decoration: BoxDecoration(color: Colors.blue[200], borderRadius: BorderRadius.circular(12)),
-            child: const Center(child: Icon(Icons.image, size: 100, color: Colors.white)),
-          ),
-        ),
-      ],
-    );
-  }
 
   Widget _buildServicesMobile() {
     return Column(

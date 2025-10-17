@@ -19,21 +19,20 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       title: context.isMobile
           ? Text('Build Storm', style: context.fonts.displayMedium)
           : Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: ['Home', 'About', 'Services', 'Projects', 'Contact']
-                .map(
-                  (item) => TextButton(
-                    onPressed: () => _onMenuItemTap(item),
-                    child: Text(item, style: context.fonts.bodySmall),
-                  ),
-                )
-                .toList(),
-          ),
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: ['Home', 'About', 'Services', 'Projects', 'Contact']
+                  .map(
+                    (item) => TextButton(
+                      onPressed: () => _onMenuItemTap(item),
+                      child: Text(item, style: context.fonts.bodySmall),
+                    ),
+                  )
+                  .toList(),
+            ),
     );
   }
 
   void _onMenuItemTap(String item) {
     print('Tapped: $item');
-    // এখানে navigation logic add করবে
   }
 }
