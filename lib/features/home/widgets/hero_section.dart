@@ -37,14 +37,13 @@ class HeroSection extends StatelessWidget {
 
   // 📱 Tablet Layout
   Widget _buildTabletLayout(BuildContext context) {
-    return SizedBox(
-      height: 800,
-      child: Column(
-        children: [
-          Expanded(flex: 3, child: _heroImage(context)),
-          Expanded(flex: 2, child: _introContent(context)),
-        ],
-      ),
+    return Column(
+      children: [
+        _heroImage(context),
+        SizedBox(height: context.sizes.spaceBtwItems),
+        _introContent(context),
+        SizedBox(height: context.sizes.spaceBtwItems),
+      ],
     );
   }
 
@@ -69,7 +68,6 @@ class HeroSection extends StatelessWidget {
       children: [
         // "Hello" Text
         Text('Hello', style: fonts.bodyLarge.rubik(color: DColors.textPrimary)),
-        //SizedBox(height: s.spaceBtwItems),
 
         // Name & Title
         Text.rich(
