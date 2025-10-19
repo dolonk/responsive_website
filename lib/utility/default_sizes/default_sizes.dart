@@ -33,31 +33,6 @@ class DSizes {
   final double borderRadiusMd;
   final double borderRadiusLg;
 
-  /*// ✅ Display font sizes (Hero section)
-  final double displayLarge;
-  final double displayMedium;
-  final double displaySmall;
-
-  // ✅ Headline font sizes (Section titles)
-  final double headlineLarge;
-  final double headlineMedium;
-  final double headlineSmall;
-
-  // ✅ Title font sizes (Subheadings)
-  final double titleLarge;
-  final double titleMedium;
-  final double titleSmall;
-
-  // ✅ Body font sizes (Normal text)
-  final double bodyLarge;
-  final double bodyMedium;
-  final double bodySmall;
-
-  // ✅ Label font sizes (Small text, captions)
-  final double labelLarge;
-  final double labelMedium;
-  final double labelSmall;*/
-
   // Private named constructor with all finals initialized
   DSizes._internal({
     // Padding sizes
@@ -88,31 +63,6 @@ class DSizes {
     required this.borderRadiusSm,
     required this.borderRadiusMd,
     required this.borderRadiusLg,
-
-   /* // ✅ Display font sizes
-    required this.displayLarge,
-    required this.displayMedium,
-    required this.displaySmall,
-
-    // ✅ Headline font sizes
-    required this.headlineLarge,
-    required this.headlineMedium,
-    required this.headlineSmall,
-
-    // ✅ Title font sizes
-    required this.titleLarge,
-    required this.titleMedium,
-    required this.titleSmall,
-
-    // ✅ Body font sizes
-    required this.bodyLarge,
-    required this.bodyMedium,
-    required this.bodySmall,
-
-    // ✅ Label font sizes
-    required this.labelLarge,
-    required this.labelMedium,
-    required this.labelSmall,*/
   });
 
   // Build DSizes instance dynamically based on context
@@ -154,31 +104,6 @@ class DSizes {
       borderRadiusSm: res((m) => m.borderRadiusSm, (t) => t.borderRadiusSm, (d) => d.borderRadiusSm),
       borderRadiusMd: res((m) => m.borderRadiusMd, (t) => t.borderRadiusMd, (d) => d.borderRadiusMd),
       borderRadiusLg: res((m) => m.borderRadiusLg, (t) => t.borderRadiusLg, (d) => d.borderRadiusLg),
-/*
-      // ✅ Display font sizes
-      displayLarge: res((m) => m.displayLarge, (t) => t.displayLarge, (d) => d.displayLarge),
-      displayMedium: res((m) => m.displayMedium, (t) => t.displayMedium, (d) => d.displayMedium),
-      displaySmall: res((m) => m.displaySmall, (t) => t.displaySmall, (d) => d.displaySmall),
-
-      // ✅ Headline font sizes
-      headlineLarge: res((m) => m.headlineLarge, (t) => t.headlineLarge, (d) => d.headlineLarge),
-      headlineMedium: res((m) => m.headlineMedium, (t) => t.headlineMedium, (d) => d.headlineMedium),
-      headlineSmall: res((m) => m.headlineSmall, (t) => t.headlineSmall, (d) => d.headlineSmall),
-
-      // ✅ Title font sizes
-      titleLarge: res((m) => m.titleLarge, (t) => t.titleLarge, (d) => d.titleLarge),
-      titleMedium: res((m) => m.titleMedium, (t) => t.titleMedium, (d) => d.titleMedium),
-      titleSmall: res((m) => m.titleSmall, (t) => t.titleSmall, (d) => d.titleSmall),
-
-      // ✅ Body font sizes
-      bodyLarge: res((m) => m.bodyLarge, (t) => t.bodyLarge, (d) => d.bodyLarge),
-      bodyMedium: res((m) => m.bodyMedium, (t) => t.bodyMedium, (d) => d.bodyMedium),
-      bodySmall: res((m) => m.bodySmall, (t) => t.bodySmall, (d) => d.bodySmall),
-
-      // ✅ Label font sizes
-      labelLarge: res((m) => m.labelLarge, (t) => t.labelLarge, (d) => d.labelLarge),
-      labelMedium: res((m) => m.labelMedium, (t) => t.labelMedium, (d) => d.labelMedium),
-      labelSmall: res((m) => m.labelSmall, (t) => t.labelSmall, (d) => d.labelSmall),*/
     );
   }
 }
@@ -223,21 +148,6 @@ class _MobileSizes {
   final double headlineLarge = 22.0;
   final double headlineMedium = 20.0;
   final double headlineSmall = 18.0;
-
-  // Title font sizes (Subheadings)
-  final double titleLarge = 18.0;
-  final double titleMedium = 16.0;
-  final double titleSmall = 14.0;
-
-  // Body font sizes (Normal text)
-  final double bodyLarge = 16.0;
-  final double bodyMedium = 14.0;
-  final double bodySmall = 12.0;
-
-  // Label font sizes (Small text, captions)
-  final double labelLarge = 14.0;
-  final double labelMedium = 12.0;
-  final double labelSmall = 10.0;
 }
 
 class _TabletSizes {
@@ -269,31 +179,6 @@ class _TabletSizes {
   final double borderRadiusSm = 6.0;
   final double borderRadiusMd = 10.0;
   final double borderRadiusLg = 14.0;
-
-  // Display font sizes (Hero section)
-  final double displayLarge = 40.0;
-  final double displayMedium = 36.0;
-  final double displaySmall = 32.0;
-
-  // Headline font sizes (Section titles)
-  final double headlineLarge = 28.0;
-  final double headlineMedium = 26.0;
-  final double headlineSmall = 24.0;
-
-  // Title font sizes (Subheadings)
-  final double titleLarge = 22.0;
-  final double titleMedium = 20.0;
-  final double titleSmall = 18.0;
-
-  // Body font sizes (Normal text)
-  final double bodyLarge = 18.0;
-  final double bodyMedium = 16.0;
-  final double bodySmall = 14.0;
-
-  // Label font sizes (Small text, captions)
-  final double labelLarge = 14.0;
-  final double labelMedium = 12.0;
-  final double labelSmall = 10.0;
 }
 
 class _DesktopSizes {
@@ -325,36 +210,9 @@ class _DesktopSizes {
   final double borderRadiusSm = 6.0;
   final double borderRadiusMd = 12.0;
   final double borderRadiusLg = 16.0;
-
-  // Display font sizes (Hero section)
-  final double displayLarge = 48.0;
-  final double displayMedium = 44.0;
-  final double displaySmall = 40.0;
-
-  // Headline font sizes (Section titles)
-  final double headlineLarge = 32.0;
-  final double headlineMedium = 28.0;
-  final double headlineSmall = 26.0;
-
-  // Title font sizes (Subheadings)
-  final double titleLarge = 26.0;
-  final double titleMedium = 24.0;
-  final double titleSmall = 22.0;
-
-  // Body font sizes (Normal text)
-  final double bodyLarge = 20.0;
-  final double bodyMedium = 18.0;
-  final double bodySmall = 16.0;
-
-  // Label font sizes (Small text, captions)
-  final double labelLarge = 16.0;
-  final double labelMedium = 14.0;
-  final double labelSmall = 12.0;
 }
 
 /// ✅ General spacing/padding extension
 extension ResponsiveSizesShorthand on BuildContext {
   DSizes get sizes => DSizes.of(this);
 }
-
-

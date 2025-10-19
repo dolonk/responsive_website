@@ -13,7 +13,7 @@ class HeroSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SectionContainer(
-      padding: EdgeInsets.symmetric(horizontal: context.sizes.paddingMd),
+      padding: EdgeInsets.symmetric(horizontal: context.isMobile ? 0 : context.sizes.paddingMd),
       backgroundColor: DColors.background,
       child: ResponsiveWidget(
         mobile: _buildMobileLayout(context),
@@ -25,14 +25,13 @@ class HeroSection extends StatelessWidget {
 
   // 📱 Mobile Layout
   Widget _buildMobileLayout(BuildContext context) {
-    return SizedBox(
-      height: 700,
-      child: Column(
-        children: [
-          Expanded(flex: 3, child: _heroImage(context)),
-          Expanded(flex: 2, child: _introContent(context)),
-        ],
-      ),
+    return Column(
+      children: [
+        _heroImage(context),
+        SizedBox(height: context.sizes.spaceBtwItems),
+        _introContent(context),
+        SizedBox(height: context.sizes.spaceBtwItems),
+      ],
     );
   }
 
@@ -70,7 +69,7 @@ class HeroSection extends StatelessWidget {
       children: [
         // "Hello" Text
         Text('Hello', style: fonts.bodyLarge.rubik(color: DColors.textPrimary)),
-        SizedBox(height: s.spaceBtwItems),
+        //SizedBox(height: s.spaceBtwItems),
 
         // Name & Title
         Text.rich(
@@ -89,13 +88,24 @@ class HeroSection extends StatelessWidget {
         SizedBox(height: s.spaceBtwItems),
 
         // Description
-        Text(
-          'Crafting sleek, high-performance apps with clean code and seamless user\n'
-          'experiences. Explore my portfolio to see how I bring ideas to life through\n'
-          'intuitive and scalable mobile applications.',
-          style: fonts.bodyMedium,
-          textAlign: context.isDesktop ? TextAlign.start : TextAlign.center,
-        ),
+        context.isMobile
+            ? Padding(
+              padding: EdgeInsets.symmetric(horizontal: s.paddingMd),
+              child: Text(
+                  'Crafting sleek, high-performance apps with clean code and seamless user'
+                  'experiences. Explore my portfolio to see how I bring ideas to life through'
+                  'intuitive and scalable mobile applications.',
+                  style: fonts.bodyMedium,
+                  textAlign: TextAlign.center,
+                ),
+            )
+            : Text(
+                'Crafting sleek, high-performance apps with clean code and seamless user\n'
+                'experiences. Explore my portfolio to see how I bring ideas to life through\n'
+                'intuitive and scalable mobile applications.',
+                style: fonts.bodyMedium,
+                textAlign: TextAlign.start,
+              ),
         SizedBox(height: s.spaceBtwItems),
 
         // Action Buttons
@@ -115,28 +125,28 @@ class HeroSection extends StatelessWidget {
       children: [
         // Diamond Background Gradient
         DiamondGradiantShape(
-          vector1Width: context.responsive(mobile: 400, tablet: 500, desktop: 530),
-          vector1Height: context.responsive(mobile: 450, tablet: 450, desktop: 500),
+          vector1Width: context.responsive(mobile: 500, tablet: 500, desktop: 530),
+          vector1Height: context.responsive(mobile: 400, tablet: 450, desktop: 500),
           vector2Width: context.responsive(mobile: 350, tablet: 420, desktop: 440),
-          vector2Height: context.responsive(mobile: 450, tablet: 450, desktop: 500),
+          vector2Height: context.responsive(mobile: 400, tablet: 450, desktop: 500),
         ),
 
         // APP DEVELOPMENT Text
         Positioned(
-          top: context.responsive(mobile: 110, tablet: 110, desktop: 80),
+          top: context.responsive(mobile: 60, desktop: 80),
           child: Text("APP DEVELOPMENT", style: context.fonts.displayLarge),
         ),
 
         // Hero Image
         Image.asset(
           'assets/home/hero_section/dk.png',
-          height: context.responsive(mobile: 450, tablet: 450, desktop: 500),
+          height: context.responsive(mobile: 400, tablet: 450, desktop: 500),
           fit: BoxFit.cover,
         ),
 
         // FLUTTER EXPERT Text (Stroke)
         Positioned(
-          bottom: context.responsive(mobile: 54, tablet: 20, desktop: 20),
+          bottom: context.responsive(mobile: 6, desktop: 20),
           child: Text(
             "FLUTTER EXPERT",
             style: context.fonts.displayLarge.copyWith(
@@ -164,7 +174,7 @@ class HeroSection extends StatelessWidget {
           onPressed: () {},
           style: ElevatedButton.styleFrom(
             backgroundColor: DColors.primaryButton,
-            padding: EdgeInsets.symmetric(horizontal: s.paddingMd, vertical: 18),
+            padding: EdgeInsets.all(s.paddingMd),
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(s.borderRadiusSm)),
           ),
           child: Text("Download CV", style: fonts.bodyMedium.rubik(color: DColors.textPrimary)),
@@ -176,7 +186,7 @@ class HeroSection extends StatelessWidget {
           onPressed: () {},
           style: OutlinedButton.styleFrom(
             side: BorderSide(color: DColors.buttonBorder, width: 1.5),
-            padding: EdgeInsets.symmetric(horizontal: s.paddingMd, vertical: 18),
+            padding: EdgeInsets.all(s.paddingMd),
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(s.borderRadiusSm)),
           ),
           child: Text("Hire Me", style: fonts.bodyMedium),
@@ -202,7 +212,7 @@ class HeroSection extends StatelessWidget {
       children: socialIcons
           .map(
             (icon) => Padding(
-              padding: EdgeInsets.only(right: s.paddingSm),
+              padding: EdgeInsets.only(right: s.paddingMd),
               child: MouseRegion(
                 cursor: SystemMouseCursors.click,
                 child: GestureDetector(
