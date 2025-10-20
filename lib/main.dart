@@ -1,6 +1,6 @@
+import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'features/home/home_page.dart';
-import 'package:device_preview/device_preview.dart';
 
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 

@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:responsive_website/features/home/widgets/hero_section.dart';
-import 'package:responsive_website/utility/constants/colors.dart';
-import '../../common_function/style/custom_button.dart';
+import 'package:responsive_website/features/home/widgets/service_widget/services_section.dart';
 import '../../common_function/style/custom_card.dart';
 import '../../utility/responsive/responsive_widget.dart';
 import '../../utility/responsive/section_container.dart';
+import 'package:responsive_website/features/home/widgets/hero_section.dart';
 import 'package:responsive_website/common_function/base_screen/base_screen.dart';
 
 class HomePage extends StatelessWidget {
@@ -17,6 +16,7 @@ class HomePage extends StatelessWidget {
         children: [
           // Hero Section
           HeroSection(),
+          MyServiceSection(),
 
           // Services Section
           SectionContainer(
