@@ -65,7 +65,8 @@ class MyServiceSection extends StatelessWidget {
         autoPlayCurve: Curves.fastOutSlowIn,
         viewportFraction: 1 / itemsToShow,
         enlargeCenterPage: false,
-        scrollPhysics: const BouncingScrollPhysics(),
+        //scrollPhysics: const BouncingScrollPhysics(),
+        scrollPhysics: NeverScrollableScrollPhysics(),
       ),
     );
   }

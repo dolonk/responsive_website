@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:responsive_website/features/home/widgets/expreience_section/experience_section.dart';
+import 'package:responsive_website/features/home/widgets/expreience_section/skill_section.dart';
 import 'package:responsive_website/features/home/widgets/service_widget/services_section.dart';
 import '../../common_function/style/custom_card.dart';
 import '../../utility/responsive/responsive_widget.dart';
@@ -17,6 +19,8 @@ class HomePage extends StatelessWidget {
           // Hero Section
           HeroSection(),
           MyServiceSection(),
+          ExperienceSection(),
+          SkillsSection(),
 
           // Services Section
           SectionContainer(
