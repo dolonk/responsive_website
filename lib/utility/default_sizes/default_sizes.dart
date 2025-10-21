@@ -26,6 +26,7 @@ class DSizes {
   // Spacing sizes
   final double defaultSpace;
   final double spaceBtwItems;
+  final double spaceBtwItems16;
   final double spaceBtwSections;
 
   // Border radius sizes
@@ -57,6 +58,7 @@ class DSizes {
     // Spacing sizes
     required this.defaultSpace,
     required this.spaceBtwItems,
+    required this.spaceBtwItems16,
     required this.spaceBtwSections,
 
     // Border radius sizes
@@ -98,6 +100,7 @@ class DSizes {
       // Spacing sizes
       defaultSpace: res((m) => m.defaultSpace, (t) => t.defaultSpace, (d) => d.defaultSpace),
       spaceBtwItems: res((m) => m.spaceBtwItems, (t) => t.spaceBtwItems, (d) => d.spaceBtwItems),
+      spaceBtwItems16: res((m) => m.spaceBtwItems16, (t) => t.spaceBtwItems16, (d) => d.spaceBtwItems16),
       spaceBtwSections: res((m) => m.spaceBtwSections, (t) => t.spaceBtwSections, (d) => d.spaceBtwSections),
 
       // Border radius sizes
@@ -132,22 +135,13 @@ class _MobileSizes {
   // Spacing sizes
   final double defaultSpace = 24.0;
   final double spaceBtwItems = 16.0;
+  final double spaceBtwItems16 = 12.0;
   final double spaceBtwSections = 32.0;
 
   // Border radius sizes
   final double borderRadiusSm = 4.0;
   final double borderRadiusMd = 8.0;
   final double borderRadiusLg = 12.0;
-
-  // Display font sizes (Hero section)
-  final double displayLarge = 32.0;
-  final double displayMedium = 28.0;
-  final double displaySmall = 24.0;
-
-  // Headline font sizes (Section titles)
-  final double headlineLarge = 22.0;
-  final double headlineMedium = 20.0;
-  final double headlineSmall = 18.0;
 }
 
 class _TabletSizes {
@@ -173,6 +167,7 @@ class _TabletSizes {
   // Spacing sizes
   final double defaultSpace = 30.0;
   final double spaceBtwItems = 20.0;
+  final double spaceBtwItems16 = 14.0;
   final double spaceBtwSections = 40.0;
 
   // Border radius sizes
@@ -204,6 +199,7 @@ class _DesktopSizes {
   // Spacing sizes
   final double defaultSpace = 36.0;
   final double spaceBtwItems = 24.0;
+  final double spaceBtwItems16 = 16.0;
   final double spaceBtwSections = 48.0;
 
   // Border radius sizes
