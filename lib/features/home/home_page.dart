@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:responsive_website/features/home/widgets/expreience_section/experience_section.dart';
-import 'package:responsive_website/features/home/widgets/expreience_section/skill_section.dart';
-import 'package:responsive_website/features/home/widgets/service_widget/services_section.dart';
 import '../../common_function/style/custom_card.dart';
 import '../../utility/responsive/responsive_widget.dart';
 import '../../utility/responsive/section_container.dart';
-import 'package:responsive_website/features/home/widgets/hero_section.dart';
 import 'package:responsive_website/common_function/base_screen/base_screen.dart';
+import 'package:responsive_website/features/home/widgets/hero_section/hero_section.dart';
+import 'package:responsive_website/features/home/widgets/service_section/services_section.dart';
+import 'package:responsive_website/features/home/widgets/experience_section/experience_section.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -20,7 +19,8 @@ class HomePage extends StatelessWidget {
           HeroSection(),
           MyServiceSection(),
           ExperienceSection(),
-          SkillsSection(),
+          SizedBox(height: 24),
+          //SkillsSection(),
 
           // Services Section
           SectionContainer(
@@ -36,7 +36,6 @@ class HomePage extends StatelessWidget {
       ),
     );
   }
-
 
   Widget _buildServicesMobile() {
     return Column(

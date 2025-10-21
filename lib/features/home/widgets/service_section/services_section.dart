@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import '../../../../data_layer/model/service_model.dart';
 import 'package:responsive_website/utility/constants/colors.dart';
-import 'package:responsive_website/utility/default_sizes/default_sizes.dart';
 import 'package:responsive_website/utility/default_sizes/font_size.dart';
+import 'package:responsive_website/utility/default_sizes/default_sizes.dart';
 import 'package:responsive_website/utility/responsive/responsive_helper.dart';
 import 'package:responsive_website/utility/responsive/section_container.dart';
-import 'package:responsive_website/features/home/widgets/service_widget/widget/service_card.dart';
+import 'package:responsive_website/features/home/widgets/service_section/widget/service_card.dart';
 
 class MyServiceSection extends StatelessWidget {
   const MyServiceSection({super.key});

@@ -1,67 +1,17 @@
 import 'package:flutter/material.dart';
+import '../../../../../utility/constants/colors.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:responsive_website/utility/constants/colors.dart';
 import 'package:responsive_website/utility/default_sizes/font_size.dart';
 import 'package:responsive_website/utility/default_sizes/default_sizes.dart';
 import 'package:responsive_website/utility/responsive/responsive_helper.dart';
-import 'package:responsive_website/utility/responsive/responsive_widget.dart';
-import 'package:responsive_website/utility/responsive/section_container.dart';
 
-class HeroSection extends StatelessWidget {
-  const HeroSection({super.key});
+class IntroContent extends StatelessWidget {
+  const IntroContent({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return SectionContainer(
-      padding: EdgeInsets.symmetric(horizontal: context.isMobile ? 0 : context.sizes.paddingMd),
-      backgroundColor: DColors.background,
-      child: ResponsiveWidget(
-        mobile: _buildMobileLayout(context),
-        tablet: _buildTabletLayout(context),
-        desktop: _buildDesktopLayout(context),
-      ),
-    );
-  }
-
-  // 📱 Mobile Layout
-  Widget _buildMobileLayout(BuildContext context) {
-    return Column(
-      children: [
-        _heroImage(context),
-        SizedBox(height: context.sizes.spaceBtwItems),
-        _introContent(context),
-        SizedBox(height: context.sizes.spaceBtwItems),
-      ],
-    );
-  }
-
-  // 📱 Tablet Layout
-  Widget _buildTabletLayout(BuildContext context) {
-    return Column(
-      children: [
-        _heroImage(context),
-        SizedBox(height: context.sizes.spaceBtwItems),
-        _introContent(context),
-        SizedBox(height: context.sizes.spaceBtwItems),
-      ],
-    );
-  }
-
-  // 💻 Desktop Layout
-  Widget _buildDesktopLayout(BuildContext context) {
-    return Row(
-      children: [
-        Expanded(flex: 3, child: _introContent(context)),
-        Expanded(flex: 2, child: _heroImage(context)),
-      ],
-    );
-  }
-
-  // 📝 Intro Content Section
-  Widget _introContent(BuildContext context) {
     final s = context.sizes;
     final fonts = context.fonts;
-
     return Column(
       crossAxisAlignment: context.isDesktop ? CrossAxisAlignment.start : CrossAxisAlignment.center,
       mainAxisAlignment: context.isDesktop ? MainAxisAlignment.center : MainAxisAlignment.start,
@@ -88,15 +38,15 @@ class HeroSection extends StatelessWidget {
         // Description
         context.isMobile
             ? Padding(
-              padding: EdgeInsets.symmetric(horizontal: s.paddingMd),
-              child: Text(
+                padding: EdgeInsets.symmetric(horizontal: s.paddingMd),
+                child: Text(
                   'Crafting sleek, high-performance apps with clean code and seamless user'
                   'experiences. Explore my portfolio to see how I bring ideas to life through'
                   'intuitive and scalable mobile applications.',
                   style: fonts.bodyMedium,
                   textAlign: TextAlign.center,
                 ),
-            )
+              )
             : Text(
                 'Crafting sleek, high-performance apps with clean code and seamless user\n'
                 'experiences. Explore my portfolio to see how I bring ideas to life through\n'
@@ -112,49 +62,6 @@ class HeroSection extends StatelessWidget {
 
         // Social Icons
         _buildSocialIcons(context),
-      ],
-    );
-  }
-
-  // 🖼️ Hero Image Section
-  Widget _heroImage(BuildContext context) {
-    return Stack(
-      alignment: Alignment.center,
-      children: [
-        // Diamond Background Gradient
-        DiamondGradiantShape(
-          vector1Width: context.responsive(mobile: 500, tablet: 500, desktop: 530),
-          vector1Height: context.responsive(mobile: 400, tablet: 450, desktop: 500),
-          vector2Width: context.responsive(mobile: 350, tablet: 420, desktop: 440),
-          vector2Height: context.responsive(mobile: 400, tablet: 450, desktop: 500),
-        ),
-
-        // APP DEVELOPMENT Text
-        Positioned(
-          top: context.responsive(mobile: 60, desktop: 80),
-          child: Text("APP DEVELOPMENT", style: context.fonts.displayLarge),
-        ),
-
-        // Hero Image
-        Image.asset(
-          'assets/home/hero_section/dk.png',
-          height: context.responsive(mobile: 400, tablet: 450, desktop: 500),
-          fit: BoxFit.cover,
-        ),
-
-        // FLUTTER EXPERT Text (Stroke)
-        Positioned(
-          bottom: context.responsive(mobile: 6, desktop: 20),
-          child: Text(
-            "FLUTTER EXPERT",
-            style: context.fonts.displayLarge.copyWith(
-              foreground: Paint()
-                ..style = PaintingStyle.stroke
-                ..strokeWidth = 1
-                ..color = DColors.textPrimary,
-            ),
-          ),
-        ),
       ],
     );
   }
