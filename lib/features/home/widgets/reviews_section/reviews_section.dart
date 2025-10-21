@@ -138,7 +138,7 @@ class ReviewsSection extends StatelessWidget {
     final fonts = context.fonts;
 
     return Column(
-      crossAxisAlignment: context.isTablet ? CrossAxisAlignment.center : CrossAxisAlignment.start,
+      crossAxisAlignment: context.isMobile ||context.isTablet ? CrossAxisAlignment.center : CrossAxisAlignment.start,
       children: [
         // Subtitle
         Text("Reviews", style: fonts.headlineMedium.rajdhani(color: DColors.primaryButton)),
