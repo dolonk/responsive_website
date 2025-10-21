@@ -23,7 +23,7 @@ class SkillsSection extends StatelessWidget {
           Text(
             "Technical Skills & Expertise",
             style: fonts.displayLarge.rajdhani(
-              fontSize: context.responsive(mobile: 32, tablet: 40, desktop: 48),
+              fontSize: context.responsiveValue(mobile: 32, tablet: 40, desktop: 48),
               fontWeight: FontWeight.w700,
             ),
             textAlign: TextAlign.center,
@@ -215,7 +215,7 @@ class _SkillCard extends StatelessWidget {
 
     return Container(
       width: double.infinity,
-      padding: EdgeInsets.all(context.responsive(mobile: 20, tablet: 24, desktop: 28)),
+      padding: EdgeInsets.all(context.responsiveValue(mobile: 20, tablet: 24, desktop: 28)),
       decoration: BoxDecoration(
         color: DColors.cardBackground,
         borderRadius: BorderRadius.circular(s.borderRadiusLg),

@@ -51,7 +51,7 @@ extension ResponsiveContext on BuildContext {
   double get screenHeight => ResponsiveHelper.getHeight(this);
 
   // Responsive value shorthand
-  T responsive<T>({required T mobile, T? tablet, required T desktop}) =>
+  T responsiveValue<T>({required T mobile, T? tablet, required T desktop}) =>
       ResponsiveHelper.value(this, mobile: mobile, tablet: tablet, desktop: desktop);
 
   /*  // Responsive widget shorthand

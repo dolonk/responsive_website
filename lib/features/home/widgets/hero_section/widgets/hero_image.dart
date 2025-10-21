@@ -13,28 +13,28 @@ class HeroImage extends StatelessWidget {
       children: [
         // Diamond Background Gradient
         DiamondGradiantShape(
-          vector1Width: context.responsive(mobile: 500, tablet: 500, desktop: 530),
-          vector1Height: context.responsive(mobile: 400, tablet: 450, desktop: 500),
-          vector2Width: context.responsive(mobile: 350, tablet: 420, desktop: 440),
-          vector2Height: context.responsive(mobile: 400, tablet: 450, desktop: 500),
+          vector1Width: context.responsiveValue(mobile: 500, tablet: 500, desktop: 530),
+          vector1Height: context.responsiveValue(mobile: 400, tablet: 450, desktop: 500),
+          vector2Width: context.responsiveValue(mobile: 350, tablet: 420, desktop: 440),
+          vector2Height: context.responsiveValue(mobile: 400, tablet: 450, desktop: 500),
         ),
 
         // APP DEVELOPMENT Text
         Positioned(
-          top: context.responsive(mobile: 60, desktop: 80),
+          top: context.responsiveValue(mobile: 60, desktop: 80),
           child: Text("APP DEVELOPMENT", style: context.fonts.displayLarge),
         ),
 
         // Hero Image
         Image.asset(
           'assets/home/hero_section/dk.png',
-          height: context.responsive(mobile: 400, tablet: 450, desktop: 500),
+          height: context.responsiveValue(mobile: 400, tablet: 450, desktop: 500),
           fit: BoxFit.cover,
         ),
 
         // FLUTTER EXPERT Text (Stroke)
         Positioned(
-          bottom: context.responsive(mobile: 6, desktop: 20),
+          bottom: context.responsiveValue(mobile: 6, desktop: 20),
           child: Text(
             "FLUTTER EXPERT",
             style: context.fonts.displayLarge.copyWith(

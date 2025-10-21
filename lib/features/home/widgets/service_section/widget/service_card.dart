@@ -52,8 +52,8 @@ class _ServiceCardState extends State<ServiceCard> {
             // Icon
             SvgPicture.asset(
               widget.serviceModel.iconPath,
-              width: context.responsive(mobile: 50, tablet: 56, desktop: 60),
-              height: context.responsive(mobile: 50, tablet: 56, desktop: 60),
+              width: context.responsiveValue(mobile: 50, tablet: 56, desktop: 60),
+              height: context.responsiveValue(mobile: 50, tablet: 56, desktop: 60),
               colorFilter: ColorFilter.mode(
                 _isHovered ? DColors.primaryButton : DColors.textPrimary,
                 BlendMode.srcIn,
@@ -98,7 +98,7 @@ class _ServiceCardState extends State<ServiceCard> {
                 // Background Icon
                 ImageIcon(
                   const AssetImage('assets/home/icon/background_icon.png'),
-                  size: context.responsive(mobile: 48, tablet: 52, desktop: 56),
+                  size: context.responsiveValue(mobile: 48, tablet: 52, desktop: 56),
                   color: _isHovered ? DColors.primaryButton.withOpacity(0.3) : DColors.cardBorder,
                 ),
               ],

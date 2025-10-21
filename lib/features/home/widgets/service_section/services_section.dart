@@ -16,10 +16,9 @@ class MyServiceSection extends StatelessWidget {
     final s = context.sizes;
     final fonts = context.fonts;
     final services = _getServices();
-    final int itemsToShow = context.responsive(mobile: 1, tablet: 3, desktop: 5);
+    final int itemsToShow = context.responsiveValue(mobile: 1, tablet: 3, desktop: 5);
 
     return SectionContainer(
-      backgroundColor: DColors.secondaryBackground,
       padding: EdgeInsets.symmetric(vertical: s.spaceBtwSections),
       child: Column(
         children: [

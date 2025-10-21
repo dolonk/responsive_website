@@ -12,8 +12,8 @@ class YearsCard extends StatelessWidget {
     final fonts = context.fonts;
 
     return Container(
-      width: context.responsive(mobile: double.infinity, tablet: 340, desktop: 340),
-      height:context.responsive(mobile: 210, tablet: 210, desktop: 312) ,
+      width: context.responsiveValue(mobile: double.infinity, tablet: 340, desktop: 340),
+      height:context.responsiveValue(mobile: 210, tablet: 210, desktop: 312) ,
       decoration: BoxDecoration(
         color: const Color(0xFFFFFFFF).withValues(alpha: (0.5 * 255)),
         borderRadius: BorderRadius.circular(8),

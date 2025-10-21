@@ -16,7 +16,6 @@ class ExperienceSection extends StatelessWidget {
     final fonts = context.fonts;
 
     return SectionContainer(
-      backgroundColor: DColors.secondaryBackground,
       padding: EdgeInsets.symmetric(vertical: s.spaceBtwSections, horizontal: context.sizes.paddingLg),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,

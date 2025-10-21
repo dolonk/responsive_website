@@ -13,8 +13,8 @@ class HeroSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SectionContainer(
-      padding: EdgeInsets.symmetric(horizontal: context.isMobile ? 0 : context.sizes.paddingLg),
       backgroundColor: DColors.background,
+      padding: EdgeInsets.symmetric(horizontal: context.isMobile ? 0 : context.sizes.paddingLg),
       child: ResponsiveWidget(
         mobile: _buildMobileLayout(context),
         tablet: _buildTabletLayout(context),
