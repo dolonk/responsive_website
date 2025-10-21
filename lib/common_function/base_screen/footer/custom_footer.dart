@@ -152,7 +152,7 @@ class FooterSection extends StatelessWidget {
       padding: EdgeInsets.only(right: context.sizes.paddingMd),
       child: GestureDetector(
         onTap: () {},
-        child: Icon(icon, color: Colors.white70, size: context.sizes.iconXs),
+        child: Icon(icon, color: Colors.white70, size: context.sizes.iconSm),
       ),
     );
   }

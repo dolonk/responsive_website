@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:responsive_website/common_function/base_screen/base_screen.dart';
+import 'package:responsive_website/features/home/widgets/blog_section/blog_section.dart';
 import 'package:responsive_website/features/home/widgets/hero_section/hero_section.dart';
 import 'package:responsive_website/features/home/widgets/latest_projects/latest_projects.dart';
 import 'package:responsive_website/features/home/widgets/service_section/services_section.dart';
@@ -17,8 +18,8 @@ class HomePage extends StatelessWidget {
           HeroSection(),
           MyServiceSection(),
           ExperienceSection(),
-
           LatestProjectsSection(),
+          BlogSection(),
         ],
       ),
     );
