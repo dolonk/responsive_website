@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:responsive_website/utility/constants/colors.dart';
 import 'package:responsive_website/utility/default_sizes/font_size.dart';
 import 'package:responsive_website/utility/default_sizes/default_sizes.dart';
 import 'package:responsive_website/utility/responsive/responsive_widget.dart';
@@ -84,67 +83,64 @@ class ExperienceSection extends StatelessWidget {
     );
   }
 
-  // 💻 Desktop Layout
+  // 💻 Desktop Layout (Improved Responsive Version)
   Widget _buildDesktopLayout(BuildContext context) {
     final s = context.sizes;
-    return Stack(
-      clipBehavior: Clip.none,
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        // Pink Gradient Circle (Background decoration)
-        Positioned(
-          left: 50,
-          bottom: -100,
-          child: Container(
-            width: 320,
-            height: 350,
-            decoration: const BoxDecoration(
-              shape: BoxShape.circle,
-              gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: [Color(0xFFFF014F), Color(0xff000000)],
+        Stack(
+          alignment: Alignment.center,
+          clipBehavior: Clip.none,
+          children: [
+            Positioned(
+              left: 100,
+              bottom: -90,
+              child: Container(
+                width: 250,
+                height: 250,
+                decoration: const BoxDecoration(
+                  shape: BoxShape.circle,
+                  gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [Color(0x90FF014F), Color(0xff000000)],
+                  ),
+                ),
               ),
             ),
-          ),
+            // YearsCard টি Stack এর উপরে থাকবে
+            Padding(
+              padding: EdgeInsets.only(left: s.spaceBtwSections * 4),
+              child: YearsCard(),
+            ),
+          ],
         ),
 
-        // Main Content
-        SizedBox(
-          height: 312,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              // Years Card (Left side)
-              Padding(
-                padding: EdgeInsets.only(left: s.spaceBtwSections * 4),
-                child: YearsCard(),
-              ),
+        // publish card
+        Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            // First Row
+            Row(
+              children: [
+                StatCard(title: "10+", subtitle: "Mobile Apps Published"),
+                SizedBox(width: s.spaceBtwSections),
+                StatCard(title: "20+", subtitle: "Client Projects Delivered"),
+              ],
+            ),
+            SizedBox(height: s.paddingSm),
 
-              // Stats Grid (Right side)
-              Column(
-                children: [
-                  // First Row
-                  Row(
-                    children: [
-                      StatCard(title: "10+", subtitle: "Mobile Apps Published"),
-                      SizedBox(width: s.spaceBtwSections),
-                      StatCard(title: "20+", subtitle: "Client Projects Delivered"),
-                    ],
-                  ),
-                  SizedBox(height: s.paddingSm),
-
-                  // Second Row
-                  Row(
-                    children: [
-                      StatCard(title: "Flutter Expert", subtitle: "Android • iOS • Web • macOS • Windows"),
-                      SizedBox(width: s.spaceBtwSections),
-                      StatCard(title: "UI/UX Focused", subtitle: "Pixel Perfect Design"),
-                    ],
-                  ),
-                ],
-              ),
-            ],
-          ),
+            // Second Row
+            Row(
+              children: [
+                StatCard(title: "Flutter Expert", subtitle: "Android • iOS • Web • macOS • Windows"),
+                SizedBox(width: s.spaceBtwSections),
+                StatCard(title: "UI/UX Focused", subtitle: "Pixel Perfect Design"),
+              ],
+            ),
+          ],
         ),
       ],
     );
