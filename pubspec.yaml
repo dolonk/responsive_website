@@ -14,6 +14,7 @@ dependencies:
   # Utility Packages
   flutter_svg: ^2.2.0
   google_fonts: ^6.3.2
+  animated_text_kit: ^4.2.2
 
 
   # Web Specific

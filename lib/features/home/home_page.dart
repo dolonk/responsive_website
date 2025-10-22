@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:responsive_website/common_function/base_screen/base_screen.dart';
 import 'package:responsive_website/features/home/widgets/blog_section/blog_section.dart';
+import 'package:responsive_website/features/home/widgets/get_in_touch/get_in_touch.dart';
 import 'package:responsive_website/features/home/widgets/hero_section/hero_section.dart';
 import 'package:responsive_website/features/home/widgets/latest_projects/latest_projects.dart';
 import 'package:responsive_website/features/home/widgets/reviews_section/reviews_section.dart';
@@ -21,6 +22,7 @@ class HomePage extends StatelessWidget {
           LatestProjectsSection(),
           ReviewsSection(),
           BlogSection(),
+          GetInTouchSection(),
         ],
       ),
     );

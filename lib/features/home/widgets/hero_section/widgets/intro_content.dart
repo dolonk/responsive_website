@@ -1,3 +1,4 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import '../../../../../utility/constants/colors.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -19,19 +20,36 @@ class IntroContent extends StatelessWidget {
         // "Hello" Text
         Text('Hello', style: fonts.bodyLarge.rubik(color: DColors.textPrimary)),
 
-        // Name & Title
-        Text.rich(
-          TextSpan(
-            text: "I'm Dolon km, an \n",
-            style: fonts.displayMedium,
-            children: [
-              TextSpan(
-                text: '  App Developer',
-                style: fonts.displayMedium.rajdhani(color: DColors.primaryButton),
-              ),
-            ],
-          ),
-          textAlign: context.isDesktop ? TextAlign.start : TextAlign.center,
+        // Name & Title (Animated)
+        Column(
+          crossAxisAlignment: context.isDesktop ? CrossAxisAlignment.start : CrossAxisAlignment.center,
+          children: [
+            // Static part of the text
+            Text(
+              "I'm Dolon km, an",
+              style: fonts.displayMedium,
+              textAlign: context.isDesktop ? TextAlign.start : TextAlign.center,
+            ),
+            // Animated part of the text
+            AnimatedTextKit(
+              isRepeatingAnimation: true,
+              repeatForever: true,
+              animatedTexts: [
+                TypewriterAnimatedText(
+                  'App Developer',
+                  textStyle: fonts.displayMedium.rajdhani(color: DColors.primaryButton),
+                  speed: const Duration(milliseconds: 150),
+                  cursor: '|',
+                ),
+                TypewriterAnimatedText(
+                  'Flutter Expert',
+                  textStyle: fonts.displayMedium.rajdhani(color: DColors.primaryButton),
+                  speed: const Duration(milliseconds: 150),
+                  cursor: '|',
+                ),
+              ],
+            ),
+          ],
         ),
         SizedBox(height: s.spaceBtwItems),
 
