@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:responsive_website/utility/responsive/responsive_helper.dart';
+import '../../../../../common_function/style/custom_button.dart';
 import '../../../../../utility/constants/colors.dart';
 import '../../../../../data_layer/model/project_model.dart';
 import 'package:responsive_website/utility/default_sizes/default_sizes.dart';
@@ -25,6 +26,7 @@ class _ProjectCardState extends State<ProjectCard> {
     return MouseRegion(
       onEnter: (_) => setState(() => _isHovered = true),
       onExit: (_) => setState(() => _isHovered = false),
+      cursor: SystemMouseCursors.click,
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 300),
         curve: Curves.easeInOut,
@@ -57,7 +59,12 @@ class _ProjectCardState extends State<ProjectCard> {
                 child: Stack(
                   fit: StackFit.expand,
                   children: [
-                    Image.asset(widget.project.imagePath, fit: BoxFit.cover),
+                    AnimatedScale(
+                      duration: const Duration(milliseconds: 300),
+                      curve: Curves.easeInOut,
+                      scale: _isHovered ? 1.1 : 1.0,
+                      child: Image.asset(widget.project.imagePath, fit: BoxFit.cover),
+                    ),
                     // Hover Overlay
                     AnimatedOpacity(
                       duration: const Duration(milliseconds: 300),
@@ -81,37 +88,26 @@ class _ProjectCardState extends State<ProjectCard> {
             ),
             const SizedBox(height: 6),
 
+            // Tittle
             Text(widget.project.title, style: fonts.titleMedium),
             const SizedBox(height: 6),
 
             Row(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
+                // Subtitle
                 Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        widget.project.description,
-                        style: fonts.labelMedium,
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                    ],
+                  child: Text(
+                    widget.project.description,
+                    style: fonts.labelMedium.rubik(color: DColors.textSecondary),
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
                   ),
                 ),
                 SizedBox(width: s.spaceBtwItems),
 
                 // View Project Button
-                ElevatedButton(
-                  onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: _isHovered ? DColors.primaryButton : DColors.cardBorder,
-                    padding: EdgeInsets.all(context.responsiveValue(mobile: 10,tablet: 12, desktop: 16)),
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(s.borderRadiusSm)),
-                  ),
-                  child: Text('View Project', style: fonts.bodySmall),
-                ),
+                CustomButton(height: 40, tittleText: 'View Project', onPressed: () {}),
               ],
             ),
           ],

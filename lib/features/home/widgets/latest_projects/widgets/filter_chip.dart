@@ -61,7 +61,7 @@ class _DFilterChipState extends State<DFilterChip> {
             widget.label,
             style: fonts.bodySmall.rubik(
               color: widget.isActive ? DColors.textPrimary : DColors.textSecondary,
-              fontWeight: widget.isActive ? FontWeight.w600 : FontWeight.w500,
+              fontWeight: widget.isActive ? FontWeight.w600 : FontWeight.w400,
             ),
           ),
         ),

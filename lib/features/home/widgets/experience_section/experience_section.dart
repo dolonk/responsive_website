@@ -6,6 +6,8 @@ import 'package:responsive_website/utility/responsive/section_container.dart';
 import 'package:responsive_website/features/home/widgets/experience_section/widgets/start_card.dart';
 import 'package:responsive_website/features/home/widgets/experience_section/widgets/year_card.dart';
 
+import '../../../../utility/constants/colors.dart';
+
 class ExperienceSection extends StatelessWidget {
   const ExperienceSection({super.key});
 
@@ -100,7 +102,7 @@ class ExperienceSection extends StatelessWidget {
               child: Container(
                 width: 250,
                 height: 250,
-                decoration: const BoxDecoration(
+                decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   gradient: LinearGradient(
                     begin: Alignment.topCenter,
@@ -110,7 +112,7 @@ class ExperienceSection extends StatelessWidget {
                 ),
               ),
             ),
-            // YearsCard টি Stack এর উপরে থাকবে
+
             Padding(
               padding: EdgeInsets.only(left: s.spaceBtwSections * 4),
               child: YearsCard(),

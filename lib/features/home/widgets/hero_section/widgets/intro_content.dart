@@ -1,13 +1,22 @@
-import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import '../../../../../utility/constants/colors.dart';
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import '../../../../../common_function/style/custom_button.dart';
+import '../../../../../common_function/style/hoverable_social_icon.dart';
 import 'package:responsive_website/utility/default_sizes/font_size.dart';
 import 'package:responsive_website/utility/default_sizes/default_sizes.dart';
 import 'package:responsive_website/utility/responsive/responsive_helper.dart';
 
-class IntroContent extends StatelessWidget {
+class IntroContent extends StatefulWidget {
   const IntroContent({super.key});
+
+  @override
+  State<IntroContent> createState() => _IntroContentState();
+}
+
+class _IntroContentState extends State<IntroContent> {
+  bool _isOutlineHovered = false;
 
   @override
   Widget build(BuildContext context) {
@@ -93,26 +102,25 @@ class IntroContent extends StatelessWidget {
       mainAxisAlignment: context.isDesktop ? MainAxisAlignment.start : MainAxisAlignment.center,
       children: [
         // Download CV Button
-        ElevatedButton(
-          onPressed: () {},
-          style: ElevatedButton.styleFrom(
-            backgroundColor: DColors.primaryButton,
-            padding: EdgeInsets.all(s.paddingMd),
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(s.borderRadiusSm)),
-          ),
-          child: Text("Download CV", style: fonts.bodyMedium.rubik(color: DColors.textPrimary)),
-        ),
+        CustomButton(tittleText: 'Download CvD', onPressed: () {}),
         SizedBox(width: s.spaceBtwItems),
 
         // Hire Me Button
-        OutlinedButton(
-          onPressed: () {},
-          style: OutlinedButton.styleFrom(
-            side: BorderSide(color: DColors.buttonBorder, width: 1.5),
-            padding: EdgeInsets.all(s.paddingMd),
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(s.borderRadiusSm)),
+        MouseRegion(
+          onEnter: (_) => setState(() => _isOutlineHovered = true),
+          onExit: (_) => setState(() => _isOutlineHovered = false),
+          child: SizedBox(
+            height: 50,
+            child: OutlinedButton(
+              onPressed: () {},
+              style: OutlinedButton.styleFrom(
+                backgroundColor: _isOutlineHovered ? DColors.cardBorder : DColors.background,
+                side: BorderSide(color: DColors.buttonBorder, width: 1.5),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(s.borderRadiusSm)),
+              ),
+              child: Text("Hire Me", style: fonts.bodyMedium),
+            ),
           ),
-          child: Text("Hire Me", style: fonts.bodyMedium),
         ),
       ],
     );
@@ -136,14 +144,11 @@ class IntroContent extends StatelessWidget {
           .map(
             (icon) => Padding(
               padding: EdgeInsets.only(right: s.paddingMd),
-              child: MouseRegion(
-                cursor: SystemMouseCursors.click,
-                child: GestureDetector(
-                  onTap: () {
-                    // Add social link navigation
-                  },
-                  child: Icon(icon, color: DColors.textPrimary, size: s.iconMd),
-                ),
+              child: HoverableSocialIcon(
+                icon: icon,
+                onTap: () {
+                  print("Tapped on: $icon");
+                },
               ),
             ),
           )

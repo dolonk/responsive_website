@@ -57,7 +57,7 @@ class _StatCardState extends State<StatCard> {
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 8),
-                Text(widget.subtitle, style: fonts.bodyMedium, textAlign: TextAlign.center),
+                Text(widget.subtitle, style: fonts.bodyMedium.rubik(color: DColors.textSecondary), textAlign: TextAlign.center),
               ],
             ),
           ),

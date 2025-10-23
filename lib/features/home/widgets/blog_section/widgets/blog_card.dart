@@ -4,6 +4,7 @@ import '../../../../../../utility/constants/colors.dart';
 import '../../../../../../data_layer/model/blog_model.dart';
 import '../../../../../../utility/default_sizes/font_size.dart';
 import '../../../../../../utility/default_sizes/default_sizes.dart';
+import '../../../../../common_function/style/custom_button.dart';
 
 class BlogCard extends StatefulWidget {
   final BlogModel blog;
@@ -16,6 +17,7 @@ class BlogCard extends StatefulWidget {
 
 class _BlogCardState extends State<BlogCard> {
   bool _isHovered = false;
+  bool _isHoveredButton = false;
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +60,15 @@ class _BlogCardState extends State<BlogCard> {
                 child: Stack(
                   fit: StackFit.expand,
                   children: [
-                    Image.asset(widget.blog.imagePath, fit: BoxFit.cover),
+                    // Image
+                    AnimatedScale(
+                      duration: const Duration(milliseconds: 300),
+                      curve: Curves.easeInOut,
+                      scale: _isHovered ? 1.1 : 1.0,
+                      child: Image.asset(widget.blog.imagePath, fit: BoxFit.cover),
+                    ),
+
+                    // Gradiant Effect
                     AnimatedOpacity(
                       duration: const Duration(milliseconds: 300),
                       opacity: _isHovered ? 1.0 : 0.0,
@@ -87,9 +97,11 @@ class _BlogCardState extends State<BlogCard> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  // Categories
                   Text(widget.blog.category, style: fonts.bodySmall.rubik(color: DColors.primaryButton)),
                   SizedBox(height: s.spaceBtwItems / 2),
 
+                  // Tittle
                   Text(
                     widget.blog.title,
                     style: fonts.titleMedium,
@@ -98,26 +110,17 @@ class _BlogCardState extends State<BlogCard> {
                   ),
                   SizedBox(height: s.spaceBtwItems / 2),
 
+                  // Subtitle
                   Text(
                     widget.blog.description,
-                    style: fonts.labelMedium,
+                    style: fonts.labelMedium.rubik(color: DColors.textSecondary),
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                   ),
                   SizedBox(height: s.spaceBtwItems),
 
-                  SizedBox(
-                    width: double.infinity,
-                    child: ElevatedButton(
-                      onPressed: () {},
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: _isHovered ? DColors.primaryButton : DColors.cardBorder,
-                        padding: EdgeInsets.all(context.responsiveValue(mobile: 10, tablet: 12, desktop: 16)),
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(s.borderRadiusSm)),
-                      ),
-                      child: Text('Read More', style: fonts.bodySmall),
-                    ),
-                  ),
+                  // Button
+                  CustomButton(width: double.infinity, height: 40, tittleText: 'Read More', onPressed: () {}),
                 ],
               ),
             ),
