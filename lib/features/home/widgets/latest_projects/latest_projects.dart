@@ -49,15 +49,23 @@ class _LatestProjectsSectionState extends State<LatestProjectsSection> {
     );
   }
 
-  // 🎯 FILTER CHIPS
+  // 🎯 FILTER CHIPS - Fixed Responsive
   Widget _buildFilterChips(BuildContext context) {
     final s = context.sizes;
 
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: s.paddingMd),
       child: Wrap(
-        spacing: s.spaceBtwItems,
-        runSpacing: s.spaceBtwItems,
+        spacing: context.responsiveValue(
+          mobile: s.spaceBtwItems * 0.5,
+          tablet: s.spaceBtwItems * 0.75,
+          desktop: s.spaceBtwItems,
+        ),
+        runSpacing: context.responsiveValue(
+          mobile: s.spaceBtwItems * 0.5,
+          tablet: s.spaceBtwItems * 0.75,
+          desktop: s.spaceBtwItems,
+        ),
         alignment: WrapAlignment.center,
         children: _filters.map((filter) {
           final isActive = _selectedFilter == filter;
@@ -82,23 +90,37 @@ class _LatestProjectsSectionState extends State<LatestProjectsSection> {
     return allProjects.where((project) => project.category == _selectedFilter).toList();
   }
 
-  // 📱 PROJECTS GRID
+  // 📱 PROJECTS GRID - Fixed Responsive with proper aspect ratios
   Widget _buildProjectsGrid(BuildContext context) {
     final s = context.sizes;
     final projects = _getFilteredProjects();
+
+    // ✅ Fixed: Proper cross axis count for all devices
     final crossAxisCount = context.responsiveValue(mobile: 1, tablet: 2, desktop: 3);
 
+    // ✅ Fixed: Proper aspect ratio for all devices
+    final aspectRatio = context.responsiveValue(mobile: 0.75, tablet: 0.82, desktop: 0.88);
+
+    // ✅ Fixed: Proper spacing for all devices
+    final gridSpacing = context.responsiveValue(
+      mobile: s.spaceBtwItems,
+      tablet: s.spaceBtwSections * 0.75,
+      desktop: s.spaceBtwSections,
+    );
+
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: s.paddingMd),
+      padding: EdgeInsets.symmetric(
+        horizontal: context.responsiveValue(mobile: s.paddingSm, tablet: s.paddingMd, desktop: s.paddingLg),
+      ),
       child: GridView.builder(
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
         itemCount: projects.length,
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: crossAxisCount,
-          crossAxisSpacing: s.spaceBtwSections,
-          mainAxisSpacing: s.spaceBtwSections,
-          childAspectRatio: context.isMobile ? 0.85 : 0.9,
+          crossAxisSpacing: gridSpacing,
+          mainAxisSpacing: gridSpacing,
+          childAspectRatio: aspectRatio,
         ),
         itemBuilder: (context, index) => ProjectCard(project: projects[index]),
       ),

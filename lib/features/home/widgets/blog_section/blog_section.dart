@@ -61,23 +61,37 @@ class BlogSection extends StatelessWidget {
     ];
   }
 
-  // 📝 BLOGS GRID
+  // 📝 BLOGS GRID - Fixed Responsive
   Widget _buildBlogsGrid(BuildContext context) {
     final s = context.sizes;
     final blogs = _getBlogsData();
+
+    // ✅ Fixed: Proper cross axis count
     final crossAxisCount = context.responsiveValue(mobile: 1, tablet: 2, desktop: 3);
 
+    // ✅ Fixed: Better aspect ratios for blog cards
+    final aspectRatio = context.responsiveValue(mobile: 0.68, tablet: 0.75, desktop: 0.82);
+
+    // ✅ Fixed: Responsive spacing
+    final gridSpacing = context.responsiveValue(
+      mobile: s.spaceBtwItems,
+      tablet: s.spaceBtwSections * 0.75,
+      desktop: s.spaceBtwSections,
+    );
+
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: s.paddingMd),
+      padding: EdgeInsets.symmetric(
+        horizontal: context.responsiveValue(mobile: s.paddingSm, tablet: s.paddingMd, desktop: s.paddingLg),
+      ),
       child: GridView.builder(
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
         itemCount: blogs.length,
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: crossAxisCount,
-          crossAxisSpacing: s.spaceBtwSections,
-          mainAxisSpacing: s.spaceBtwSections,
-          childAspectRatio: context.responsiveValue(mobile: 0.7, tablet: 0.8, desktop: 0.85),
+          crossAxisSpacing: gridSpacing,
+          mainAxisSpacing: gridSpacing,
+          childAspectRatio: aspectRatio,
         ),
         itemBuilder: (context, index) => BlogCard(blog: blogs[index]),
       ),

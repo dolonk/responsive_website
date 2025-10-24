@@ -25,7 +25,7 @@ class ResponsiveHelper {
   /// Example: ResponsiveHelper.value(context, mobile: 16, tablet: 20, desktop: 24)
   static T value<T>(BuildContext context, {required T mobile, T? tablet, required T desktop}) {
     if (isDesktop(context)) return desktop;
-    if (isTablet(context)) return tablet ?? mobile;
+    if (isTablet(context)) return tablet ?? desktop;
     return mobile;
   }
 

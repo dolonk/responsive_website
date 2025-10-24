@@ -20,21 +20,31 @@ class SkillsSection extends StatelessWidget {
       child: Column(
         children: [
           // Section Title
-          Text(
-            "Technical Skills & Expertise",
-            style: fonts.displayLarge.rajdhani(
-              fontSize: context.responsiveValue(mobile: 32, tablet: 40, desktop: 48),
-              fontWeight: FontWeight.w700,
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: s.paddingMd),
+            child: Text(
+              "Technical Skills & Expertise",
+              style: fonts.displayLarge.rajdhani(
+                fontSize: context.responsiveValue(mobile: 32, tablet: 40, desktop: 48),
+                fontWeight: FontWeight.w700,
+              ),
+              textAlign: TextAlign.center,
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
             ),
-            textAlign: TextAlign.center,
           ),
           SizedBox(height: s.paddingSm),
 
           // Subtitle
-          Text(
-            "Building scalable, efficient, and innovative applications",
-            style: fonts.bodyLarge.rubik(color: DColors.textSecondary, fontWeight: FontWeight.w400),
-            textAlign: TextAlign.center,
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: s.paddingMd),
+            child: Text(
+              "Building scalable, efficient, and innovative applications",
+              style: fonts.bodyLarge.rubik(color: DColors.textSecondary, fontWeight: FontWeight.w400),
+              textAlign: TextAlign.center,
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+            ),
           ),
           SizedBox(height: s.spaceBtwSections * 2),
 
@@ -45,9 +55,9 @@ class SkillsSection extends StatelessWidget {
     );
   }
 
-  // 📱 Mobile Layout
+  // 📱 Mobile Layout - Fixed overflow issues
   Widget _buildMobileLayout(BuildContext context) {
-    return Padding(
+    return SingleChildScrollView(
       padding: EdgeInsets.symmetric(horizontal: context.sizes.paddingMd),
       child: Column(
         children: [
@@ -109,8 +119,7 @@ class SkillsSection extends StatelessWidget {
   // 📋 SKILL SECTIONS
   // ══════════════════════════════════════════════════════════════════════
 
-  // Language Section
-  Widget _buildLanguageSection(BuildContext context) {
+  _SkillCard _buildLanguageSection(BuildContext context) {
     return _SkillCard(
       title: "Language",
       skills: [
@@ -126,7 +135,6 @@ class SkillsSection extends StatelessWidget {
     );
   }
 
-  // Framework & Libraries Section
   Widget _buildFrameworkSection(BuildContext context) {
     return _SkillCard(
       title: "Framework & Libraries",
@@ -144,7 +152,6 @@ class SkillsSection extends StatelessWidget {
     );
   }
 
-  // Database Section
   Widget _buildDatabaseSection(BuildContext context) {
     return _SkillCard(
       title: "Databases & Persistence",
@@ -159,7 +166,6 @@ class SkillsSection extends StatelessWidget {
     );
   }
 
-  // Advance Skills Section
   Widget _buildAdvanceSkillsSection(BuildContext context) {
     return _SkillCard(
       title: "Advance Skills",
@@ -173,7 +179,6 @@ class SkillsSection extends StatelessWidget {
     );
   }
 
-  // Version Control Section
   Widget _buildVersionControlSection(BuildContext context) {
     return _SkillCard(
       title: "Version Control",
@@ -185,7 +190,6 @@ class SkillsSection extends StatelessWidget {
     );
   }
 
-  // Testing Section
   Widget _buildTestingSection(BuildContext context) {
     return _SkillCard(
       title: "Testing",
@@ -199,7 +203,11 @@ class SkillsSection extends StatelessWidget {
 }
 
 // ══════════════════════════════════════════════════════════════════════
-// 🎴 SKILL CARD WIDGET
+// 🎴 SKILL CARD WIDGET - Fixed text overflow
+// ══════════════════════════════════════════════════════════════════════
+
+// ══════════════════════════════════════════════════════════════════════
+// 🎴 SKILL CARD WIDGET - Fixed text overflow
 // ══════════════════════════════════════════════════════════════════════
 
 class _SkillCard extends StatelessWidget {
@@ -224,10 +232,12 @@ class _SkillCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Title
+          // ✅ Fixed: Title with overflow handling
           Text(
             title,
             style: fonts.headlineMedium.rajdhani(fontWeight: FontWeight.w600, color: DColors.primaryButton),
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
           ),
           SizedBox(height: s.spaceBtwItems),
 
@@ -247,25 +257,45 @@ class _SkillCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Skill Name with Badge
+          // ✅ Fixed: Skill Name with Badge - Better overflow handling
           Row(
             children: [
-              Text(
-                skill.name,
-                style: fonts.bodyMedium.rubik(fontWeight: FontWeight.w500, color: DColors.textPrimary),
+              // Skill name - Flexible to prevent overflow
+              Flexible(
+                child: Text(
+                  skill.name,
+                  style: fonts.bodyMedium.rubik(fontWeight: FontWeight.w500, color: DColors.textPrimary),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
               ),
+
+              // ✅ Fixed: Badge with proper spacing
               if (skill.isProficient) ...[
                 SizedBox(width: s.paddingSm),
-                Container(
-                  padding: EdgeInsets.symmetric(horizontal: s.paddingSm, vertical: 2),
-                  decoration: BoxDecoration(
-                    color: DColors.primaryButton.withOpacity(0.2),
-                    borderRadius: BorderRadius.circular(4),
-                    border: Border.all(color: DColors.primaryButton, width: 1),
-                  ),
-                  child: Text(
-                    "Proficient",
-                    style: fonts.labelSmall.rubik(color: DColors.primaryButton, fontWeight: FontWeight.w600),
+                Flexible(
+                  flex: 0,
+                  child: Container(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: context.responsiveValue(
+                        mobile: s.paddingXs,
+                        tablet: s.paddingSm,
+                        desktop: s.paddingSm,
+                      ),
+                      vertical: 2,
+                    ),
+                    decoration: BoxDecoration(
+                      color: DColors.primaryButton.withOpacity(0.2),
+                      borderRadius: BorderRadius.circular(4),
+                      border: Border.all(color: DColors.primaryButton, width: 1),
+                    ),
+                    child: Text(
+                      "Proficient",
+                      style: fonts.labelSmall.rubik(
+                        color: DColors.primaryButton,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
                   ),
                 ),
               ],
@@ -273,37 +303,42 @@ class _SkillCard extends StatelessWidget {
           ),
           SizedBox(height: s.paddingSm),
 
-          // Progress Bar
-          Stack(
-            children: [
-              // Background
-              Container(
-                height: 8,
-                width: double.infinity,
-                decoration: BoxDecoration(color: DColors.cardBorder, borderRadius: BorderRadius.circular(4)),
-              ),
-
-              // Progress
-              FractionallySizedBox(
-                widthFactor: skill.level,
-                child: Container(
-                  height: 8,
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: [DColors.primaryButton, DColors.primaryButton.withOpacity(0.7)],
+          // ✅ Fixed: Progress Bar with proper constraints
+          LayoutBuilder(
+            builder: (context, constraints) {
+              return Stack(
+                children: [
+                  // Background
+                  Container(
+                    height: context.responsiveValue(mobile: 6.0, tablet: 7.0, desktop: 8.0),
+                    width: constraints.maxWidth,
+                    decoration: BoxDecoration(
+                      color: DColors.cardBorder,
+                      borderRadius: BorderRadius.circular(4),
                     ),
-                    borderRadius: BorderRadius.circular(4),
-                    boxShadow: [
-                      BoxShadow(
-                        color: DColors.primaryButton.withOpacity(0.3),
-                        blurRadius: 4,
-                        offset: const Offset(0, 2),
-                      ),
-                    ],
                   ),
-                ),
-              ),
-            ],
+
+                  // Progress
+                  Container(
+                    height: context.responsiveValue(mobile: 6.0, tablet: 7.0, desktop: 8.0),
+                    width: constraints.maxWidth * skill.level,
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        colors: [DColors.primaryButton, DColors.primaryButton.withOpacity(0.7)],
+                      ),
+                      borderRadius: BorderRadius.circular(4),
+                      boxShadow: [
+                        BoxShadow(
+                          color: DColors.primaryButton.withOpacity(0.3),
+                          blurRadius: 4,
+                          offset: const Offset(0, 2),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              );
+            },
           ),
         ],
       ),

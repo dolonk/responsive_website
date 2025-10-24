@@ -168,6 +168,7 @@ class ReviewsSection extends StatelessWidget {
             "Android app ahead of schedule with flawless performance. The communication was clear and responsive throughout.",
             style: fonts.labelLarge.rajdhani(color: DColors.textSecondary, height: 1.6),
             maxLines: 4,
+            textAlign: context.isMobile ? TextAlign.center:TextAlign.start,
             overflow: TextOverflow.ellipsis,
           ),
         ),
