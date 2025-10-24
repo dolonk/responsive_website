@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import '../../../../../common_function/style/hoverable_card.dart';
 import '../../../../../utility/constants/colors.dart';
 import '../../../../../data_layer/model/service_model.dart';
 import 'package:responsive_website/utility/default_sizes/font_size.dart';
@@ -23,29 +24,14 @@ class _ServiceCardState extends State<ServiceCard> {
     final s = context.sizes;
     final fonts = context.fonts;
 
-    return MouseRegion(
-      onEnter: (_) => setState(() => _isHovered = true),
-      onExit: (_) => setState(() => _isHovered = false),
-      child: AnimatedContainer(
-        duration: const Duration(milliseconds: 300),
-        curve: Curves.easeInOut,
-        width: 260,
-        height: 280,
+    return SizedBox(
+      width: 260,
+      height: 280,
+      child: HoverableCard(
         padding: EdgeInsets.all(s.paddingMd),
-        decoration: BoxDecoration(
-          color: DColors.secondaryBackground,
-          border: Border.all(color: _isHovered ? DColors.primaryButton : DColors.cardBorder, width: 2),
-          borderRadius: BorderRadius.circular(s.borderRadiusMd),
-          boxShadow: _isHovered
-              ? [
-                  BoxShadow(
-                    color: DColors.primaryButton.withOpacity(0.3),
-                    blurRadius: 12,
-                    offset: const Offset(0, 4),
-                  ),
-                ]
-              : null,
-        ),
+        backgroundColor: DColors.secondaryBackground,
+        borderRadius: BorderRadius.circular(s.borderRadiusMd),
+        onHoverChanged: (isHovered) => setState(() => _isHovered = isHovered),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -99,7 +85,9 @@ class _ServiceCardState extends State<ServiceCard> {
                 ImageIcon(
                   const AssetImage('assets/home/icon/background_icon.png'),
                   size: context.responsiveValue(mobile: 48, tablet: 52, desktop: 56),
-                  color: _isHovered ? DColors.primaryButton.withOpacity(0.3) : DColors.cardBorder,
+                  color: _isHovered
+                      ? DColors.primaryButton.withAlpha((255 * 0.3).round())
+                      : DColors.cardBorder,
                 ),
               ],
             ),

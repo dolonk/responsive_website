@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../../../common_function/style/hoverable_card.dart';
 import '../../../../../utility/constants/colors.dart';
 import '../../../../../data_layer/model/project_model.dart';
 import '../../../../../common_function/style/custom_button.dart';
@@ -22,95 +23,75 @@ class _ProjectCardState extends State<ProjectCard> {
     final s = context.sizes;
     final fonts = context.fonts;
 
-    return MouseRegion(
-      onEnter: (_) => setState(() => _isHovered = true),
-      onExit: (_) => setState(() => _isHovered = false),
-      cursor: SystemMouseCursors.click,
-      child: AnimatedContainer(
-        duration: const Duration(milliseconds: 300),
-        curve: Curves.easeInOut,
-        padding: EdgeInsets.all(8),
-        decoration: BoxDecoration(
-          color: DColors.cardBackground,
-          borderRadius: BorderRadius.circular(s.borderRadiusMd),
-          border: Border.all(color: _isHovered ? DColors.primaryButton : Colors.transparent, width: 2),
-          boxShadow: _isHovered
-              ? [
-                  BoxShadow(
-                    color: DColors.primaryButton.withAlpha((255 * 0.2).round()),
-                    blurRadius: 16,
-                    offset: const Offset(0, 8),
-                  ),
-                ]
-              : null,
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // Project Image
-            Expanded(
-              flex: 3,
-              child: ClipRRect(
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(s.borderRadiusMd - 2),
-                  topRight: Radius.circular(s.borderRadiusMd - 2),
-                ),
-                child: Stack(
-                  fit: StackFit.expand,
-                  children: [
-                    AnimatedScale(
-                      duration: const Duration(milliseconds: 300),
-                      curve: Curves.easeInOut,
-                      scale: _isHovered ? 1.1 : 1.0,
-                      child: Image.asset(widget.project.imagePath, fit: BoxFit.cover),
+    return HoverableCard(
+      padding: EdgeInsets.all(8),
+      backgroundColor: DColors.cardBackground,
+      borderRadius: BorderRadius.circular(s.borderRadiusMd),
+      onHoverChanged: (isHovered) => setState(() => _isHovered = isHovered),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // Project Image
+          Expanded(
+            flex: 3,
+            child: ClipRRect(
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(s.borderRadiusMd - 2),
+                topRight: Radius.circular(s.borderRadiusMd - 2),
+              ),
+              child: Stack(
+                fit: StackFit.expand,
+                children: [
+                  AnimatedScale(
+                    duration: const Duration(milliseconds: 300),
+                    curve: Curves.easeInOut,
+                    scale: _isHovered ? 1.1 : 1.0,
+                    child: Image.asset(
+                      widget.project.imagePath,
+                      fit: BoxFit.cover,
+                      cacheHeight: 400,
+                      cacheWidth: 400,
+                      filterQuality: FilterQuality.medium,
                     ),
-                    // Hover Overlay
-                    AnimatedOpacity(
-                      duration: const Duration(milliseconds: 300),
-                      opacity: _isHovered ? 1.0 : 0.0,
-                      child: Container(
-                        decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                            begin: Alignment.topCenter,
-                            end: Alignment.bottomCenter,
-                            colors: [
-                              Colors.transparent,
-                              DColors.primaryButton.withAlpha((255 * 0.6).round()),
-                            ],
-                          ),
+                  ),
+                  AnimatedOpacity(
+                    duration: const Duration(milliseconds: 300),
+                    opacity: _isHovered ? 1.0 : 0.0,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                          colors: [Colors.transparent, DColors.primaryButton.withAlpha((255 * 0.6).round())],
                         ),
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
-            const SizedBox(height: 6),
+          ),
+          const SizedBox(height: 6),
 
-            // Tittle
-            Text(widget.project.title, style: fonts.titleMedium),
-            const SizedBox(height: 6),
+          Text(widget.project.title, style: fonts.titleMedium),
+          const SizedBox(height: 6),
 
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                // Subtitle
-                Expanded(
-                  child: Text(
-                    widget.project.description,
-                    style: fonts.labelMedium.rubik(color: DColors.textSecondary),
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                  ),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              Expanded(
+                child: Text(
+                  widget.project.description,
+                  style: fonts.labelMedium.rubik(color: DColors.textSecondary),
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
                 ),
-                SizedBox(width: s.spaceBtwItems),
-
-                // View Project Button
-                CustomButton(height: 40, tittleText: 'View Project', onPressed: () {}),
-              ],
-            ),
-          ],
-        ),
+              ),
+              SizedBox(width: s.spaceBtwItems),
+              CustomButton(height: 40, tittleText: 'View Project', onPressed: () {}),
+            ],
+          ),
+        ],
       ),
     );
   }

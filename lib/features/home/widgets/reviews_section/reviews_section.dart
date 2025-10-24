@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:responsive_website/utility/responsive/section_container.dart';
 import '../../../../data_layer/model/reviews_model.dart';
 import 'package:responsive_website/utility/constants/colors.dart';
 import 'package:responsive_website/utility/default_sizes/font_size.dart';
@@ -36,17 +37,10 @@ class ReviewsSection extends StatelessWidget {
   Widget build(BuildContext context) {
     final s = context.sizes;
 
-    return Container(
-      width: double.infinity,
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          colors: [Color(0xFF0F0204), Color(0xFF180C0F)],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-        ),
-      ),
-      child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: s.paddingLg, vertical: s.paddingLg * 1.5),
+    return SectionContainer(
+      padding: EdgeInsets.symmetric(vertical: s.spaceBtwSections, horizontal: s.paddingLg),
+      child: Container(
+        decoration: BoxDecoration(gradient: DColors.reviewsSectionGradient),
         child: ResponsiveWidget(
           mobile: _buildMobileLayout(context),
           tablet: _buildTabletLayout(context),
@@ -82,52 +76,50 @@ class ReviewsSection extends StatelessWidget {
     );
   }
 
-  // 💻 Desktop Layout (Improved Responsive Version)
+  // 💻 Desktop Layout
   Widget _buildDesktopLayout(BuildContext context) {
     final s = context.sizes;
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
+    return Column(
       children: [
-        Expanded(flex: 2, child: _buildSectionHeader(context)),
-        SizedBox(width: s.spaceBtwItems16),
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(flex: 2, child: _buildSectionHeader(context)),
+            SizedBox(width: s.spaceBtwItems16),
 
-        Expanded(
-          flex: 3,
-          child: Stack(
-            clipBehavior: Clip.none,
-            children: [
-              Positioned(
-                left: -100,
-                bottom: -90,
-                child: Container(
-                  width: 300,
-                  height: 250,
-                  decoration: const BoxDecoration(
-                    shape: BoxShape.circle,
-                    gradient: LinearGradient(
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                      colors: [Color(0xFFFF014F), Color(0x00000000)], // নিচে স্বচ্ছ করে দেওয়া হয়েছে
+            Expanded(
+              flex: 3,
+              child: Stack(
+                clipBehavior: Clip.none,
+                children: [
+                  Positioned(
+                    left: -100,
+                    bottom: -90,
+                    child: Container(
+                      width: 250,
+                      height: 240,
+                      decoration: BoxDecoration(shape: BoxShape.circle, gradient: DColors.pinkGradient),
                     ),
                   ),
-                ),
-              ),
 
-              _buildReviewsCards(context, isMobile: false),
+                  _buildReviewsCards(context, isMobile: false),
 
-              Positioned(
-                top: -34,
-                left: 0,
-                child: SvgPicture.asset(
-                  "assets/home/icon/quotes.svg",
-                  width: 60,
-                  height: 60,
-                  colorFilter: ColorFilter.mode(DColors.primaryButton, BlendMode.srcIn),
-                ),
+                  Positioned(
+                    top: -34,
+                    left: 0,
+                    child: SvgPicture.asset(
+                      "assets/home/icon/quotes.svg",
+                      width: 60,
+                      height: 60,
+                      colorFilter: ColorFilter.mode(DColors.primaryButton, BlendMode.srcIn),
+                    ),
+                  ),
+                ],
               ),
-            ],
-          ),
+            ),
+          ],
         ),
+        SizedBox(height: context.sizes.paddingMd * 2.5),
       ],
     );
   }
@@ -168,7 +160,7 @@ class ReviewsSection extends StatelessWidget {
             "Android app ahead of schedule with flawless performance. The communication was clear and responsive throughout.",
             style: fonts.labelLarge.rajdhani(color: DColors.textSecondary, height: 1.6),
             maxLines: 4,
-            textAlign: context.isMobile ? TextAlign.center:TextAlign.start,
+            textAlign: context.isMobile ? TextAlign.center : TextAlign.start,
             overflow: TextOverflow.ellipsis,
           ),
         ),
@@ -207,11 +199,14 @@ class ReviewsSection extends StatelessWidget {
         height: context.isTablet ? 220 : 246,
         padEnds: false,
         autoPlay: true,
-        enlargeFactor: 0.5,
+        enlargeFactor: 0.3,
         viewportFraction: 0.6,
         enlargeCenterPage: true,
-        autoPlayInterval: const Duration(seconds: 10),
+        autoPlayInterval: const Duration(seconds: 4),
+        autoPlayAnimationDuration: const Duration(milliseconds: 600),
         scrollPhysics: NeverScrollableScrollPhysics(),
+        pauseAutoPlayOnTouch: true,
+        pauseAutoPlayOnManualNavigate: true,
       ),
     );
   }

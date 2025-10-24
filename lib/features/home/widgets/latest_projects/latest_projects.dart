@@ -26,7 +26,7 @@ class _LatestProjectsSectionState extends State<LatestProjectsSection> {
     final fonts = context.fonts;
 
     return SectionContainer(
-      padding: EdgeInsets.all(context.sizes.paddingMd),
+      padding: EdgeInsets.symmetric(vertical: context.sizes.spaceBtwSections / 1.5),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
@@ -95,13 +95,7 @@ class _LatestProjectsSectionState extends State<LatestProjectsSection> {
     final s = context.sizes;
     final projects = _getFilteredProjects();
 
-    // ✅ Fixed: Proper cross axis count for all devices
     final crossAxisCount = context.responsiveValue(mobile: 1, tablet: 2, desktop: 3);
-
-    // ✅ Fixed: Proper aspect ratio for all devices
-    final aspectRatio = context.responsiveValue(mobile: 0.75, tablet: 0.82, desktop: 0.88);
-
-    // ✅ Fixed: Proper spacing for all devices
     final gridSpacing = context.responsiveValue(
       mobile: s.spaceBtwItems,
       tablet: s.spaceBtwSections * 0.75,
@@ -112,17 +106,22 @@ class _LatestProjectsSectionState extends State<LatestProjectsSection> {
       padding: EdgeInsets.symmetric(
         horizontal: context.responsiveValue(mobile: s.paddingSm, tablet: s.paddingMd, desktop: s.paddingLg),
       ),
-      child: GridView.builder(
-        shrinkWrap: true,
-        physics: const NeverScrollableScrollPhysics(),
-        itemCount: projects.length,
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: crossAxisCount,
-          crossAxisSpacing: gridSpacing,
-          mainAxisSpacing: gridSpacing,
-          childAspectRatio: aspectRatio,
-        ),
-        itemBuilder: (context, index) => ProjectCard(project: projects[index]),
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          final cardWidth = (constraints.maxWidth - (gridSpacing * (crossAxisCount - 1))) / crossAxisCount;
+
+          return Wrap(
+            spacing: gridSpacing,
+            runSpacing: gridSpacing,
+            children: projects.map((project) {
+              return SizedBox(
+                width: cardWidth,
+                height: cardWidth * 1.15,
+                child: ProjectCard(project: project),
+              );
+            }).toList(),
+          );
+        },
       ),
     );
   }

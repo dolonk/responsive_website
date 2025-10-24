@@ -23,12 +23,21 @@ class DColors {
   static const Color textPrimary = Color(0xFFFAFAFA);
   static const Color textSecondary = Color(0xFF9F9F9F);
 
-  // 💬 Testimonials
-  static const Color testimonialBg = Color(0xFF1A1A1A);
-
   // 🖼️ Gradient Helper
   static const Gradient pinkGradient = LinearGradient(
-    colors: [Color(0xFFFF2E63), Color(0xFF1B0D26)],
+    colors: [Color(0x90FF014F), Color(0xFF000000)],
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+  );
+
+  static const Gradient yearsCardGradient = LinearGradient(
+    begin: Alignment(-0.2, -1.0),
+    end: Alignment(0.2, 1.0),
+    colors: [Color.fromRGBO(113, 9, 41, 0.15), Color.fromRGBO(65, 65, 65, 0.15)],
+  );
+
+  static const Gradient reviewsSectionGradient = LinearGradient(
+    colors: [Color(0xFF0F0204), Color(0xFF180C0F)],
     begin: Alignment.topLeft,
     end: Alignment.bottomRight,
   );

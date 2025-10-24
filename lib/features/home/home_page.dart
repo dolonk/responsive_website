@@ -7,6 +7,8 @@ import 'package:responsive_website/features/home/widgets/latest_projects/latest_
 import 'package:responsive_website/features/home/widgets/reviews_section/reviews_section.dart';
 import 'package:responsive_website/features/home/widgets/service_section/services_section.dart';
 import 'package:responsive_website/features/home/widgets/experience_section/experience_section.dart';
+import 'package:responsive_website/utility/constants/colors.dart';
+import 'package:responsive_website/utility/default_sizes/default_sizes.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -14,13 +16,16 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BaseScreen(
+      backgroundColor: DColors.secondaryBackground,
       child: Column(
         children: [
           HeroSection(),
           MyServiceSection(),
           ExperienceSection(),
+          SizedBox(height: context.sizes.paddingMd*1.5),
           LatestProjectsSection(),
           ReviewsSection(),
+
           BlogSection(),
           GetInTouchSection(),
         ],

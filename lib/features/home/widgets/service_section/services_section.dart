@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import '../../../../data_layer/model/service_model.dart';
-import 'package:responsive_website/utility/constants/colors.dart';
 import 'package:responsive_website/utility/default_sizes/font_size.dart';
 import 'package:responsive_website/utility/default_sizes/default_sizes.dart';
 import 'package:responsive_website/utility/responsive/responsive_helper.dart';
@@ -24,7 +23,7 @@ class MyServiceSection extends StatelessWidget {
         children: [
           // Section Title
           Text("My Services", style: fonts.displayLarge),
-          SizedBox(height: s.spaceBtwSections),
+          SizedBox(height: s.spaceBtwItems),
 
           // Services Carousel
           context.isMobile
@@ -59,13 +58,14 @@ class MyServiceSection extends StatelessWidget {
       options: CarouselOptions(
         height: context.isTablet ? 320 : 350,
         autoPlay: true,
-        autoPlayInterval: const Duration(seconds: 3),
-        autoPlayAnimationDuration: const Duration(milliseconds: 800),
-        autoPlayCurve: Curves.fastOutSlowIn,
+        autoPlayInterval: const Duration(seconds: 4),
+        autoPlayAnimationDuration: const Duration(milliseconds: 600),
+        autoPlayCurve: Curves.easeInOut,
         viewportFraction: 1 / itemsToShow,
         enlargeCenterPage: false,
-        //scrollPhysics: const BouncingScrollPhysics(),
-        scrollPhysics: NeverScrollableScrollPhysics(),
+        scrollPhysics: const NeverScrollableScrollPhysics(),
+        pauseAutoPlayOnTouch: true,
+        pauseAutoPlayOnManualNavigate: true,
       ),
     );
   }

@@ -23,7 +23,7 @@ class ExperienceSection extends StatelessWidget {
         children: [
           // Section Title
           Text("My Experiences", style: fonts.displayLarge),
-          SizedBox(height: s.spaceBtwSections),
+          SizedBox(height: s.spaceBtwItems),
 
           // Responsive Layout
           ResponsiveWidget(
@@ -98,21 +98,13 @@ class ExperienceSection extends StatelessWidget {
           children: [
             Positioned(
               left: 100,
-              bottom: -90,
+              bottom: -80,
               child: Container(
                 width: 250,
-                height: 250,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [Color(0x90FF014F), Color(0xff000000)],
-                  ),
-                ),
+                height: 240,
+                decoration: BoxDecoration(shape: BoxShape.circle, gradient: DColors.pinkGradient),
               ),
             ),
-
             Padding(
               padding: EdgeInsets.only(left: s.spaceBtwSections * 4),
               child: YearsCard(),

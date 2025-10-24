@@ -19,18 +19,17 @@ class _HeroImageState extends State<HeroImage> with SingleTickerProviderStateMix
     super.initState();
 
     _controller = AnimationController(duration: const Duration(milliseconds: 1200), vsync: this);
-
     _scaleAnimation = Tween<double>(
       begin: 1.0,
       end: 1.05,
     ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeInOut));
-
     _controller.repeat(reverse: true);
   }
 
   @override
   void dispose() {
     _controller.dispose();
+    _scaleAnimation.removeListener(() {});
     super.dispose();
   }
 
@@ -63,6 +62,8 @@ class _HeroImageState extends State<HeroImage> with SingleTickerProviderStateMix
           'assets/home/hero_section/dk.png',
           height: context.responsiveValue(mobile: 400, tablet: 450, desktop: 500),
           fit: BoxFit.cover,
+          cacheHeight: context.responsiveValue(mobile: 400, tablet: 450, desktop: 500).toInt(),
+          filterQuality: FilterQuality.medium,
         ),
 
         // FLUTTER EXPERT Text

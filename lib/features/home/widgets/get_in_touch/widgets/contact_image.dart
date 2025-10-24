@@ -43,6 +43,8 @@ class _AnimatedContactImageState extends State<AnimatedContactImage> with Single
           "assets/home/projects/contact.png",
           height: widget.height,
           fit: BoxFit.cover,
+          cacheHeight: widget.height.toInt(),
+          filterQuality: FilterQuality.medium,
           errorBuilder: (context, error, stackTrace) {
             debugPrint('❌ Failed to load contact image');
             return Container(

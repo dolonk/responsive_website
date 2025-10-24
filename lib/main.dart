@@ -1,10 +1,15 @@
 import 'package:device_preview/device_preview.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'features/home/home_page.dart';
 
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
 void main() {
+  if (kDebugMode) {
+    WidgetsFlutterBinding.ensureInitialized();
+    debugPrintScheduleBuildForStacks = false;
+  }
   //runApp(const MyApp());
   runApp(DevicePreview(enabled: true, builder: (context) => const MyApp()));
 }
