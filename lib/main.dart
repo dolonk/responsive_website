@@ -1,17 +1,18 @@
-import 'package:device_preview/device_preview.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'features/home/home_page.dart';
-
-final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+import 'package:flutter/foundation.dart';
+import 'package:url_strategy/url_strategy.dart';
+import 'package:device_preview/device_preview.dart';
+import 'package:responsive_website/route/route_config.dart';
 
 void main() {
   if (kDebugMode) {
     WidgetsFlutterBinding.ensureInitialized();
     debugPrintScheduleBuildForStacks = false;
   }
-  //runApp(const MyApp());
-  runApp(DevicePreview(enabled: true, builder: (context) => const MyApp()));
+
+  setPathUrlStrategy();
+  runApp(const MyApp());
+  //runApp(DevicePreview(enabled: true, builder: (context) => const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -19,14 +20,19 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      navigatorKey: navigatorKey,
-      title: 'Responsive Website',
+    return MaterialApp.router(
+      title: 'Build Storm - Flutter Portfolio',
       debugShowCheckedModeBanner: false,
+
+      // Device Preview support
       locale: DevicePreview.locale(context),
       builder: DevicePreview.appBuilder,
-      theme: ThemeData(primarySwatch: Colors.blue, fontFamily: 'Roboto'),
-      home: const HomePage(),
+
+      // Theme
+      theme: ThemeData(primarySwatch: Colors.blue, fontFamily: 'Roboto', useMaterial3: true),
+
+      // 🚀 GoRouter Configuration
+      routerConfig: RouteConfig.router,
     );
   }
 }
