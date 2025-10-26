@@ -66,10 +66,6 @@ class _ServicesPageState extends State<ServicesPage> with SingleTickerProviderSt
       padding: EdgeInsets.symmetric(horizontal: s.paddingLg, vertical: s.spaceBtwSections * 2),
       child: Column(
         children: [
-          // Breadcrumb
-          _buildBreadcrumb(context),
-          SizedBox(height: s.spaceBtwItems),
-
           // Title
           Text(
             'Services',
@@ -98,29 +94,6 @@ class _ServicesPageState extends State<ServicesPage> with SingleTickerProviderSt
           _buildStatsRow(context),
         ],
       ),
-    );
-  }
-
-  /// 🍞 Breadcrumb Navigation
-  Widget _buildBreadcrumb(BuildContext context) {
-    final fonts = context.fonts;
-
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        GestureDetector(
-          onTap: () => context.go('/'),
-          child: Text('Home', style: fonts.bodyMedium.rubik(color: DColors.textSecondary)),
-        ),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8.0),
-          child: Icon(Icons.chevron_right, size: 16, color: DColors.textSecondary),
-        ),
-        Text(
-          'Services',
-          style: fonts.bodyMedium.rubik(color: DColors.primaryButton, fontWeight: FontWeight.w600),
-        ),
-      ],
     );
   }
 
@@ -268,10 +241,7 @@ class _ServicesPageState extends State<ServicesPage> with SingleTickerProviderSt
           ),
           SizedBox(height: s.spaceBtwSections),
 
-          ResponsiveWidget(
-            mobile: _buildProcessStepsMobile(context),
-            desktop: _buildProcessStepsDesktop(context),
-          ),
+          ResponsiveWidget(mobile: _buildProcessStepsMobile(context), desktop: _buildProcessStepsDesktop(context)),
         ],
       ),
     );
@@ -361,11 +331,7 @@ class _ServicesPageState extends State<ServicesPage> with SingleTickerProviderSt
           // Testimonial Text
           Text(
             '"Amazing Designs and Quality Work! The team delivered beyond our expectations. Their attention to detail and commitment to excellence is unmatched."',
-            style: fonts.bodyLarge.rubik(
-              color: DColors.textPrimary,
-              height: 1.8,
-              fontStyle: FontStyle.italic,
-            ),
+            style: fonts.bodyLarge.rubik(color: DColors.textPrimary, height: 1.8, fontStyle: FontStyle.italic),
             textAlign: TextAlign.center,
             maxLines: 5,
             overflow: TextOverflow.ellipsis,
@@ -458,8 +424,7 @@ class _ServicesPageState extends State<ServicesPage> with SingleTickerProviderSt
         id: 'support',
         title: 'Help & Support',
         subtitle: '24/7 Available',
-        description:
-            'Comprehensive support and maintenance services to keep your applications running smoothly.',
+        description: 'Comprehensive support and maintenance services to keep your applications running smoothly.',
         iconPath: 'assets/home/icon/web_icon.svg',
         features: ['Bug Fixes', 'Performance Optimization', 'Feature Updates', 'Technical Support'],
         technologies: ['Monitoring Tools', 'Analytics', 'CI/CD'],
@@ -494,11 +459,7 @@ class _ServicesPageState extends State<ServicesPage> with SingleTickerProviderSt
         description: 'Build robust, scalable, and high-performance solutions',
         icon: 'code',
       ),
-      ServiceProcess(
-        title: 'Testing',
-        description: 'Rigorous testing to ensure quality and reliability',
-        icon: 'test',
-      ),
+      ServiceProcess(title: 'Testing', description: 'Rigorous testing to ensure quality and reliability', icon: 'test'),
       ServiceProcess(
         title: 'Launch',
         description: 'Deploy and provide ongoing support for your success',
@@ -570,13 +531,7 @@ class _ServiceDetailCardState extends State<_ServiceDetailCard> {
           borderRadius: BorderRadius.circular(s.borderRadiusLg),
           border: Border.all(color: _isHovered ? DColors.primaryButton : DColors.cardBorder, width: 2),
           boxShadow: _isHovered
-              ? [
-                  BoxShadow(
-                    color: DColors.primaryButton.withOpacity(0.3),
-                    blurRadius: 20,
-                    offset: const Offset(0, 10),
-                  ),
-                ]
+              ? [BoxShadow(color: DColors.primaryButton.withOpacity(0.3), blurRadius: 20, offset: const Offset(0, 10))]
               : null,
         ),
         child: Column(
@@ -654,20 +609,14 @@ class _ServiceDetailCardState extends State<_ServiceDetailCard> {
                   children: [
                     Icon(Icons.access_time, size: 16, color: DColors.textSecondary),
                     SizedBox(width: s.paddingXs),
-                    Text(
-                      widget.service.deliveryTime,
-                      style: fonts.labelMedium.rubik(color: DColors.textSecondary),
-                    ),
+                    Text(widget.service.deliveryTime, style: fonts.labelMedium.rubik(color: DColors.textSecondary)),
                   ],
                 ),
                 Row(
                   children: [
                     Icon(Icons.star, size: 16, color: Colors.amber),
                     SizedBox(width: s.paddingXs),
-                    Text(
-                      widget.service.rating.toString(),
-                      style: fonts.labelMedium.rubik(color: DColors.textPrimary),
-                    ),
+                    Text(widget.service.rating.toString(), style: fonts.labelMedium.rubik(color: DColors.textPrimary)),
                   ],
                 ),
               ],
@@ -830,8 +779,7 @@ List<ServiceDetailModel> _getServicesData() {
       id: 'ui-ux-design',
       title: 'UI/UX Design',
       subtitle: 'User-Centered',
-      description:
-          'Beautiful and intuitive designs that put user experience first while maintaining brand identity.',
+      description: 'Beautiful and intuitive designs that put user experience first while maintaining brand identity.',
       iconPath: 'assets/home/icon/web_icon.svg',
       features: ['Wireframing', 'Prototyping', 'User Testing', 'Design Systems'],
       technologies: ['Figma', 'Adobe XD', 'Sketch'],
@@ -861,8 +809,7 @@ List<ServiceDetailModel> _getServicesData() {
       id: 'ecommerce',
       title: 'eCommerce Solutions',
       subtitle: 'Complete Store',
-      description:
-          'Full-featured online stores with payment integration, inventory management, and analytics.',
+      description: 'Full-featured online stores with payment integration, inventory management, and analytics.',
       iconPath: 'assets/home/icon/web_icon.svg',
       features: ['Payment Gateway', 'Admin Panel', 'Order Tracking', 'Inventory Management'],
       technologies: ['Flutter', 'Stripe', 'Firebase'],
@@ -877,8 +824,7 @@ List<ServiceDetailModel> _getServicesData() {
       id: 'support',
       title: 'Help & Support',
       subtitle: '24/7 Available',
-      description:
-          'Comprehensive support and maintenance services to keep your applications running smoothly.',
+      description: 'Comprehensive support and maintenance services to keep your applications running smoothly.',
       iconPath: 'assets/home/icon/web_icon.svg',
       features: ['Bug Fixes', 'Performance Optimization', 'Feature Updates', 'Technical Support'],
       technologies: ['Monitoring Tools', 'Analytics', 'CI/CD'],

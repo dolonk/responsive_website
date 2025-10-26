@@ -1,12 +1,13 @@
+import 'error_page.dart';
+import 'route_name.dart';
 import 'package:flutter/material.dart';
+import '../features/blog/blog_page.dart';
 import 'package:go_router/go_router.dart';
-import 'package:responsive_website/features/home/home_page.dart';
-
 import '../features/about/about_page.dart';
 import '../features/contact/contact_page.dart';
 import '../features/projects/projects_page.dart';
 import '../features/services/services_page.dart';
-import 'error_page.dart';
+import 'package:responsive_website/features/home/home_page.dart';
 
 class RouteConfig {
   static final GlobalKey<NavigatorState> _rootNavigatorKey = GlobalKey<NavigatorState>();
@@ -14,54 +15,61 @@ class RouteConfig {
   static final GoRouter router = GoRouter(
     navigatorKey: _rootNavigatorKey,
     debugLogDiagnostics: true,
-    initialLocation: '/',
+    initialLocation: RouteNames.home,
 
     // 🎯 Route Configuration
     routes: [
       // Home Route
       GoRoute(
-        path: '/',
-        name: 'home',
+        path: RouteNames.home,
+        name: RouteNames.homeName,
         pageBuilder: (context, state) =>
             _buildPageWithTransition(context: context, state: state, child: const HomePage()),
       ),
 
-      // About Route
-      GoRoute(
-        path: '/about',
-        name: 'about',
-        pageBuilder: (context, state) =>
-            _buildPageWithTransition(context: context, state: state, child: const AboutPage()),
-      ),
-
       // Services Route
       GoRoute(
-        path: '/services',
-        name: 'services',
+        path: RouteNames.services,
+        name: RouteNames.servicesName,
         pageBuilder: (context, state) =>
             _buildPageWithTransition(context: context, state: state, child: const ServicesPage()),
       ),
 
       // Projects Route
       GoRoute(
-        path: '/projects',
-        name: 'projects',
+        path: RouteNames.projects,
+        name: RouteNames.projectsName,
         pageBuilder: (context, state) =>
             _buildPageWithTransition(context: context, state: state, child: const ProjectsPage()),
       ),
 
+      GoRoute(
+        path: RouteNames.blog,
+        name: RouteNames.blogName,
+        pageBuilder: (context, state) =>
+            _buildPageWithTransition(context: context, state: state, child: const BlogPage()),
+      ),
+
+      // About Route
+      GoRoute(
+        path: RouteNames.about,
+        name: RouteNames.aboutName,
+        pageBuilder: (context, state) =>
+            _buildPageWithTransition(context: context, state: state, child: const AboutPage()),
+      ),
+
       // Contact Route
       GoRoute(
-        path: '/contact',
-        name: 'contact',
+        path: RouteNames.contact,
+        name: RouteNames.contactName,
         pageBuilder: (context, state) =>
             _buildPageWithTransition(context: context, state: state, child: const ContactPage()),
       ),
 
       // 404 Error Route
       GoRoute(
-        path: '/404',
-        name: 'error',
+        path: RouteNames.error,
+        name: RouteNames.errorName,
         pageBuilder: (context, state) => NoTransitionPage(key: state.pageKey, child: const ErrorPage()),
       ),
     ],
@@ -75,7 +83,7 @@ class RouteConfig {
     },
   );
 
-  /// 🎬 Custom Page Transition
+  /// 🎬 Custom Page Transition (No changes needed here)
   static CustomTransitionPage _buildPageWithTransition({
     required BuildContext context,
     required GoRouterState state,
