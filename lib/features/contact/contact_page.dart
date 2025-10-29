@@ -35,12 +35,7 @@ class _ContactPageState extends State<ContactPage> {
   Widget build(BuildContext context) {
     return BaseScreen(
       backgroundColor: DColors.secondaryBackground,
-      child: Column(
-        children: [
-          _buildHeroSection(context),
-          _buildContactSection(context),
-        ],
-      ),
+      child: Column(children: [_buildHeroSection(context), _buildContactSection(context)]),
     );
   }
 
@@ -50,32 +45,9 @@ class _ContactPageState extends State<ContactPage> {
 
     return SectionContainer(
       backgroundColor: DColors.background,
-      padding: EdgeInsets.symmetric(
-        horizontal: s.paddingLg,
-        vertical: s.spaceBtwSections * 2,
-      ),
+      padding: EdgeInsets.symmetric(horizontal: s.paddingLg, vertical: s.spaceBtwSections * 2),
       child: Column(
         children: [
-          // Breadcrumb
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              GestureDetector(
-                onTap: () => context.go('/'),
-                child: Text('Home', style: fonts.bodyMedium.rubik(color: DColors.textSecondary)),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                child: Icon(Icons.chevron_right, size: 16, color: DColors.textSecondary),
-              ),
-              Text(
-                'Contact',
-                style: fonts.bodyMedium.rubik(color: DColors.primaryButton, fontWeight: FontWeight.w600),
-              ),
-            ],
-          ),
-          SizedBox(height: s.spaceBtwItems),
-
           Text(
             'Get In Touch',
             style: fonts.displayLarge.rajdhani(
@@ -105,10 +77,7 @@ class _ContactPageState extends State<ContactPage> {
     final s = context.sizes;
 
     return SectionContainer(
-      padding: EdgeInsets.symmetric(
-        horizontal: s.paddingMd,
-        vertical: s.spaceBtwSections,
-      ),
+      padding: EdgeInsets.symmetric(horizontal: s.paddingMd, vertical: s.spaceBtwSections),
       child: ResponsiveWidget(
         mobile: Column(
           children: [
@@ -184,12 +153,7 @@ class _ContactPageState extends State<ContactPage> {
             SizedBox(height: s.spaceBtwSections),
 
             // Submit Button
-            CustomButton(
-              width: double.infinity,
-              height: 50,
-              tittleText: 'Send Message',
-              onPressed: _submitForm,
-            ),
+            CustomButton(width: double.infinity, height: 50, tittleText: 'Send Message', onPressed: _submitForm),
           ],
         ),
       ),
@@ -267,28 +231,13 @@ class _ContactPageState extends State<ContactPage> {
           Text('Contact Information', style: fonts.headlineMedium),
           SizedBox(height: s.spaceBtwItems),
 
-          _buildInfoItem(
-            context,
-            icon: Icons.email_rounded,
-            title: 'Email',
-            value: 'hello@buildstorm.dev',
-          ),
+          _buildInfoItem(context, icon: Icons.email_rounded, title: 'Email', value: 'hello@buildstorm.dev'),
           SizedBox(height: s.spaceBtwItems),
 
-          _buildInfoItem(
-            context,
-            icon: Icons.phone_rounded,
-            title: 'Phone',
-            value: '+880 12345 6479',
-          ),
+          _buildInfoItem(context, icon: Icons.phone_rounded, title: 'Phone', value: '+880 12345 6479'),
           SizedBox(height: s.spaceBtwItems),
 
-          _buildInfoItem(
-            context,
-            icon: Icons.location_on_rounded,
-            title: 'Location',
-            value: 'Dhaka, Bangladesh',
-          ),
+          _buildInfoItem(context, icon: Icons.location_on_rounded, title: 'Location', value: 'Dhaka, Bangladesh'),
           SizedBox(height: s.spaceBtwSections),
 
           // Social Media
@@ -308,12 +257,7 @@ class _ContactPageState extends State<ContactPage> {
     );
   }
 
-  Widget _buildInfoItem(
-      BuildContext context, {
-        required IconData icon,
-        required String title,
-        required String value,
-      }) {
+  Widget _buildInfoItem(BuildContext context, {required IconData icon, required String title, required String value}) {
     final s = context.sizes;
     final fonts = context.fonts;
 
@@ -333,10 +277,7 @@ class _ContactPageState extends State<ContactPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                title,
-                style: fonts.labelMedium.rubik(color: DColors.textSecondary),
-              ),
+              Text(title, style: fonts.labelMedium.rubik(color: DColors.textSecondary)),
               SizedBox(height: 4),
               Text(
                 value,
@@ -381,15 +322,10 @@ class _ContactPageState extends State<ContactPage> {
       // TODO: Implement form submission
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text(
-            'Message sent successfully!',
-            style: context.fonts.bodyMedium,
-          ),
+          content: Text('Message sent successfully!', style: context.fonts.bodyMedium),
           backgroundColor: DColors.primaryButton,
           behavior: SnackBarBehavior.floating,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8),
-          ),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
         ),
       );
 

@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:responsive_website/common_function/base_screen/base_screen.dart';
+import 'package:responsive_website/features/about/skill%20section/skill_section.dart';
 import 'package:responsive_website/features/home/widgets/experience_section/experience_section.dart';
-import 'package:responsive_website/features/skill%20section/skill_section.dart';
 import 'package:responsive_website/utility/constants/colors.dart';
 import 'package:responsive_website/utility/default_sizes/default_sizes.dart';
 import 'package:responsive_website/utility/default_sizes/font_size.dart';
@@ -38,25 +37,6 @@ class AboutPage extends StatelessWidget {
       ),
       child: Column(
         children: [
-          // Breadcrumb
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              GestureDetector(
-                onTap: () => context.go('/'),
-                child: Text('Home', style: fonts.bodyMedium.rubik(color: DColors.textSecondary)),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                child: Icon(Icons.chevron_right, size: 16, color: DColors.textSecondary),
-              ),
-              Text(
-                'About',
-                style: fonts.bodyMedium.rubik(color: DColors.primaryButton, fontWeight: FontWeight.w600),
-              ),
-            ],
-          ),
-          SizedBox(height: s.spaceBtwItems),
 
           Text(
             'About Me',

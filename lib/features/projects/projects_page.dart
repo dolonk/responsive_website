@@ -1,6 +1,4 @@
-
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:responsive_website/common_function/base_screen/base_screen.dart';
 import 'package:responsive_website/features/home/widgets/latest_projects/latest_projects.dart';
 import 'package:responsive_website/utility/constants/colors.dart';
@@ -16,12 +14,7 @@ class ProjectsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BaseScreen(
       backgroundColor: DColors.secondaryBackground,
-      child: Column(
-        children: [
-          _buildHeroSection(context),
-          const LatestProjectsSection(),
-        ],
-      ),
+      child: Column(children: [_buildHeroSection(context), const LatestProjectsSection()]),
     );
   }
 
@@ -31,32 +24,9 @@ class ProjectsPage extends StatelessWidget {
 
     return SectionContainer(
       backgroundColor: DColors.background,
-      padding: EdgeInsets.symmetric(
-        horizontal: s.paddingLg,
-        vertical: s.spaceBtwSections * 2,
-      ),
+      padding: EdgeInsets.symmetric(horizontal: s.paddingLg, vertical: s.spaceBtwSections * 2),
       child: Column(
         children: [
-          // Breadcrumb
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              GestureDetector(
-                onTap: () => context.go('/'),
-                child: Text('Home', style: fonts.bodyMedium.rubik(color: DColors.textSecondary)),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                child: Icon(Icons.chevron_right, size: 16, color: DColors.textSecondary),
-              ),
-              Text(
-                'Projects',
-                style: fonts.bodyMedium.rubik(color: DColors.primaryButton, fontWeight: FontWeight.w600),
-              ),
-            ],
-          ),
-          SizedBox(height: s.spaceBtwItems),
-
           Text(
             'Our Projects',
             style: fonts.displayLarge.rajdhani(

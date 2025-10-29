@@ -3,7 +3,6 @@ import 'package:flutter/foundation.dart';
 import 'package:url_strategy/url_strategy.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:responsive_website/route/route_config.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 void main() {
   if (kDebugMode) {
@@ -21,31 +20,19 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // ✅ Wrap with ScreenUtilInit
-    return ScreenUtilInit(
-      designSize: const Size(1920, 1080), // Desktop design base
-      minTextAdapt: true,
-      splitScreenMode: true,
-      builder: (context, child) {
-        return MaterialApp.router(
-          title: 'Build Storm',
-          debugShowCheckedModeBanner: false,
+    return MaterialApp.router(
+      title: 'Build Storm - Flutter Portfolio',
+      debugShowCheckedModeBanner: false,
 
-          // Device Preview support
-          locale: DevicePreview.locale(context),
-          builder: DevicePreview.appBuilder,
+      // Device Preview support
+      locale: DevicePreview.locale(context),
+      builder: DevicePreview.appBuilder,
 
-          // Theme
-          theme: ThemeData(
-            primarySwatch: Colors.blue,
-            fontFamily: 'Roboto',
-            useMaterial3: true,
-          ),
+      // Theme
+      theme: ThemeData(primarySwatch: Colors.blue, fontFamily: 'Roboto', useMaterial3: true),
 
-          // 🚀 GoRouter Configuration
-          routerConfig: RouteConfig.router,
-        );
-      },
+      // 🚀 GoRouter Configuration
+      routerConfig: RouteConfig.router,
     );
   }
 }

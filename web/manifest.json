@@ -1,11 +1,11 @@
 {
-    "name": "responsive_website",
-    "short_name": "responsive_website",
+    "name": "Build Storm",
+    "short_name": "Build Storm",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "description": "Portfolio website for Build Storm.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
