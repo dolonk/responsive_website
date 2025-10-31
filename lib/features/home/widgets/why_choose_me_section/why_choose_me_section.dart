@@ -1,10 +1,10 @@
 import 'widgets/benefit_card.dart';
 import 'package:flutter/material.dart';
 import '../../../../utility/constants/colors.dart';
+import '../../../../utility/constants/image_string.dart';
 import '../../../../data_layer/model/benefit_model.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../../../utility/default_sizes/default_sizes.dart';
 import '../../../../utility/default_sizes/font_size.dart';
+import '../../../../utility/default_sizes/default_sizes.dart';
 import '../../../../utility/responsive/responsive_helper.dart';
 import '../../../../utility/responsive/responsive_widget.dart';
 import '../../../../utility/responsive/section_container.dart';
@@ -18,7 +18,7 @@ class WhyChooseMeSection extends StatelessWidget {
 
     return SectionContainer(
       backgroundColor: DColors.background,
-      padding: EdgeInsets.symmetric(horizontal: s.paddingMd, vertical: s.spaceBtwSections * 1.5),
+      padding: EdgeInsets.symmetric(horizontal: s.paddingMd),
       child: ResponsiveWidget(
         mobile: _buildMobileLayout(context),
         tablet: _buildTabletLayout(context),
@@ -71,24 +71,20 @@ class WhyChooseMeSection extends StatelessWidget {
   Widget _buildDesktopLayout(BuildContext context) {
     final s = context.sizes;
 
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.center,
+    return Column(
       children: [
-        // Left: Professional Image
-        Expanded(flex: 2, child: _buildProfessionalImage(context)),
-        SizedBox(width: s.spaceBtwSections * 2),
+        _buildSectionHeader(context),
+        SizedBox(height: s.spaceBtwSections),
 
-        // Right: Content
-        Expanded(
-          flex: 3,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              _buildSectionHeader(context, align: TextAlign.start),
-              SizedBox(height: s.spaceBtwSections),
-              _buildBenefitsList(context),
-            ],
-          ),
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            // Left side with Image
+            Expanded(flex: 2, child: _buildProfessionalImage(context)),
+            SizedBox(width: s.spaceBtwSections),
+            //benefit section
+            Expanded(flex: 3, child: _buildBenefitsList(context)),
+          ],
         ),
       ],
     );
@@ -96,15 +92,13 @@ class WhyChooseMeSection extends StatelessWidget {
 
   // 🖼️ Professional Image Section
   Widget _buildProfessionalImage(BuildContext context) {
-    final s = context.sizes;
-
     return Stack(
       alignment: Alignment.center,
       children: [
         // Background Gradient Circle
         Container(
-          width: context.responsiveValue(mobile: 280.w, tablet: 350.w, desktop: 450.w),
-          height: context.responsiveValue(mobile: 280.h, tablet: 350.h, desktop: 450.h),
+          width: context.responsiveValue(mobile: 280, tablet: 350, desktop: 600),
+          height: context.responsiveValue(mobile: 280, tablet: 350, desktop: 600),
           decoration: BoxDecoration(
             shape: BoxShape.circle,
             gradient: RadialGradient(
@@ -120,11 +114,11 @@ class WhyChooseMeSection extends StatelessWidget {
 
         // Professional Image/Illustration
         Container(
-          width: context.responsiveValue(mobile: 250.w, tablet: 320.w, desktop: 400.w),
-          height: context.responsiveValue(mobile: 250.h, tablet: 320.h, desktop: 400.h),
+          width: context.responsiveValue(mobile: 250, tablet: 320, desktop: 500),
+          height: context.responsiveValue(mobile: 250, tablet: 320, desktop: 500),
           decoration: BoxDecoration(
             shape: BoxShape.circle,
-            border: Border.all(color: DColors.primaryButton.withAlpha((255 * 0.3).round()), width: 3),
+            border: Border.all(color: DColors.cardBorder, width: 3),
             boxShadow: [
               BoxShadow(
                 color: DColors.primaryButton.withAlpha((255 * 0.2).round()),
@@ -135,12 +129,12 @@ class WhyChooseMeSection extends StatelessWidget {
           ),
           child: ClipOval(
             child: Image.asset(
-              'assets/home/hero_section/dk.png', // Replace with your image
-              fit: BoxFit.cover,
+              DImages.profileImage,
+              fit: BoxFit.contain,
               errorBuilder: (context, error, stackTrace) {
                 return Container(
                   color: DColors.cardBackground,
-                  child: Icon(Icons.person_outline_rounded, size: 100.sp, color: DColors.textSecondary),
+                  child: Icon(Icons.person_outline_rounded, size: 100, color: DColors.textSecondary),
                 );
               },
             ),
@@ -149,13 +143,13 @@ class WhyChooseMeSection extends StatelessWidget {
 
         // Floating Badge (Optional - "2.6+ Years")
         Positioned(
-          bottom: context.responsiveValue(mobile: 20.h, desktop: 40.h),
-          right: context.responsiveValue(mobile: 20.w, desktop: 40.w),
+          bottom: context.responsiveValue(mobile: 20, desktop: 40),
+          right: context.responsiveValue(mobile: 20, desktop: 40),
           child: Container(
-            padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
+            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
             decoration: BoxDecoration(
               color: DColors.primaryButton,
-              borderRadius: BorderRadius.circular(20.r),
+              borderRadius: BorderRadius.circular(20),
               boxShadow: [
                 BoxShadow(
                   color: DColors.primaryButton.withAlpha((255 * 0.4).round()),
@@ -165,7 +159,7 @@ class WhyChooseMeSection extends StatelessWidget {
               ],
             ),
             child: Text(
-              '2.6+ Years',
+              '3+ Years',
               style: context.fonts.labelLarge.rubik(color: DColors.textPrimary, fontWeight: FontWeight.bold),
             ),
           ),
@@ -175,19 +169,18 @@ class WhyChooseMeSection extends StatelessWidget {
   }
 
   // 📝 Section Header
-  Widget _buildSectionHeader(BuildContext context, {TextAlign? align}) {
+  Widget _buildSectionHeader(BuildContext context) {
     final s = context.sizes;
     final fonts = context.fonts;
-    final isDesktop = context.isDesktop;
 
     return Column(
-      crossAxisAlignment: isDesktop ? CrossAxisAlignment.start : CrossAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         // Subtitle
         Text(
           'Why Work With Me?',
           style: fonts.bodyLarge.rubik(color: DColors.primaryButton, fontWeight: FontWeight.w600),
-          textAlign: align ?? (isDesktop ? TextAlign.start : TextAlign.center),
+          textAlign: TextAlign.center,
         ),
         SizedBox(height: s.paddingSm),
 
@@ -195,22 +188,19 @@ class WhyChooseMeSection extends StatelessWidget {
         Text(
           'Building Excellence in Every Line of Code',
           style: fonts.displayMedium.rajdhani(fontWeight: FontWeight.bold),
-          textAlign: align ?? (isDesktop ? TextAlign.start : TextAlign.center),
+          textAlign: TextAlign.center,
           maxLines: 2,
           overflow: TextOverflow.ellipsis,
         ),
-        SizedBox(height: s.spaceBtwItems),
+        SizedBox(height: s.spaceBtwItems16),
 
         // Description
-        SizedBox(
-          width: isDesktop ? double.infinity : 600.w,
-          child: Text(
-            'I deliver high-quality, scalable Flutter applications with clean architecture and best practices. Your success is my priority.',
-            style: fonts.bodyMedium.rubik(color: DColors.textSecondary, height: 1.6),
-            textAlign: align ?? (isDesktop ? TextAlign.start : TextAlign.center),
-            maxLines: 3,
-            overflow: TextOverflow.ellipsis,
-          ),
+        Text(
+          'I deliver high-quality, scalable Flutter applications with clean architecture and best practices. Your success is my priority.',
+          style: fonts.titleSmall.rubik(color: DColors.textSecondary, height: 1.6),
+          textAlign: TextAlign.center,
+          maxLines: 3,
+          overflow: TextOverflow.ellipsis,
         ),
       ],
     );
@@ -218,16 +208,12 @@ class WhyChooseMeSection extends StatelessWidget {
 
   // 📋 Benefits List
   Widget _buildBenefitsList(BuildContext context) {
-    final s = context.sizes;
     final benefits = _getBenefitsData();
 
     return Column(
       children: List.generate(
         benefits.length,
-        (index) => Padding(
-          padding: EdgeInsets.only(bottom: s.spaceBtwItems),
-          child: BenefitCard(benefit: benefits[index], index: index),
-        ),
+        (index) => BenefitCard(benefit: benefits[index], index: index),
       ),
     );
   }

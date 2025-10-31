@@ -3,7 +3,6 @@ import 'widgets/animated_counter_card.dart';
 import '../../../../utility/constants/colors.dart';
 import '../../../../data_layer/model/stat_model.dart';
 import '../../../../utility/default_sizes/font_size.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../utility/default_sizes/default_sizes.dart';
 import '../../../../utility/responsive/responsive_helper.dart';
 import '../../../../utility/responsive/responsive_widget.dart';
@@ -151,7 +150,7 @@ class _StatsCounterSectionState extends State<StatsCounterSection> {
         ),
         SizedBox(height: context.sizes.paddingSm),
         SizedBox(
-          width: context.responsiveValue(mobile: double.infinity, tablet: 500.w, desktop: 600.w),
+          width: context.responsiveValue(mobile: double.infinity, tablet: 500, desktop: 600),
           child: Text(
             'Numbers that speak for themselves',
             style: fonts.bodyLarge.rubik(color: DColors.textSecondary, height: 1.6),

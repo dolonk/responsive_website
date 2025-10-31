@@ -14,7 +14,7 @@ class RouteConfig {
 
   static final GoRouter router = GoRouter(
     navigatorKey: _rootNavigatorKey,
-    debugLogDiagnostics: true,
+    debugLogDiagnostics: false,
     initialLocation: RouteNames.home,
 
     // 🎯 Route Configuration

@@ -2,6 +2,6 @@ class DIcons {
   DIcons._();
 
   //label printer
-  static const String barCode = 'assets/icons/label_print/bar-code.svg';
-  static const String dateTime = 'assets/icons/label_print/date-time.svg';
+  static const String quoteIcon = 'assets/home/icon/quotes.svg';
+  static const String backgroundIcon = 'assets/home/icon/background_icon.png';
 }

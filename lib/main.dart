@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
-import 'package:url_strategy/url_strategy.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:responsive_website/route/route_config.dart';
+import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 
 void main() {
   if (kDebugMode) {
@@ -10,9 +10,9 @@ void main() {
     debugPrintScheduleBuildForStacks = false;
   }
 
-  setPathUrlStrategy();
-  runApp(const MyApp());
-  //runApp(DevicePreview(enabled: true, builder: (context) => const MyApp()));
+  usePathUrlStrategy();
+  //runApp(const MyApp());
+  runApp(DevicePreview(enabled: true, builder: (context) => const MyApp()));
 }
 
 class MyApp extends StatelessWidget {

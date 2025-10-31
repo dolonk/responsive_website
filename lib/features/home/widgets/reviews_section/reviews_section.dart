@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:responsive_website/utility/constants/icon_string.dart';
 import 'package:responsive_website/utility/responsive/section_container.dart';
 import '../../../../data_layer/model/reviews_model.dart';
 import 'package:responsive_website/utility/constants/colors.dart';
@@ -96,19 +97,17 @@ class ReviewsSection extends StatelessWidget {
                     left: -100,
                     bottom: -90,
                     child: Container(
-                      width: 250,
+                      width: 260,
                       height: 240,
                       decoration: BoxDecoration(shape: BoxShape.circle, gradient: DColors.pinkGradient),
                     ),
                   ),
-
                   _buildReviewsCards(context, isMobile: false),
-
                   Positioned(
                     top: -34,
                     left: 0,
                     child: SvgPicture.asset(
-                      "assets/home/icon/quotes.svg",
+                      DIcons.quoteIcon,
                       width: 60,
                       height: 60,
                       colorFilter: ColorFilter.mode(DColors.primaryButton, BlendMode.srcIn),

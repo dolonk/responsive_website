@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../../../utility/constants/colors.dart';
 import '../../../../../data_layer/model/stat_model.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../utility/default_sizes/font_size.dart';
 import '../../../../../utility/default_sizes/default_sizes.dart';
 
@@ -62,7 +61,7 @@ class _AnimatedCounterCardState extends State<AnimatedCounterCard> with SingleTi
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 300),
         curve: Curves.easeInOut,
-        padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 32.h),
+        padding: EdgeInsets.symmetric(horizontal: 24, vertical: 32),
         decoration: BoxDecoration(
           gradient: _isHovered
               ? LinearGradient(
@@ -91,7 +90,7 @@ class _AnimatedCounterCardState extends State<AnimatedCounterCard> with SingleTi
           children: [
             // Icon
             Container(
-              padding: EdgeInsets.all(16.w),
+              padding: EdgeInsets.all(16),
               decoration: BoxDecoration(
                 color: DColors.primaryButton.withAlpha((255 * 0.1).round()),
                 shape: BoxShape.circle,
@@ -99,7 +98,7 @@ class _AnimatedCounterCardState extends State<AnimatedCounterCard> with SingleTi
               ),
               child: Icon(
                 _getIconData(widget.stat.icon),
-                size: 32.sp,
+                size: 32,
                 color: _isHovered ? DColors.primaryButton : DColors.textPrimary,
               ),
             ),
@@ -112,7 +111,7 @@ class _AnimatedCounterCardState extends State<AnimatedCounterCard> with SingleTi
                 return Text(
                   '${_animation.value.toInt()}${widget.stat.suffix}',
                   style: fonts.displayLarge.rajdhani(
-                    fontSize: 48.sp,
+                    fontSize: 48,
                     fontWeight: FontWeight.bold,
                     color: _isHovered ? DColors.primaryButton : DColors.textPrimary,
                   ),

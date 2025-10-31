@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import '../../../../../utility/constants/colors.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../data_layer/model/benefit_model.dart';
 import '../../../../../utility/default_sizes/font_size.dart';
 import '../../../../../utility/default_sizes/default_sizes.dart';
@@ -65,7 +64,7 @@ class _BenefitCardState extends State<BenefitCard> with SingleTickerProviderStat
           child: AnimatedContainer(
             duration: const Duration(milliseconds: 300),
             curve: Curves.easeInOut,
-            padding: EdgeInsets.all(20.w),
+            padding: EdgeInsets.all(20),
             decoration: BoxDecoration(
               color: _isHovered ? DColors.cardBackground : Colors.transparent,
               borderRadius: BorderRadius.circular(s.borderRadiusMd),
@@ -73,7 +72,7 @@ class _BenefitCardState extends State<BenefitCard> with SingleTickerProviderStat
               boxShadow: _isHovered
                   ? [
                       BoxShadow(
-                        color: DColors.primaryButton.withOpacity(0.2),
+                        color: DColors.primaryButton.withAlpha((155 * 0.2).round()),
                         blurRadius: 20,
                         offset: const Offset(0, 8),
                       ),
@@ -86,20 +85,22 @@ class _BenefitCardState extends State<BenefitCard> with SingleTickerProviderStat
                 // Icon Container
                 AnimatedContainer(
                   duration: const Duration(milliseconds: 300),
-                  padding: EdgeInsets.all(12.w),
+                  padding: EdgeInsets.all(12),
                   decoration: BoxDecoration(
                     color: _isHovered
-                        ? DColors.primaryButton.withAlpha((255*0.2).round())
-                        : DColors.primaryButton.withOpacity(0.1),
+                        ? DColors.primaryButton.withAlpha((255 * 0.2).round())
+                        : DColors.primaryButton.withAlpha((255 * 0.1).round()),
                     borderRadius: BorderRadius.circular(s.borderRadiusSm),
                     border: Border.all(
-                      color: _isHovered ? DColors.primaryButton : DColors.primaryButton.withOpacity(0.3),
+                      color: _isHovered
+                          ? DColors.primaryButton
+                          : DColors.primaryButton.withAlpha((255 * 0.3).round()),
                       width: 2,
                     ),
                   ),
                   child: Icon(
                     widget.benefit.icon,
-                    size: 28.sp,
+                    size: 28,
                     color: _isHovered ? DColors.primaryButton : DColors.textPrimary,
                   ),
                 ),

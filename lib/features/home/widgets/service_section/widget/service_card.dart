@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:responsive_website/utility/constants/icon_string.dart';
 import '../../../../../common_function/style/hoverable_card.dart';
 import '../../../../../utility/constants/colors.dart';
 import '../../../../../data_layer/model/service_model.dart';
@@ -83,7 +84,7 @@ class _ServiceCardState extends State<ServiceCard> {
 
                 // Background Icon
                 ImageIcon(
-                  const AssetImage('assets/home/icon/background_icon.png'),
+                  const AssetImage(DIcons.backgroundIcon),
                   size: context.responsiveValue(mobile: 48, tablet: 52, desktop: 56),
                   color: _isHovered
                       ? DColors.primaryButton.withAlpha((255 * 0.3).round())

@@ -3,6 +3,8 @@ import '../../../../../utility/constants/colors.dart';
 import 'package:responsive_website/utility/default_sizes/font_size.dart';
 import 'package:responsive_website/utility/responsive/responsive_helper.dart';
 
+import '../../../../../utility/constants/image_string.dart';
+
 class HeroImage extends StatefulWidget {
   const HeroImage({super.key});
 
@@ -59,7 +61,7 @@ class _HeroImageState extends State<HeroImage> with SingleTickerProviderStateMix
         ),
 
         Image.asset(
-          'assets/home/hero_section/dk.png',
+          DImages.profileImage,
           height: context.responsiveValue(mobile: 400, tablet: 450, desktop: 500),
           fit: BoxFit.cover,
           cacheHeight: context.responsiveValue(mobile: 400, tablet: 450, desktop: 500).toInt(),
