@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:carousel_slider/carousel_slider.dart';
+import 'package:go_router/go_router.dart';
+import '../../../../utility/constants/colors.dart';
 import '../../../../data_layer/model/service_model.dart';
+import '../../../../common_function/style/custom_button.dart';
 import 'package:responsive_website/utility/default_sizes/font_size.dart';
 import 'package:responsive_website/utility/default_sizes/default_sizes.dart';
 import 'package:responsive_website/utility/responsive/responsive_helper.dart';
@@ -14,101 +16,153 @@ class MyServiceSection extends StatelessWidget {
   Widget build(BuildContext context) {
     final s = context.sizes;
     final fonts = context.fonts;
-    final services = _getServices();
-    final int itemsToShow = context.responsiveValue(mobile: 1, tablet: 3, desktop: 5);
 
     return SectionContainer(
       padding: EdgeInsets.symmetric(vertical: s.spaceBtwSections),
       child: Column(
         children: [
-          // Section Title
-          Text("My Services", style: fonts.displayLarge),
-          SizedBox(height: s.spaceBtwItems),
+          // Section Header
+          _buildSectionHeader(context, s, fonts),
+          SizedBox(height: s.spaceBtwSections),
 
-          // Services Carousel
-          context.isMobile
-              ? _buildMobileServiceList(context, services)
-              : _buildCarousel(context, services, itemsToShow),
+          // Services Grid
+          _buildServicesGrid(context, s),
+          SizedBox(height: s.spaceBtwSections),
+
+          // View All Services Button
+          _buildViewAllButton(context, s),
         ],
       ),
     );
   }
 
-  // 📱 Mobile: Vertical Scrollable List
-  Widget _buildMobileServiceList(BuildContext context, List<ServiceModel> services) {
+  // 📝 Section Header
+  Widget _buildSectionHeader(BuildContext context, DSizes s, AppFonts fonts) {
     return Column(
-      children: services
-          .map(
-            (service) => Padding(
-              padding: EdgeInsets.only(bottom: context.sizes.spaceBtwItems),
-              child: ServiceCard(serviceModel: service),
-            ),
-          )
-          .toList(),
+      children: [
+        // Subtitle
+        Text(
+          'Services',
+          style: fonts.bodyLarge.rubik(color: DColors.primaryButton, fontWeight: FontWeight.w600),
+          textAlign: TextAlign.center,
+        ),
+        SizedBox(height: s.paddingSm),
+
+        // Main Title
+        Text(
+          'What I Can Do For You',
+          style: fonts.displayMedium.rajdhani(fontWeight: FontWeight.bold),
+          textAlign: TextAlign.center,
+          maxLines: 2,
+          overflow: TextOverflow.ellipsis,
+        ),
+        SizedBox(height: s.spaceBtwItems),
+
+        // Description
+        SizedBox(
+          width: context.responsiveValue(mobile: double.infinity, tablet: 600.0, desktop: 700.0),
+          child: Text(
+            'Comprehensive Flutter development solutions across all platforms',
+            style: fonts.bodyMedium.rubik(color: DColors.textSecondary, height: 1.6),
+            textAlign: TextAlign.center,
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
+          ),
+        ),
+      ],
     );
   }
 
-  // 💻 Tablet & Desktop: Carousel Slider
-  Widget _buildCarousel(BuildContext context, List<ServiceModel> services, int itemsToShow) {
-    return CarouselSlider.builder(
-      itemCount: services.length,
-      itemBuilder: (context, index, realIndex) {
-        return ServiceCard(serviceModel: services[index]);
-      },
-      options: CarouselOptions(
-        height: context.isTablet ? 320 : 350,
-        autoPlay: true,
-        autoPlayInterval: const Duration(seconds: 4),
-        autoPlayAnimationDuration: const Duration(milliseconds: 600),
-        autoPlayCurve: Curves.easeInOut,
-        viewportFraction: 1 / itemsToShow,
-        enlargeCenterPage: false,
-        scrollPhysics: const NeverScrollableScrollPhysics(),
-        pauseAutoPlayOnTouch: true,
-        pauseAutoPlayOnManualNavigate: true,
+  // 🎴 Services Grid
+  Widget _buildServicesGrid(BuildContext context, DSizes s) {
+    final services = _getServices();
+    final crossAxisCount = context.responsiveValue(mobile: 1, tablet: 2, desktop: 3);
+
+    return Padding(
+      padding: EdgeInsets.symmetric(
+        horizontal: context.responsiveValue(mobile: s.paddingSm, tablet: s.paddingMd, desktop: s.paddingLg),
+      ),
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          final spacing = context.responsiveValue(
+            mobile: s.spaceBtwItems,
+            tablet: s.spaceBtwSections * 0.75,
+            desktop: s.spaceBtwSections,
+          );
+          final cardWidth = (constraints.maxWidth - (spacing * (crossAxisCount - 1))) / crossAxisCount;
+
+          return Wrap(
+            spacing: spacing,
+            runSpacing: spacing,
+            alignment: WrapAlignment.center,
+            children: services.map((service) {
+              return SizedBox(
+                width: context.isMobile ? double.infinity : cardWidth,
+                child: ServiceCard(serviceModel: service),
+              );
+            }).toList(),
+          );
+        },
       ),
     );
   }
 
-  // 📋 Service Data
+  // 🔘 View All Button
+  Widget _buildViewAllButton(BuildContext context, DSizes s) {
+    return CustomButton(
+      width: context.responsiveValue(mobile: double.infinity, tablet: 250.0, desktop: 250.0),
+      height: 50,
+      tittleText: 'View All Services',
+      onPressed: () {
+        context.go('/services');
+      },
+    );
+  }
+
+  // 📊 Service Data (6 services as per PDF)
   List<ServiceModel> _getServices() {
     return [
       ServiceModel(
         iconPath: "assets/home/icon/android_icon.svg",
-        title: "App Development",
-        subTitle: "10 projects",
+        title: "Mobile App Development",
+        subTitle: "iOS & Android",
         description:
-            "Custom mobile applications for iOS and Android, delivering high performance and user experience.",
-      ),
-      ServiceModel(
-        iconPath: "assets/home/icon/ios_icon.svg",
-        title: "App Customizations",
-        subTitle: "10 projects",
-        description: "Tailored modifications and enhancements to existing mobile applications.",
+            "Custom mobile applications for iOS and Android, delivering high performance and exceptional user experience.",
       ),
       ServiceModel(
         iconPath: "assets/home/icon/web_icon.svg",
-        title: "Web Development",
-        subTitle: "10 projects",
-        description: "Responsive web applications with modern frameworks and cutting-edge technologies.",
-      ),
-      ServiceModel(
-        iconPath: "assets/home/icon/web_icon.svg",
-        title: "UX UI Design",
-        subTitle: "10 projects",
-        description: "User-centered design solutions that combine aesthetics with functionality.",
+        title: "Web Application Development",
+        subTitle: "Responsive & Modern",
+        description:
+            "Responsive web applications with modern frameworks, SEO optimization, and cross-browser compatibility.",
       ),
       ServiceModel(
         iconPath: "assets/home/icon/web_icon.svg",
         title: "Desktop Development",
-        subTitle: "10 projects",
-        description: "Cross-platform desktop applications for Windows, macOS, and Linux.",
+        subTitle: "Windows, macOS, Linux",
+        description:
+            "Cross-platform desktop applications for Windows, macOS, and Linux with native platform integration.",
       ),
       ServiceModel(
         iconPath: "assets/home/icon/web_icon.svg",
-        title: "macOS Development",
-        subTitle: "10 projects",
-        description: "Native macOS applications leveraging the power of Apple Silicon.",
+        title: "UI/UX Design Services",
+        subTitle: "User-Centered Design",
+        description:
+            "Beautiful and intuitive designs with wireframing, prototyping, and high-fidelity mockups for amazing user experience.",
+      ),
+      ServiceModel(
+        iconPath: "assets/home/icon/web_icon.svg",
+        title: "Consulting & Code Review",
+        subTitle: "Expert Guidance",
+        description:
+            "Architecture review, performance optimization, code refactoring guidance, and best practices implementation.",
+      ),
+      ServiceModel(
+        iconPath: "assets/home/icon/web_icon.svg",
+        title: "Maintenance & Support",
+        subTitle: "24/7 Available",
+        description:
+            "Ongoing maintenance, bug fixes, feature updates, OS compatibility updates, and 24/7 support options.",
       ),
     ];
   }
