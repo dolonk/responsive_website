@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import '../../../../utility/constants/colors.dart';
 import '../../../../data_layer/model/service_model.dart';
 import '../../../../common_function/style/custom_button.dart';
-import 'package:responsive_website/utility/default_sizes/font_size.dart';
 import 'package:responsive_website/utility/default_sizes/default_sizes.dart';
 import 'package:responsive_website/utility/responsive/responsive_helper.dart';
 import 'package:responsive_website/utility/responsive/section_container.dart';
+import 'package:responsive_website/common_function/style/section_header.dart';
 import 'package:responsive_website/features/home/widgets/service_section/widget/service_card.dart';
 
 class MyServiceSection extends StatelessWidget {
@@ -15,14 +14,13 @@ class MyServiceSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final s = context.sizes;
-    final fonts = context.fonts;
 
     return SectionContainer(
       padding: EdgeInsets.symmetric(vertical: s.spaceBtwSections),
       child: Column(
         children: [
           // Section Header
-          _buildSectionHeader(context, s, fonts),
+          _buildSectionHeader(),
           SizedBox(height: s.spaceBtwSections),
 
           // Services Grid
@@ -37,39 +35,11 @@ class MyServiceSection extends StatelessWidget {
   }
 
   // 📝 Section Header
-  Widget _buildSectionHeader(BuildContext context, DSizes s, AppFonts fonts) {
-    return Column(
-      children: [
-        // Subtitle
-        Text(
-          'Services',
-          style: fonts.bodyLarge.rubik(color: DColors.primaryButton, fontWeight: FontWeight.w600),
-          textAlign: TextAlign.center,
-        ),
-        SizedBox(height: s.paddingSm),
-
-        // Main Title
-        Text(
-          'What I Can Do For You',
-          style: fonts.displayMedium.rajdhani(fontWeight: FontWeight.bold),
-          textAlign: TextAlign.center,
-          maxLines: 2,
-          overflow: TextOverflow.ellipsis,
-        ),
-        SizedBox(height: s.spaceBtwItems),
-
-        // Description
-        SizedBox(
-          width: context.responsiveValue(mobile: double.infinity, tablet: 600.0, desktop: 700.0),
-          child: Text(
-            'Comprehensive Flutter development solutions across all platforms',
-            style: fonts.bodyMedium.rubik(color: DColors.textSecondary, height: 1.6),
-            textAlign: TextAlign.center,
-            maxLines: 2,
-            overflow: TextOverflow.ellipsis,
-          ),
-        ),
-      ],
+  Widget _buildSectionHeader() {
+    return SectionHeader(
+      subtitle: 'Services',
+      title: 'What I Can Do For You',
+      description: 'Comprehensive Flutter development solutions across all platforms',
     );
   }
 

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import '../../../../data_layer/model/project_model.dart';
+import '../../../../common_function/style/custom_button.dart';
 import 'package:responsive_website/utility/constants/colors.dart';
-import 'package:responsive_website/utility/default_sizes/default_sizes.dart';
 import 'package:responsive_website/utility/default_sizes/font_size.dart';
+import 'package:responsive_website/utility/default_sizes/default_sizes.dart';
 import 'package:responsive_website/utility/responsive/responsive_helper.dart';
 import 'package:responsive_website/utility/responsive/section_container.dart';
 import 'package:responsive_website/features/home/widgets/latest_projects/widgets/filter_chip.dart';
@@ -26,30 +28,33 @@ class _LatestProjectsSectionState extends State<LatestProjectsSection> {
     final fonts = context.fonts;
 
     return SectionContainer(
-      padding: EdgeInsets.symmetric(vertical: context.sizes.spaceBtwSections / 1.5),
+      padding: EdgeInsets.symmetric(vertical: s.spaceBtwSections / 1.5),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          // Subtitle
+          // SECTION HEADER
           Text('Latest Portfolios', style: fonts.bodyLarge.rubik(color: DColors.primaryButton)),
           SizedBox(height: s.paddingSm),
 
-          // Title
           Text('Elevating Visions into Masterpieces', style: fonts.displayLarge, textAlign: TextAlign.center),
           SizedBox(height: s.paddingSm),
 
-          // Filter Chips
+          // FILTER CHIPS
           _buildFilterChips(context),
           SizedBox(height: s.spaceBtwSections),
 
-          // Projects Grid
+          // PROJECTS GRID
           _buildProjectsGrid(context),
+          SizedBox(height: s.spaceBtwSections),
+
+          // SEE ALL PROJECTS BUTTON
+          _buildSeeAllButton(context, s),
         ],
       ),
     );
   }
 
-  // 🎯 FILTER CHIPS - Fixed Responsive
+  // FILTER CHIPS - Responsive
   Widget _buildFilterChips(BuildContext context) {
     final s = context.sizes;
 
@@ -83,14 +88,14 @@ class _LatestProjectsSectionState extends State<LatestProjectsSection> {
     );
   }
 
-  // 📋 GET FILTERED PROJECTS
+  // GET FILTERED PROJECTS
   List<ProjectModel> _getFilteredProjects() {
     final allProjects = _getAllProjects();
     if (_selectedFilter == 'All') return allProjects;
     return allProjects.where((project) => project.category == _selectedFilter).toList();
   }
 
-  // 📱 PROJECTS GRID - Fixed Responsive with proper aspect ratios
+  // PROJECTS GRID - Fixed Responsive
   Widget _buildProjectsGrid(BuildContext context) {
     final s = context.sizes;
     final projects = _getFilteredProjects();
@@ -126,7 +131,20 @@ class _LatestProjectsSectionState extends State<LatestProjectsSection> {
     );
   }
 
-  // 📦 PROJECT DATA
+  // SEE ALL PROJECTS BUTTON
+  Widget _buildSeeAllButton(BuildContext context, DSizes s) {
+    return CustomButton(
+      width: context.responsiveValue(mobile: double.infinity, tablet: 250.0, desktop: 250.0),
+      height: 50,
+      tittleText: 'See All Projects',
+      onPressed: () {
+        context.go('/portfolio');
+        debugPrint('Navigating to portfolio page');
+      },
+    );
+  }
+
+  // PROJECT DATA (Sample - 6 Projects)
   List<ProjectModel> _getAllProjects() {
     return [
       ProjectModel(

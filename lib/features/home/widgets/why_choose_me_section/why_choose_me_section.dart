@@ -1,3 +1,5 @@
+import 'package:responsive_website/common_function/style/section_header.dart';
+
 import 'widgets/benefit_card.dart';
 import 'package:flutter/material.dart';
 import '../../../../utility/constants/colors.dart';
@@ -39,7 +41,7 @@ class WhyChooseMeSection extends StatelessWidget {
 
         // Section Header
         _buildSectionHeader(context),
-        SizedBox(height: s.spaceBtwItems),
+        SizedBox(height: s.spaceBtwSections),
 
         // Benefits List
         _buildBenefitsList(context),
@@ -59,7 +61,7 @@ class WhyChooseMeSection extends StatelessWidget {
 
         // Section Header
         _buildSectionHeader(context),
-        SizedBox(height: s.spaceBtwItems),
+        SizedBox(height: s.spaceBtwSections),
 
         // Benefits List
         _buildBenefitsList(context),
@@ -170,39 +172,11 @@ class WhyChooseMeSection extends StatelessWidget {
 
   // 📝 Section Header
   Widget _buildSectionHeader(BuildContext context) {
-    final s = context.sizes;
-    final fonts = context.fonts;
-
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        // Subtitle
-        Text(
-          'Why Work With Me?',
-          style: fonts.bodyLarge.rubik(color: DColors.primaryButton, fontWeight: FontWeight.w600),
-          textAlign: TextAlign.center,
-        ),
-        SizedBox(height: s.paddingSm),
-
-        // Main Title
-        Text(
-          'Building Excellence in Every Line of Code',
-          style: fonts.displayMedium.rajdhani(fontWeight: FontWeight.bold),
-          textAlign: TextAlign.center,
-          maxLines: 2,
-          overflow: TextOverflow.ellipsis,
-        ),
-        SizedBox(height: s.spaceBtwItems16),
-
-        // Description
-        Text(
+    return SectionHeader(
+      subtitle: 'Why Work With Me?',
+      title: 'Building Excellence in Every Line of Code',
+      description:
           'I deliver high-quality, scalable Flutter applications with clean architecture and best practices. Your success is my priority.',
-          style: fonts.titleSmall.rubik(color: DColors.textSecondary, height: 1.6),
-          textAlign: TextAlign.center,
-          maxLines: 3,
-          overflow: TextOverflow.ellipsis,
-        ),
-      ],
     );
   }
 

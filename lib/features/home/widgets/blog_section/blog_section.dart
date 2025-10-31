@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:responsive_website/utility/constants/colors.dart';
 import 'package:responsive_website/data_layer/model/blog_model.dart';
 import 'package:responsive_website/utility/default_sizes/font_size.dart';
@@ -6,6 +7,8 @@ import 'package:responsive_website/utility/default_sizes/default_sizes.dart';
 import 'package:responsive_website/utility/responsive/responsive_helper.dart';
 import 'package:responsive_website/utility/responsive/section_container.dart';
 import 'package:responsive_website/features/home/widgets/blog_section/widgets/blog_card.dart';
+
+import '../../../../common_function/style/custom_button.dart';
 
 class BlogSection extends StatelessWidget {
   const BlogSection({super.key});
@@ -30,12 +33,29 @@ class BlogSection extends StatelessWidget {
 
           // Blogs Grid
           _buildBlogsGrid(context),
+          SizedBox(height: s.spaceBtwSections),
+
+          // SEE ALL PROJECTS BUTTON
+          _buildSeeAllButton(context, s),
         ],
       ),
     );
   }
 
-  // 📋 GET BLOGS DATA
+  // SEE ALL PROJECTS BUTTON
+  Widget _buildSeeAllButton(BuildContext context, DSizes s) {
+    return CustomButton(
+      width: context.responsiveValue(mobile: double.infinity, tablet: 250.0, desktop: 250.0),
+      height: 50,
+      tittleText: 'See All Blog',
+      onPressed: () {
+        context.go('/Blog');
+        debugPrint('Navigating to Blog page');
+      },
+    );
+  }
+
+  // GET BLOGS DATA
   List<BlogModel> _getBlogsData() {
     return [
       BlogModel(
@@ -61,7 +81,7 @@ class BlogSection extends StatelessWidget {
     ];
   }
 
-  // 📝 BLOGS GRID - Fixed Responsive
+  // BLOGS GRID - Fixed Responsive
   Widget _buildBlogsGrid(BuildContext context) {
     final s = context.sizes;
     final blogs = _getBlogsData();

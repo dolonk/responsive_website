@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'widgets/process_step_card.dart';
 import '../../../../utility/constants/colors.dart';
-import '../../../../utility/default_sizes/font_size.dart';
 import '../../../../data_layer/model/process_step_model.dart';
 import '../../../../utility/default_sizes/default_sizes.dart';
 import '../../../../utility/responsive/responsive_helper.dart';
 import '../../../../utility/responsive/responsive_widget.dart';
 import '../../../../utility/responsive/section_container.dart';
+import 'package:responsive_website/common_function/style/section_header.dart';
 
 class ProcessTimelineSection extends StatelessWidget {
   const ProcessTimelineSection({super.key});
@@ -37,41 +37,10 @@ class ProcessTimelineSection extends StatelessWidget {
 
   // 📝 Section Header
   Widget _buildSectionHeader(BuildContext context) {
-    final s = context.sizes;
-    final fonts = context.fonts;
-
-    return Column(
-      children: [
-        // Subtitle
-        Text(
-          'How I Work',
-          style: fonts.bodyLarge.rubik(color: DColors.primaryButton, fontWeight: FontWeight.w600),
-          textAlign: TextAlign.center,
-        ),
-        SizedBox(height: s.paddingSm),
-
-        // Main Title
-        Text(
-          'My Development Process',
-          style: fonts.displayMedium.rajdhani(fontWeight: FontWeight.bold),
-          textAlign: TextAlign.center,
-          maxLines: 2,
-          overflow: TextOverflow.ellipsis,
-        ),
-        SizedBox(height: s.spaceBtwItems),
-
-        // Description
-        SizedBox(
-          width: context.responsiveValue(mobile: double.infinity, tablet: 600.0, desktop: 700.0),
-          child: Text(
-            'A structured approach to deliver exceptional results, from discovery to deployment',
-            style: fonts.bodyMedium.rubik(color: DColors.textSecondary, height: 1.6),
-            textAlign: TextAlign.center,
-            maxLines: 3,
-            overflow: TextOverflow.ellipsis,
-          ),
-        ),
-      ],
+    return SectionHeader(
+      subtitle: 'How I Work',
+      title: 'My Development Process',
+      description: 'A structured approach to deliver exceptional results, from discovery to deployment',
     );
   }
 

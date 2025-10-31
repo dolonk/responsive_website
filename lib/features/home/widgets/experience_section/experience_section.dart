@@ -97,7 +97,7 @@ class ExperienceSection extends StatelessWidget {
           clipBehavior: Clip.none,
           children: [
             Positioned(
-              left: 100,
+              left: 60,
               bottom: -80,
               child: Container(
                 width: 250,

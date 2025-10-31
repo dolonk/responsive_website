@@ -7,6 +7,7 @@ import '../../../../utility/default_sizes/default_sizes.dart';
 import '../../../../utility/responsive/responsive_helper.dart';
 import '../../../../utility/responsive/responsive_widget.dart';
 import '../../../../utility/responsive/section_container.dart';
+import '../../../../common_function/style/section_header.dart';
 
 class TechStackSection extends StatelessWidget {
   const TechStackSection({super.key});
@@ -22,7 +23,6 @@ class TechStackSection extends StatelessWidget {
         children: [
           // Section Header
           _buildSectionHeader(context),
-          //SizedBox(height: s.spaceBtwSections),
 
           // Tech Stack Grid
           ResponsiveWidget(
@@ -56,38 +56,10 @@ class TechStackSection extends StatelessWidget {
 
   // 📝 Section Header
   Widget _buildSectionHeader(BuildContext context) {
-    final s = context.sizes;
-    final fonts = context.fonts;
-
-    return Column(
-      children: [
-        // Subtitle
-        Text(
-          'Technologies I Master',
-          style: fonts.bodyLarge.rubik(color: DColors.primaryButton, fontWeight: FontWeight.w600),
-          textAlign: TextAlign.center,
-        ),
-        SizedBox(height: s.paddingSm),
-
-        // Main Title
-        Text(
-          'Tech Stack & Tools',
-          style: fonts.displayMedium.rajdhani(fontWeight: FontWeight.bold),
-          textAlign: TextAlign.center,
-          maxLines: 2,
-          overflow: TextOverflow.ellipsis,
-        ),
-        SizedBox(height: s.spaceBtwItems16),
-
-        // Description
-        Text(
-          'Building cross-platform applications with modern frameworks and industry-leading tools',
-          style: fonts.bodyMedium.rubik(color: DColors.textSecondary, height: 1.6),
-          textAlign: TextAlign.center,
-          maxLines: 3,
-          overflow: TextOverflow.ellipsis,
-        ),
-      ],
+    return SectionHeader(
+      subtitle: 'Technologies I Master',
+      title: 'Tech Stack & Tools',
+      description: 'Building cross-platform applications with modern frameworks and industry-leading tools',
     );
   }
 
