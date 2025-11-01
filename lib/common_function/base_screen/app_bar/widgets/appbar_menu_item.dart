@@ -35,7 +35,7 @@ class _AppBarMenuItemState extends State<AppBarMenuItem> {
                 color: widget.isActive
                     ? DColors.primaryButton
                     : _isHovered
-                    ? DColors.primaryButton.withAlpha((255 * 0.5.round()))
+                    ? DColors.primaryButton.withAlpha((255 * 0.5).round())
                     : Colors.transparent,
                 width: 2,
               ),

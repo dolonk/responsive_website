@@ -67,13 +67,9 @@ class _TechIconCardState extends State<TechIconCard> with SingleTickerProviderSt
           child: AnimatedContainer(
             duration: const Duration(milliseconds: 300),
             curve: Curves.easeInOut,
-            padding: EdgeInsets.all(
-              context.responsiveValue(mobile: 14, tablet: s.paddingMd * 1.2, desktop: s.paddingLg),
-            ),
+            padding: EdgeInsets.all(context.responsiveValue(mobile: 14, tablet: s.paddingMd, desktop: s.paddingLg)),
             decoration: BoxDecoration(
-              color: _isHovered
-                  ? DColors.primaryButton.withAlpha((255 * 0.1).round())
-                  : DColors.cardBackground,
+              color: _isHovered ? DColors.primaryButton.withAlpha((255 * 0.1).round()) : DColors.cardBackground,
               borderRadius: BorderRadius.circular(s.borderRadiusLg),
               border: Border.all(color: _isHovered ? DColors.primaryButton : DColors.cardBorder, width: 2),
               boxShadow: _isHovered
@@ -91,11 +87,13 @@ class _TechIconCardState extends State<TechIconCard> with SingleTickerProviderSt
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 // Tech Icon
-                AnimatedContainer(
-                  duration: const Duration(milliseconds: 300),
-                  transform: Matrix4.identity()..scale(_isHovered ? 1.1 : 1.0),
-                  //child: _buildTechIcon(iconSize),
-                  child: _buildPlaceholder(iconSize),
+                Flexible(
+                  child: AnimatedContainer(
+                    duration: const Duration(milliseconds: 300),
+                    transform: Matrix4.identity()..scale(_isHovered ? 1.1 : 1.0),
+                    //child: _buildTechIcon(iconSize),
+                    child: _buildPlaceholder(iconSize),
+                  ),
                 ),
                 SizedBox(height: s.spaceBtwItems),
 
@@ -127,10 +125,7 @@ class _TechIconCardState extends State<TechIconCard> with SingleTickerProviderSt
         widget.tech.iconPath,
         width: size,
         height: size,
-        colorFilter: ColorFilter.mode(
-          _isHovered ? DColors.primaryButton : DColors.textPrimary,
-          BlendMode.srcIn,
-        ),
+        colorFilter: ColorFilter.mode(_isHovered ? DColors.primaryButton : DColors.textPrimary, BlendMode.srcIn),
         placeholderBuilder: (context) => _buildPlaceholder(size),
       );
     } else {

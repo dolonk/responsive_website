@@ -36,21 +36,21 @@ class BlogSection extends StatelessWidget {
           SizedBox(height: s.spaceBtwSections),
 
           // SEE ALL PROJECTS BUTTON
-          _buildSeeAllButton(context, s),
+          _buildSeeAllButton(context),
         ],
       ),
     );
   }
 
   // SEE ALL PROJECTS BUTTON
-  Widget _buildSeeAllButton(BuildContext context, DSizes s) {
+  Widget _buildSeeAllButton(BuildContext context) {
     return CustomButton(
       width: context.responsiveValue(mobile: double.infinity, tablet: 250.0, desktop: 250.0),
       height: 50,
-      tittleText: 'See All Blog',
+      tittleText: 'View All Articles',
       onPressed: () {
-        context.go('/Blog');
-        debugPrint('Navigating to Blog page');
+        context.go('/blog');
+        debugPrint('Navigating to blog page');
       },
     );
   }
@@ -61,15 +61,13 @@ class BlogSection extends StatelessWidget {
       BlogModel(
         title: "The Art of Minimalist Web Design",
         category: "Web Design",
-        description:
-            "Discover how less can be more. Tips and tricks for creating stunning, minimalist websites.",
+        description: "Discover how less can be more. Tips and tricks for creating stunning, minimalist websites.",
         imagePath: "assets/home/projects/project_1.png",
       ),
       BlogModel(
         title: "Mobile App UX: A Deep Dive",
         category: "UX/UI",
-        description:
-            "Exploring the key principles of user experience that make mobile apps successful and intuitive.",
+        description: "Exploring the key principles of user experience that make mobile apps successful and intuitive.",
         imagePath: "assets/home/projects/project_2.png",
       ),
       BlogModel(

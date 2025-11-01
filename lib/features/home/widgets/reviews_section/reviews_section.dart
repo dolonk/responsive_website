@@ -123,15 +123,13 @@ class ReviewsSection extends StatelessWidget {
     );
   }
 
-  // 📋 SECTION HEADER
+  // SECTION HEADER
   Widget _buildSectionHeader(BuildContext context) {
     final s = context.sizes;
     final fonts = context.fonts;
 
     return Column(
-      crossAxisAlignment: context.isMobile || context.isTablet
-          ? CrossAxisAlignment.center
-          : CrossAxisAlignment.start,
+      crossAxisAlignment: context.isMobile || context.isTablet ? CrossAxisAlignment.center : CrossAxisAlignment.start,
       children: [
         // Subtitle
         Text("Reviews", style: fonts.headlineMedium.rajdhani(color: DColors.primaryButton)),
@@ -167,7 +165,7 @@ class ReviewsSection extends StatelessWidget {
     );
   }
 
-  // 🎴 Reviews CARDS
+  // Reviews CARDS
   Widget _buildReviewsCards(BuildContext context, {required bool isMobile}) {
     final s = context.sizes;
     final reviews = _getReviewsData();
