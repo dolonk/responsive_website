@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:responsive_website/utility/responsive/responsive_helper.dart';
 import '../../utility/constants/colors.dart';
 import 'package:responsive_website/utility/default_sizes/default_sizes.dart';
 import 'package:responsive_website/utility/default_sizes/font_size.dart';
@@ -26,9 +27,10 @@ class _CustomButtonState extends State<CustomButton> {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Container(
       width: widget.width,
       height: widget.height,
+      padding: EdgeInsets.symmetric(horizontal: context.isMobile ?context.sizes.paddingMd:0),
       child: MouseRegion(
         onEnter: (_) => setState(() => _isHovered = true),
         onExit: (_) => setState(() => _isHovered = false),

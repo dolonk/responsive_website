@@ -28,7 +28,7 @@ class _LatestProjectsSectionState extends State<LatestProjectsSection> {
     final fonts = context.fonts;
 
     return SectionContainer(
-      padding: EdgeInsets.symmetric(vertical: s.spaceBtwSections / 1.5),
+      padding: EdgeInsets.only(top: s.spaceBtwSections),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
@@ -41,11 +41,10 @@ class _LatestProjectsSectionState extends State<LatestProjectsSection> {
 
           // FILTER CHIPS
           _buildFilterChips(context),
-          SizedBox(height: s.spaceBtwSections),
+          SizedBox(height: s.spaceBtwItems - s.paddingMd),
 
           // PROJECTS GRID
           _buildProjectsGrid(context),
-          SizedBox(height: s.spaceBtwSections),
 
           // SEE ALL PROJECTS BUTTON
           _buildSeeAllButton(context, s),
@@ -108,9 +107,7 @@ class _LatestProjectsSectionState extends State<LatestProjectsSection> {
     );
 
     return Padding(
-      padding: EdgeInsets.symmetric(
-        horizontal: context.responsiveValue(mobile: s.paddingSm, tablet: s.paddingMd, desktop: s.paddingLg),
-      ),
+      padding: EdgeInsets.all(s.paddingMd),
       child: LayoutBuilder(
         builder: (context, constraints) {
           final cardWidth = (constraints.maxWidth - (gridSpacing * (crossAxisCount - 1))) / crossAxisCount;

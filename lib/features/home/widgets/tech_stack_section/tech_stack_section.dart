@@ -18,7 +18,7 @@ class TechStackSection extends StatelessWidget {
 
     return SectionContainer(
       backgroundColor: DColors.secondaryBackground,
-      padding: EdgeInsets.symmetric(horizontal: s.paddingMd, vertical: s.spaceBtwSections),
+      padding: EdgeInsets.only(left: s.paddingMd, right: s.paddingMd, top: s.spaceBtwSections),
       child: Column(
         children: [
           // Section Header
@@ -88,7 +88,7 @@ class TechStackSection extends StatelessWidget {
       // Category Title
       widgets.add(
         Padding(
-          padding: EdgeInsets.only(top: s.spaceBtwSections, bottom: s.spaceBtwItems),
+          padding: EdgeInsets.only(left:  s.spaceBtwItems, right: s.spaceBtwItems, bottom: s.spaceBtwItems, top: s.spaceBtwSections),
           child: Text(
             category,
             style: fonts.headlineMedium.rajdhani(fontWeight: FontWeight.bold),

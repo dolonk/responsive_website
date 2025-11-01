@@ -4,37 +4,6 @@ import 'package:responsive_website/utility/default_sizes/font_size.dart';
 import 'package:responsive_website/utility/default_sizes/default_sizes.dart';
 import 'package:responsive_website/utility/responsive/responsive_helper.dart';
 
-/*class YearsCard extends StatelessWidget {
-  const YearsCard({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    final s = context.sizes;
-    final fonts = context.fonts;
-
-    return Container(
-      width: context.responsiveValue(mobile: double.infinity, tablet: 340, desktop: 340),
-      height: context.responsiveValue(mobile: 210, tablet: 210, desktop: 312),
-      decoration: BoxDecoration(
-        gradient: DColors.yearsCardGradient,
-        borderRadius: BorderRadius.circular(8),
-        border: Border.all(color: const Color.fromRGBO(250, 250, 250, 0.10)),
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          // Years Number
-          Text("3 +", style: fonts.displayLarge),
-          SizedBox(height: s.paddingMd),
-
-          // Years Text
-          Text("Years of\nExperience", style: fonts.displayMedium, textAlign: TextAlign.center),
-        ],
-      ),
-    );
-  }
-}*/
-
 class YearCard extends StatefulWidget {
   final int year;
   final String description;
@@ -68,7 +37,6 @@ class _YearCardState extends State<YearCard> with SingleTickerProviderStateMixin
       end: Offset.zero,
     ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeOutCubic));
 
-    // Staggered animation
     Future.delayed(Duration(milliseconds: 200 * widget.index), () {
       if (mounted) {
         _controller.forward();
@@ -98,14 +66,17 @@ class _YearCardState extends State<YearCard> with SingleTickerProviderStateMixin
             duration: const Duration(milliseconds: 200),
             scale: _isHovered ? 1.02 : 1.0,
             child: Container(
-             // height: double.infinity,
+              margin: context.isTablet ? EdgeInsets.all(s.paddingMd): EdgeInsets.only(bottom: s.spaceBtwItems -6),
               padding: EdgeInsets.all(
-                context.responsiveValue(mobile: s.paddingMd, tablet: s.paddingLg, desktop: s.paddingLg),
+                context.responsiveValue(mobile: s.paddingMd, tablet: s.paddingLg, desktop: 10),
               ),
               decoration: BoxDecoration(
                 color: DColors.cardBackground,
                 borderRadius: BorderRadius.circular(s.borderRadiusLg),
-                border: Border.all(color: _isHovered ? DColors.primaryButton : DColors.cardBorder, width: 1.5),
+                border: Border.all(
+                  color: _isHovered ? DColors.primaryButton : DColors.cardBorder,
+                  width: 1.5,
+                ),
                 boxShadow: _isHovered
                     ? [
                         BoxShadow(
@@ -117,22 +88,28 @@ class _YearCardState extends State<YearCard> with SingleTickerProviderStateMixin
                     : null,
               ),
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisSize: MainAxisSize.min,
                 children: [
-                  // YEAR
+                  // Year
                   Text(
                     widget.year.toString(),
-                    style: fonts.headlineLarge.rajdhani(color: DColors.primaryButton, fontWeight: FontWeight.bold),
+                    style: fonts.headlineLarge.rajdhani(
+                      color: DColors.primaryButton,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
-                  SizedBox(height: s.paddingSm),
+                  SizedBox(height:context.isDesktop ? 4: s.paddingSm),
 
-                  // DESCRIPTION
-                  Text(
-                    widget.description,
-                    style: fonts.bodyMedium.rubik(color: DColors.textSecondary, height: 1.5),
-                    maxLines: 3,
-                    overflow: TextOverflow.ellipsis,
+                  // Description
+                  Flexible(
+                    child: Text(
+                      widget.description,
+                      style: fonts.bodyMedium.rubik(color: DColors.textSecondary),
+                      maxLines: 4,
+                      overflow: TextOverflow.ellipsis,
+                    ),
                   ),
                 ],
               ),

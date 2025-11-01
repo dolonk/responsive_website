@@ -16,16 +16,15 @@ class MyServiceSection extends StatelessWidget {
     final s = context.sizes;
 
     return SectionContainer(
-      padding: EdgeInsets.symmetric(vertical: s.spaceBtwSections),
+      padding: EdgeInsets.only(top: s.spaceBtwSections),
       child: Column(
         children: [
           // Section Header
           _buildSectionHeader(),
-          SizedBox(height: s.spaceBtwSections),
+          SizedBox(height: s.spaceBtwItems - s.paddingMd),
 
           // Services Grid
           _buildServicesGrid(context, s),
-          SizedBox(height: s.spaceBtwSections),
 
           // View All Services Button
           _buildViewAllButton(context, s),
@@ -49,15 +48,13 @@ class MyServiceSection extends StatelessWidget {
     final crossAxisCount = context.responsiveValue(mobile: 1, tablet: 2, desktop: 3);
 
     return Padding(
-      padding: EdgeInsets.symmetric(
-        horizontal: context.responsiveValue(mobile: s.paddingSm, tablet: s.paddingMd, desktop: s.paddingLg),
-      ),
+      padding: EdgeInsets.all(s.paddingMd),
       child: LayoutBuilder(
         builder: (context, constraints) {
           final spacing = context.responsiveValue(
             mobile: s.spaceBtwItems,
-            tablet: s.spaceBtwSections * 0.75,
-            desktop: s.spaceBtwSections,
+            tablet: s.spaceBtwItems * 0.75,
+            desktop: s.spaceBtwItems,
           );
           final cardWidth = (constraints.maxWidth - (spacing * (crossAxisCount - 1))) / crossAxisCount;
 

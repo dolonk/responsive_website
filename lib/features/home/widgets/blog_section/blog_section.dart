@@ -19,7 +19,7 @@ class BlogSection extends StatelessWidget {
     final fonts = context.fonts;
 
     return SectionContainer(
-      padding: EdgeInsets.symmetric(vertical: s.spaceBtwSections),
+      padding: EdgeInsets.only(top: s.spaceBtwSections),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
@@ -29,11 +29,10 @@ class BlogSection extends StatelessWidget {
 
           // Title
           Text('Blogs About Creativity', style: fonts.displayLarge, textAlign: TextAlign.center),
-          SizedBox(height: s.spaceBtwSections),
+          SizedBox(height: s.spaceBtwItems - s.paddingMd),
 
           // Blogs Grid
           _buildBlogsGrid(context),
-          SizedBox(height: s.spaceBtwSections),
 
           // SEE ALL PROJECTS BUTTON
           _buildSeeAllButton(context),
@@ -61,13 +60,15 @@ class BlogSection extends StatelessWidget {
       BlogModel(
         title: "The Art of Minimalist Web Design",
         category: "Web Design",
-        description: "Discover how less can be more. Tips and tricks for creating stunning, minimalist websites.",
+        description:
+            "Discover how less can be more. Tips and tricks for creating stunning, minimalist websites.",
         imagePath: "assets/home/projects/project_1.png",
       ),
       BlogModel(
         title: "Mobile App UX: A Deep Dive",
         category: "UX/UI",
-        description: "Exploring the key principles of user experience that make mobile apps successful and intuitive.",
+        description:
+            "Exploring the key principles of user experience that make mobile apps successful and intuitive.",
         imagePath: "assets/home/projects/project_2.png",
       ),
       BlogModel(
@@ -93,9 +94,7 @@ class BlogSection extends StatelessWidget {
 
     // 🔥 OPTIMIZED VERSION:
     return Padding(
-      padding: EdgeInsets.symmetric(
-        horizontal: context.responsiveValue(mobile: s.paddingSm, tablet: s.paddingMd, desktop: s.paddingLg),
-      ),
+      padding: EdgeInsets.all(s.paddingMd),
       child: LayoutBuilder(
         builder: (context, constraints) {
           final cardWidth = (constraints.maxWidth - (gridSpacing * (crossAxisCount - 1))) / crossAxisCount;

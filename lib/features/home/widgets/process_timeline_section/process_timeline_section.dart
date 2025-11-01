@@ -17,12 +17,12 @@ class ProcessTimelineSection extends StatelessWidget {
 
     return SectionContainer(
       backgroundColor: DColors.background,
-      padding: EdgeInsets.symmetric(horizontal: s.paddingMd, vertical: s.spaceBtwSections),
+      padding: EdgeInsets.only(left: s.paddingMd, right: s.paddingMd, top: s.spaceBtwSections),
       child: Column(
         children: [
           // Section Header
           _buildSectionHeader(context),
-          SizedBox(height: s.spaceBtwSections),
+          SizedBox(height: s.spaceBtwItems),
 
           // Process Steps
           ResponsiveWidget(

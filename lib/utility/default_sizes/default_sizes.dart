@@ -200,7 +200,7 @@ class _DesktopSizes {
   final double defaultSpace = 36.0;
   final double spaceBtwItems = 24.0;
   final double spaceBtwItems16 = 16.0;
-  final double spaceBtwSections = 40.0;
+  final double spaceBtwSections = 48.0;
 
   // Border radius sizes
   final double borderRadiusSm = 6.0;

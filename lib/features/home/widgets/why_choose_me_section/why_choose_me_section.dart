@@ -20,7 +20,7 @@ class WhyChooseMeSection extends StatelessWidget {
 
     return SectionContainer(
       backgroundColor: DColors.background,
-      padding: EdgeInsets.symmetric(horizontal: s.paddingMd),
+      padding: EdgeInsets.only(top: s.spaceBtwSections),
       child: ResponsiveWidget(
         mobile: _buildMobileLayout(context),
         tablet: _buildTabletLayout(context),
@@ -37,11 +37,11 @@ class WhyChooseMeSection extends StatelessWidget {
       children: [
         // Professional Image
         _buildProfessionalImage(context),
-        SizedBox(height: s.spaceBtwSections),
+        SizedBox(height: s.spaceBtwItems),
 
         // Section Header
         _buildSectionHeader(context),
-        SizedBox(height: s.spaceBtwSections),
+        SizedBox(height: s.spaceBtwItems),
 
         // Benefits List
         _buildBenefitsList(context),
@@ -57,11 +57,11 @@ class WhyChooseMeSection extends StatelessWidget {
       children: [
         // Professional Image
         _buildProfessionalImage(context),
-        SizedBox(height: s.spaceBtwSections),
+        SizedBox(height: s.spaceBtwItems),
 
         // Section Header
         _buildSectionHeader(context),
-        SizedBox(height: s.spaceBtwSections),
+        SizedBox(height: s.spaceBtwItems),
 
         // Benefits List
         _buildBenefitsList(context),
@@ -76,14 +76,14 @@ class WhyChooseMeSection extends StatelessWidget {
     return Column(
       children: [
         _buildSectionHeader(context),
-        SizedBox(height: s.spaceBtwSections),
+        SizedBox(height: s.spaceBtwItems),
 
         Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             // Left side with Image
             Expanded(flex: 2, child: _buildProfessionalImage(context)),
-            SizedBox(width: s.spaceBtwSections),
+            SizedBox(width: s.spaceBtwItems),
             //benefit section
             Expanded(flex: 3, child: _buildBenefitsList(context)),
           ],
