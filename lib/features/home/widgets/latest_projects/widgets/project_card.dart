@@ -173,10 +173,7 @@ class _ProjectCardState extends State<ProjectCard> with SingleTickerProviderStat
           decoration: BoxDecoration(
             color: _isButtonHovered ? null : Colors.transparent,
             borderRadius: BorderRadius.circular(s.borderRadiusSm),
-            border: Border.all(
-              color: _isButtonHovered ? DColors.primaryButton : DColors.cardBorder,
-              width: 1.5,
-            ),
+            border: Border.all(color: _isButtonHovered ? DColors.primaryButton : DColors.cardBorder, width: 1.5),
             boxShadow: _isButtonHovered
                 ? [
                     BoxShadow(
@@ -191,7 +188,7 @@ class _ProjectCardState extends State<ProjectCard> with SingleTickerProviderStat
             mainAxisSize: MainAxisSize.min,
             children: [
               // "View" text - always visible
-              Text('View', style: fonts.labelLarge),
+              Text('View', style: fonts.labelLarge.rubik(color: DColors.textPrimary)),
 
               // Animated arrow icon
               AnimatedBuilder(

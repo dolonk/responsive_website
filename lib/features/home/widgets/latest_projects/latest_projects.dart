@@ -147,15 +147,13 @@ class _LatestProjectsSectionState extends State<LatestProjectsSection> {
       ProjectModel(
         title: "Fashion Portfolio Website",
         category: "Web Development",
-        description:
-            "A sleek and modern portfolio website tailored for a fashion model showcasing creativity.",
+        description: "A sleek and modern portfolio website tailored for a fashion model showcasing creativity.",
         imagePath: "assets/home/projects/project_1.png",
       ),
       ProjectModel(
         title: "E-Commerce Mobile App",
         category: "Android App",
-        description:
-            "Full-featured shopping app with payment integration and real-time tracking capabilities.",
+        description: "Full-featured shopping app with payment integration and real-time tracking capabilities.",
         imagePath: "assets/home/projects/project_2.png",
       ),
       ProjectModel(
@@ -173,8 +171,7 @@ class _LatestProjectsSectionState extends State<LatestProjectsSection> {
       ProjectModel(
         title: "Brand Identity Design",
         category: "Desktop",
-        description:
-            "Complete brand identity package including logo, color palette, and marketing materials.",
+        description: "Complete brand identity package including logo, color palette, and marketing materials.",
         imagePath: "assets/home/projects/project_5.png",
       ),
       ProjectModel(

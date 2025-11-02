@@ -66,9 +66,8 @@ class _YearCardState extends State<YearCard> with SingleTickerProviderStateMixin
             duration: const Duration(milliseconds: 200),
             scale: _isHovered ? 1.02 : 1.0,
             child: Container(
-              margin: context.isTablet ? EdgeInsets.all(s.paddingMd): EdgeInsets.only(bottom: s.spaceBtwItems -6),
               padding: EdgeInsets.all(
-                context.responsiveValue(mobile: s.paddingMd, tablet: s.paddingLg, desktop: 10),
+                context.responsiveValue(mobile: s.paddingMd, tablet: s.paddingLg, desktop: s.paddingSm),
               ),
               decoration: BoxDecoration(
                 color: DColors.cardBackground,
@@ -95,7 +94,7 @@ class _YearCardState extends State<YearCard> with SingleTickerProviderStateMixin
                   // Year
                   Text(
                     widget.year.toString(),
-                    style: fonts.headlineLarge.rajdhani(
+                    style: fonts.titleLarge.rajdhani(
                       color: DColors.primaryButton,
                       fontWeight: FontWeight.bold,
                     ),
@@ -106,7 +105,7 @@ class _YearCardState extends State<YearCard> with SingleTickerProviderStateMixin
                   Flexible(
                     child: Text(
                       widget.description,
-                      style: fonts.bodyMedium.rubik(color: DColors.textSecondary),
+                      style: fonts.bodySmall.rubik(color: DColors.textSecondary),
                       maxLines: 4,
                       overflow: TextOverflow.ellipsis,
                     ),

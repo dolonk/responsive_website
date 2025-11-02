@@ -11,6 +11,21 @@ import 'package:responsive_website/features/home/widgets/experience_section/widg
 class ExperienceSection extends StatelessWidget {
   const ExperienceSection({super.key});
 
+  // Data for the sections
+  static const List<Map<String, dynamic>> _stats = [
+    {'icon': '📱', 'number': 50, 'title': 'Projects Completed'},
+    {'icon': '⭐', 'number': 30, 'title': 'Happy Clients'},
+    {'icon': '🚀', 'number': 4, 'title': 'Platforms Mastered'},
+    {'icon': '💯', 'number': 98, 'title': 'Client Satisfaction'},
+  ];
+
+  static const List<Map<String, dynamic>> _timelineData = [
+    {'year': 2022, 'description': 'Started Flutter Development Journey with First Production App'},
+    {'year': 2023, 'description': 'Built 20+ Cross-Platform Apps for Startups & Enterprises'},
+    {'year': 2024, 'description': 'Achieved Senior Developer Status with Advanced Architecture Skills'},
+    {'year': 2025, 'description': 'Leading Enterprise Projects & Mentoring Junior Developers'},
+  ];
+
   @override
   Widget build(BuildContext context) {
     final s = context.sizes;
@@ -48,7 +63,7 @@ class ExperienceSection extends StatelessWidget {
         _buildStatsSection(context, isMobile: true),
         SizedBox(height: s.spaceBtwItems),
 
-        _buildTimelineSection(context, isVertical: true),
+        SizedBox(height: 400, child: _buildTimelineSection(context, isVertical: true)),
       ],
     );
   }
@@ -70,34 +85,31 @@ class ExperienceSection extends StatelessWidget {
   Widget _buildDesktopLayout(BuildContext context) {
     final s = context.sizes;
 
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Expanded(flex: 6, child: _buildStatsSection(context, isMobile: false)),
-        SizedBox(width: s.spaceBtwItems *2),
+    return SizedBox(
+      height: 450,
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Expanded(flex: 6, child: _buildStatsSection(context, isMobile: false)),
+          SizedBox(width: s.spaceBtwItems * 2),
 
-        Expanded(flex: 4, child: _buildTimelineSection(context, isVertical: true)),
-      ],
+          Expanded(flex: 4, child: _buildTimelineSection(context, isVertical: true)),
+        ],
+      ),
     );
   }
 
   // STATS SECTION
   Widget _buildStatsSection(BuildContext context, {required bool isMobile}) {
     final s = context.sizes;
-    final stats = [
-      {'icon': '📱', 'number': 50, 'title': 'Projects Completed'},
-      {'icon': '⭐', 'number': 30, 'title': 'Happy Clients'},
-      {'icon': '🚀', 'number': 4, 'title': 'Platforms Mastered'},
-      {'icon': '💯', 'number': 98, 'title': 'Client Satisfaction'},
-    ];
 
     if (isMobile) {
       // Mobile: Vertical stack with aspect ratio
       return Column(
-        children: List.generate(stats.length, (index) {
-          final stat = stats[index];
+        children: List.generate(_stats.length, (index) {
+          final stat = _stats[index];
           return Padding(
-            padding: EdgeInsets.only(bottom: index < stats.length - 1 ? s.spaceBtwItems : 0),
+            padding: EdgeInsets.only(bottom: index < _stats.length - 1 ? s.spaceBtwItems : 0),
             child: AspectRatio(
               aspectRatio: 2.5, // Width:Height ratio
               child: StartCard(
@@ -112,58 +124,47 @@ class ExperienceSection extends StatelessWidget {
       );
     }
 
-    // Tablet/Desktop: 2x2 Grid with Wrap
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        final spacing = s.spaceBtwItems;
-        final cardWidth = (constraints.maxWidth - spacing) / 2;
+    final spacing = s.spaceBtwItems;
+    final aspectRatio = context.isTablet ? 1.6 : 1.4;
 
-        final aspectRatio = context.isTablet ? 1.6 : 1.4;
-
-        return Wrap(
-          spacing: spacing,
-          runSpacing: spacing,
-          children: List.generate(stats.length, (index) {
-            final stat = stats[index];
-            return SizedBox(
-              width: cardWidth,
-              child: AspectRatio(
-                aspectRatio: aspectRatio,
-                child: StartCard(
-                  icon: stat['icon'] as String,
-                  number: stat['number'] as int,
-                  title: stat['title'] as String,
-                  index: index,
-                ),
-              ),
-            );
-          }),
-        );
-      },
+    return Column(
+      children: [
+        // First Row
+        Row(
+          children: [
+            _buildStatCard(stat: _stats[0], index: 0, aspectRatio: aspectRatio),
+            SizedBox(width: spacing),
+            _buildStatCard(stat: _stats[1], index: 1, aspectRatio: aspectRatio),
+          ],
+        ),
+        SizedBox(height: spacing),
+        // Second Row
+        Row(
+          children: [
+            _buildStatCard(stat: _stats[2], index: 2, aspectRatio: aspectRatio),
+            SizedBox(width: spacing),
+            _buildStatCard(stat: _stats[3], index: 3, aspectRatio: aspectRatio),
+          ],
+        ),
+      ],
     );
   }
 
   // TIMELINE SECTION
   Widget _buildTimelineSection(BuildContext context, {required bool isVertical}) {
-    final timelineData = [
-      {'year': 2022, 'description': 'Started Flutter Development Journey with First Production App'},
-      {'year': 2023, 'description': 'Built 20+ Cross-Platform Apps for Startups & Enterprises'},
-      {'year': 2024, 'description': 'Achieved Senior Developer Status with Advanced Architecture Skills'},
-      {'year': 2025, 'description': 'Leading Enterprise Projects & Mentoring Junior Developers'},
-    ];
-
     // Mobile & Desktop: Vertical timeline
     if (isVertical) {
       return Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: List.generate(timelineData.length, (index) {
-          final data = timelineData[index];
-          return YearCard(
-            year: data['year'] as int,
-            description: data['description'] as String,
-            index: index,
-          );
-        }),
+        children: [
+          _buildTimelineCard(data: _timelineData[0], index: 0),
+          SizedBox(height: context.sizes.spaceBtwItems),
+          _buildTimelineCard(data: _timelineData[1], index: 1),
+          SizedBox(height: context.sizes.spaceBtwItems),
+          _buildTimelineCard(data: _timelineData[2], index: 2),
+          SizedBox(height: context.sizes.spaceBtwItems),
+          _buildTimelineCard(data: _timelineData[3], index: 3),
+        ],
       );
     }
 
@@ -171,15 +172,31 @@ class ExperienceSection extends StatelessWidget {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Row(
-        children: List.generate(timelineData.length, (index) {
-          final data = timelineData[index];
-          return YearCard(
-            year: data['year'] as int,
-            description: data['description'] as String,
-            index: index,
+        children: List.generate(_timelineData.length, (index) {
+          final data = _timelineData[index];
+          return Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16.0),
+            child: YearCard(year: data['year'] as int, description: data['description'] as String, index: index),
           );
         }),
       ),
+    );
+  }
+
+  Widget _buildStatCard({required Map<String, dynamic> stat, required int index, required double aspectRatio}) {
+    return Expanded(
+      child: StartCard(
+        icon: stat['icon'] as String,
+        number: stat['number'] as int,
+        title: stat['title'] as String,
+        index: index,
+      ),
+    );
+  }
+
+  Widget _buildTimelineCard({required Map<String, dynamic> data, required int index}) {
+    return Expanded(
+      child: YearCard(year: data['year'] as int, description: data['description'] as String, index: index),
     );
   }
 }
