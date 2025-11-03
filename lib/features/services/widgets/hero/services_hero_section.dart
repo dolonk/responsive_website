@@ -23,7 +23,7 @@ class ServicesHeroSection extends StatelessWidget {
           colors: [Color(0xFF1E293B), Color(0xFF0F172A)],
         ),
       ),
-      padding: EdgeInsets.symmetric(horizontal: s.paddingMd, vertical: s.spaceBtwSections),
+      padding: EdgeInsets.only(left: s.paddingMd,  top: s.spaceBtwSections, right: s.paddingMd),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
