@@ -9,13 +9,15 @@ class CustomButton extends StatefulWidget {
   final double height;
   final String tittleText;
   final VoidCallback onPressed;
+  final EdgeInsetsGeometry? padding;
 
   const CustomButton({
     super.key,
-    required this.tittleText,
-    required this.onPressed,
+    this.padding,
     this.width,
     this.height = 50,
+    required this.tittleText,
+    required this.onPressed,
   });
 
   @override
@@ -30,7 +32,7 @@ class _CustomButtonState extends State<CustomButton> {
     return Container(
       width: widget.width,
       height: widget.height,
-      padding: EdgeInsets.symmetric(horizontal: context.isMobile ?context.sizes.paddingMd:0),
+      padding: widget.padding,
       child: MouseRegion(
         onEnter: (_) => setState(() => _isHovered = true),
         onExit: (_) => setState(() => _isHovered = false),

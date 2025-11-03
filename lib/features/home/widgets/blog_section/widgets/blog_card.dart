@@ -169,8 +169,6 @@ class _BlogCardState extends State<BlogCard> with SingleTickerProviderStateMixin
 
     return HoverableCard(
       padding: const EdgeInsets.all(8),
-      backgroundColor: DColors.cardBackground,
-      borderRadius: BorderRadius.circular(s.borderRadiusMd),
       onHoverChanged: (isHovered) => setState(() => _isHovered = isHovered),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

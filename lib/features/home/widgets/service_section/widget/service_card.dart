@@ -82,8 +82,6 @@ class _ServiceCardState extends State<ServiceCard> with SingleTickerProviderStat
       height: context.isMobile ? 280 : 326,
       child: HoverableCard(
         padding: EdgeInsets.all(s.paddingMd),
-        backgroundColor: DColors.secondaryBackground,
-        borderRadius: BorderRadius.circular(s.borderRadiusMd),
         onHoverChanged: _onCardHover,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -156,10 +154,7 @@ class _ServiceCardState extends State<ServiceCard> with SingleTickerProviderStat
           decoration: BoxDecoration(
             color: _isButtonHovered ? null : Colors.transparent,
             borderRadius: BorderRadius.circular(s.borderRadiusSm),
-            border: Border.all(
-              color: _isButtonHovered ? DColors.primaryButton : DColors.cardBorder,
-              width: 2,
-            ),
+            border: Border.all(color: _isButtonHovered ? DColors.primaryButton : DColors.cardBorder, width: 2),
             // Subtle shadow on hover
             boxShadow: _isButtonHovered
                 ? [

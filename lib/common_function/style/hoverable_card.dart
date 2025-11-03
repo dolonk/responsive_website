@@ -2,27 +2,21 @@ import 'package:flutter/material.dart';
 import '../../utility/constants/colors.dart';
 
 class HoverableCard extends StatefulWidget {
-  final Widget child;
-  final Duration duration;
-  final Color borderColor;
-  final Color hoverBorderColor;
-  final BorderRadius? borderRadius;
   final EdgeInsets? padding;
-  final Color? backgroundColor;
-  final double borderWidth;
+  final bool isBoxShadow;
+  final Color backgroundColor;
+  final bool isBorderLine;
+  final Widget child;
   final void Function(bool isHovered)? onHoverChanged;
 
   const HoverableCard({
     super.key,
-    required this.child,
-    this.duration = const Duration(milliseconds: 300),
-    this.borderColor = DColors.cardBorder,
-    this.hoverBorderColor = DColors.primaryButton,
-    this.borderRadius,
     this.padding,
-    this.backgroundColor,
-    this.borderWidth = 2,
     this.onHoverChanged,
+    this.isBoxShadow = true,
+    this.isBorderLine = true,
+    this.backgroundColor = DColors.cardBackground,
+    required this.child,
   });
 
   @override
@@ -46,24 +40,31 @@ class _HoverableCardState extends State<HoverableCard> {
       onExit: (_) => _updateHoverState(false),
       cursor: SystemMouseCursors.click,
       child: AnimatedContainer(
-        duration: widget.duration,
-        curve: Curves.easeInOut,
+        duration: const Duration(milliseconds: 300),
+        curve: Curves.easeOut,
+        transform: Matrix4.identity()..scale(_isHovered ? 1.02 : 1.0),
         padding: widget.padding,
         decoration: BoxDecoration(
           color: widget.backgroundColor,
+          borderRadius: BorderRadius.circular(16),
           border: Border.all(
-            color: _isHovered ? widget.hoverBorderColor : widget.borderColor,
-            width: widget.borderWidth,
+            color: _isHovered
+                ? DColors.primaryButton.withAlpha((255 * 0.5).round())
+                : widget.isBorderLine
+                ? DColors.cardBorder
+                : Colors.transparent,
+            width: 2,
           ),
-          borderRadius: widget.borderRadius ?? BorderRadius.circular(8),
-          boxShadow: _isHovered
-              ? [
-                  BoxShadow(
-                    color: widget.hoverBorderColor.withAlpha((255 * 0.3).round()),
-                    blurRadius: 16,
-                    offset: const Offset(0, 8),
-                  ),
-                ]
+          boxShadow: widget.isBoxShadow
+              ? _isHovered
+                    ? [
+                        BoxShadow(
+                          color: DColors.primaryButton.withAlpha((255 * 0.2).round()),
+                          blurRadius: 20,
+                          offset: const Offset(0, 8),
+                        ),
+                      ]
+                    : null
               : null,
         ),
         child: widget.child,

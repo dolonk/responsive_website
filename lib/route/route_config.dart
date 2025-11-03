@@ -25,6 +25,7 @@ class RouteConfig {
         name: RouteNames.homeName,
         pageBuilder: (context, state) =>
             _buildPageWithTransition(context: context, state: state, child: const HomePage()),
+        //_buildPageWithTransition(context: context, state: state, child: const ServicesPage()),
       ),
 
       // Services Route

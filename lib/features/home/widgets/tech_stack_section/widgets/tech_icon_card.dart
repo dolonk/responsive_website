@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import '../../../../../common_function/style/hoverable_card.dart';
 import '../../../../../data_layer/model/tech_stack_model.dart';
 import '../../../../../utility/constants/colors.dart';
 import '../../../../../utility/default_sizes/font_size.dart';
@@ -18,37 +19,6 @@ class TechIconCard extends StatefulWidget {
 
 class _TechIconCardState extends State<TechIconCard> with SingleTickerProviderStateMixin {
   bool _isHovered = false;
-  late AnimationController _animationController;
-  late Animation<double> _scaleAnimation;
-  late Animation<double> _fadeAnimation;
-
-  @override
-  void initState() {
-    super.initState();
-    _animationController = AnimationController(duration: const Duration(milliseconds: 800), vsync: this);
-
-    _scaleAnimation = Tween<double>(
-      begin: 0.0,
-      end: 1.0,
-    ).animate(CurvedAnimation(parent: _animationController, curve: Curves.elasticOut));
-
-    _fadeAnimation = Tween<double>(
-      begin: 0.0,
-      end: 1.0,
-    ).animate(CurvedAnimation(parent: _animationController, curve: Curves.easeIn));
-
-    Future.delayed(Duration(milliseconds: widget.index * 100), () {
-      if (mounted) {
-        _animationController.forward();
-      }
-    });
-  }
-
-  @override
-  void dispose() {
-    _animationController.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -56,62 +26,38 @@ class _TechIconCardState extends State<TechIconCard> with SingleTickerProviderSt
     final fonts = context.fonts;
     final iconSize = context.responsiveValue(mobile: 36.0, tablet: 48.0, desktop: 56.0);
 
-    return FadeTransition(
-      opacity: _fadeAnimation,
-      child: ScaleTransition(
-        scale: _scaleAnimation,
-        child: MouseRegion(
-          onEnter: (_) => setState(() => _isHovered = true),
-          onExit: (_) => setState(() => _isHovered = false),
-          cursor: SystemMouseCursors.click,
-          child: AnimatedContainer(
-            duration: const Duration(milliseconds: 300),
-            curve: Curves.easeInOut,
-            padding: EdgeInsets.all(context.responsiveValue(mobile: 14, tablet: s.paddingMd, desktop: s.paddingLg)),
-            decoration: BoxDecoration(
-              color: _isHovered ? DColors.primaryButton.withAlpha((255 * 0.1).round()) : DColors.cardBackground,
-              borderRadius: BorderRadius.circular(s.borderRadiusLg),
-              border: Border.all(color: _isHovered ? DColors.primaryButton : DColors.cardBorder, width: 2),
-              boxShadow: _isHovered
-                  ? [
-                      BoxShadow(
-                        color: DColors.primaryButton.withAlpha((255 * 0.3).round()),
-                        blurRadius: 20,
-                        offset: const Offset(0, 10),
-                      ),
-                    ]
-                  : null,
-            ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                // Tech Icon
-                Flexible(
-                  child: AnimatedContainer(
-                    duration: const Duration(milliseconds: 300),
-                    transform: Matrix4.identity()..scale(_isHovered ? 1.1 : 1.0),
-                    //child: _buildTechIcon(iconSize),
-                    child: _buildPlaceholder(iconSize),
-                  ),
-                ),
-                SizedBox(height: s.spaceBtwItems),
+    return HoverableCard(
+      isBorderLine: false,
 
-                // Tech Name
-                Text(
-                  widget.tech.name,
-                  style: fonts.bodySmall.rubik(
-                    color: _isHovered ? DColors.primaryButton : DColors.textPrimary,
-                    fontWeight: _isHovered ? FontWeight.w600 : FontWeight.w500,
-                  ),
-                  textAlign: TextAlign.center,
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                ),
-              ],
+      padding: EdgeInsets.all(context.responsiveValue(mobile: 14, tablet: s.paddingMd, desktop: s.paddingLg)),
+      onHoverChanged: (isHovered) => setState(() => _isHovered = isHovered),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          // Tech Icon
+          Flexible(
+            child: AnimatedContainer(
+              duration: const Duration(milliseconds: 300),
+              transform: Matrix4.identity()..scale(_isHovered ? 1.1 : 1.0),
+              //child: _buildTechIcon(iconSize),
+              child: _buildPlaceholder(iconSize),
             ),
           ),
-        ),
+          SizedBox(height: s.spaceBtwItems),
+
+          // Tech Name
+          Text(
+            widget.tech.name,
+            style: fonts.bodySmall.rubik(
+              color: _isHovered ? DColors.primaryButton : DColors.textPrimary,
+              fontWeight: _isHovered ? FontWeight.w600 : FontWeight.w500,
+            ),
+            textAlign: TextAlign.center,
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
+          ),
+        ],
       ),
     );
   }

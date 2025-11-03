@@ -70,9 +70,7 @@ class _ProcessStepCardState extends State<ProcessStepCard> with SingleTickerProv
           child: MouseRegion(
             onEnter: (_) => setState(() => _isHovered = true),
             onExit: (_) => setState(() => _isHovered = false),
-            child: context.isDesktop
-                ? _buildDesktopLayout(context, s, fonts)
-                : _buildMobileLayout(context, s, fonts),
+            child: context.isDesktop ? _buildDesktopLayout(context, s, fonts) : _buildMobileLayout(context, s, fonts),
           ),
         ),
       ),
@@ -181,9 +179,7 @@ class _ProcessStepCardState extends State<ProcessStepCard> with SingleTickerProv
                   : DColors.primaryButton.withAlpha((255 * 0.1).round()),
               shape: BoxShape.circle,
               border: Border.all(
-                color: _isHovered
-                    ? DColors.primaryButton
-                    : DColors.primaryButton.withAlpha((255 * 0.3).round()),
+                color: _isHovered ? DColors.primaryButton : DColors.primaryButton.withAlpha((255 * 0.3).round()),
                 width: 2,
               ),
             ),

@@ -23,6 +23,15 @@ class DColors {
   static const Color textPrimary = Color(0xFFFAFAFA);
   static const Color textSecondary = Color(0xFF9F9F9F);
 
+  // Service Page Specific Colors (Optional - eye-catching er jonno)
+  static const Color serviceBlue = Color(0xFF3B82F6);
+  static const Color servicePurple = Color(0xFF8B5CF6);
+  static const Color serviceCyan = Color(0xFF06B6D4);
+  static const Color serviceOrange = Color(0xFFFF6B35);
+  static const Color servicePink = Color(0xFFEC4899);
+  static const Color serviceGreen = Color(0xFF10B981);
+
+
   // 🖼️ Gradient Helper
   static const Gradient pinkGradient = LinearGradient(
     colors: [Color(0x90FF014F), Color(0xFF000000)],
