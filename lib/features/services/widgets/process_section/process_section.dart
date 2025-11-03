@@ -17,7 +17,7 @@ class ProcessSection extends StatelessWidget {
 
     return SectionContainer(
       backgroundColor: DColors.background,
-      padding: EdgeInsets.only(left: s.paddingMd,  top: s.spaceBtwSections, right: s.paddingMd),
+      padding: EdgeInsets.only(left: s.paddingMd, bottom: s.spaceBtwSections, right: s.paddingMd),
       child: Column(
         children: [
           // Section Header

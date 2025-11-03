@@ -17,7 +17,7 @@ class ServiceCardsSection extends StatelessWidget {
 
     return SectionContainer(
       backgroundColor: DColors.secondaryBackground,
-      padding: EdgeInsets.only(left: s.paddingMd,  top: s.spaceBtwSections, right: s.paddingMd),
+      padding: EdgeInsets.symmetric(horizontal: s.paddingMd,  vertical: s.spaceBtwSections),
       child: Column(
         children: [
           // Section Header

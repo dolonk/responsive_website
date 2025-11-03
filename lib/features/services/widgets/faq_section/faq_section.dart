@@ -1,0 +1,64 @@
+import 'widgets/faq_item.dart';
+import 'package:flutter/material.dart';
+import 'package:responsive_website/utility/constants/colors.dart';
+import 'package:responsive_website/data_layer/model/faq_model.dart';
+import 'package:responsive_website/common_function/style/section_header.dart';
+import 'package:responsive_website/utility/default_sizes/default_sizes.dart';
+import 'package:responsive_website/utility/responsive/responsive_helper.dart';
+import 'package:responsive_website/utility/responsive/section_container.dart';
+
+class FaqSection extends StatefulWidget {
+  const FaqSection({super.key});
+
+  @override
+  State<FaqSection> createState() => _FaqSectionState();
+}
+
+class _FaqSectionState extends State<FaqSection> {
+  int? _expandedIndex; // Track which FAQ is currently expanded
+
+  @override
+  Widget build(BuildContext context) {
+    final s = context.sizes;
+    final faqs = FaqModel.getAllFaqs();
+
+    return SectionContainer(
+      backgroundColor: DColors.secondaryBackground,
+      padding: EdgeInsets.only(left: s.paddingMd, right: s.paddingMd, top: s.spaceBtwSections),
+      child: Column(
+        children: [
+          // Section Header
+          const SectionHeader(
+            subtitle: 'FAQ',
+            title: 'Frequently Asked Questions',
+            description: 'Find answers to common questions about my services, process, and pricing',
+          ),
+          SizedBox(height: s.spaceBtwItems),
+
+          // FAQ Items Container (with max width for readability)
+          Center(
+            child: Container(
+              constraints: BoxConstraints(
+                maxWidth: context.responsiveValue(mobile: double.infinity, tablet: 800, desktop: 900),
+              ),
+              child: Column(
+                children: List.generate(faqs.length, (index) {
+                  return FaqItem(
+                    faq: faqs[index],
+                    isExpanded: _expandedIndex == index,
+                    onTap: () {
+                      setState(() {
+                        // If same item clicked, collapse it; otherwise expand new one
+                        _expandedIndex = _expandedIndex == index ? null : index;
+                      });
+                    },
+                  );
+                }),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}

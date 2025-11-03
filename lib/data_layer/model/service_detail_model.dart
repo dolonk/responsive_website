@@ -7,7 +7,7 @@ class ServiceDetailModel {
   final String description;
   final String? iconPath;
   final List<String>? features;
-  final List<String>? technologies;
+  final List<String> technologies;
   final String? deliveryTime;
   final int? projectsCompleted;
   final double? rating;
@@ -24,7 +24,7 @@ class ServiceDetailModel {
     required this.description,
     this.iconPath,
     this.features,
-    this.technologies,
+    this.technologies = const [],
     this.deliveryTime,
     this.projectsCompleted,
     this.rating,
@@ -51,7 +51,7 @@ class ServiceDetailModel {
           'API integration',
           'App store deployment',
         ],
-        technologies: ['Flutter', 'Dart', 'Firebase', 'Provider', 'BLoC'],
+        //technologies: ['Flutter', 'Dart', 'Firebase', 'Provider', 'BLoC'],
         pricing: 'From \$3,500',
         buttonText: 'Get a Quote',
       ),
@@ -59,7 +59,7 @@ class ServiceDetailModel {
       // 2. Web Application Development
       ServiceDetailModel(
         id: 'web-development',
-        title: 'Web Application Development',
+        title: 'Web Development',
         description:
         'Responsive web applications with PWA support, SEO optimization, and cross-browser compatibility for modern web experiences.',
         icon: Icons.web_rounded,
@@ -70,7 +70,7 @@ class ServiceDetailModel {
           'Cross-browser compatibility',
           'Firebase/AWS hosting',
         ],
-        technologies: ['Flutter Web', 'HTML5', 'CSS3', 'Firebase', 'AWS'],
+        //technologies: ['Flutter Web', 'HTML5', 'CSS3', 'Firebase', 'AWS'],
         pricing: 'From \$4,000',
         buttonText: 'Get a Quote',
       ),
@@ -89,7 +89,7 @@ class ServiceDetailModel {
           'System tray functionality',
           'Auto-update support',
         ],
-        technologies: ['Flutter Desktop', 'C++', 'SQLite', 'Platform Channels'],
+        //technologies: ['Flutter Desktop', 'C++', 'SQLite', 'Platform Channels'],
         pricing: 'From \$5,000',
         buttonText: 'Get a Quote',
       ),
@@ -108,7 +108,7 @@ class ServiceDetailModel {
           'Design system creation',
           'Usability testing',
         ],
-        technologies: ['Figma', 'Adobe XD', 'Sketch', 'InVision'],
+        //technologies: ['Figma', 'Adobe XD', 'Sketch', 'InVision'],
         pricing: 'From \$800',
         buttonText: 'Get a Quote',
       ),
@@ -127,7 +127,7 @@ class ServiceDetailModel {
           'Team training',
           'Best practices implementation',
         ],
-        technologies: ['Flutter', 'Dart', 'Clean Architecture', 'MVVM', 'Testing'],
+        //technologies: ['Flutter', 'Dart', 'Clean Architecture', 'MVVM', 'Testing'],
         pricing: '\$100/hour',
         buttonText: 'Book a Session',
       ),
@@ -146,7 +146,7 @@ class ServiceDetailModel {
           'Performance monitoring',
           '24/7 support options',
         ],
-        technologies: ['CI/CD', 'Analytics', 'Firebase', 'Monitoring Tools'],
+        //technologies: ['CI/CD', 'Analytics', 'Firebase', 'Monitoring Tools'],
         pricing: '\$400 /month',
         buttonText: 'Discuss Plans',
       ),

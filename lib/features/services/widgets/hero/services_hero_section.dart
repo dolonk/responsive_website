@@ -4,8 +4,6 @@ import 'package:responsive_website/utility/default_sizes/font_size.dart';
 import 'package:responsive_website/utility/default_sizes/default_sizes.dart';
 import 'package:responsive_website/utility/responsive/responsive_helper.dart';
 
-
-
 class ServicesHeroSection extends StatelessWidget {
   const ServicesHeroSection({super.key});
 
@@ -23,7 +21,7 @@ class ServicesHeroSection extends StatelessWidget {
           colors: [Color(0xFF1E293B), Color(0xFF0F172A)],
         ),
       ),
-      padding: EdgeInsets.only(left: s.paddingMd,  top: s.spaceBtwSections, right: s.paddingMd),
+      padding: EdgeInsets.symmetric(horizontal: s.paddingMd, vertical: s.spaceBtwSections),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

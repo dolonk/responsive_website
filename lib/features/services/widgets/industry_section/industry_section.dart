@@ -17,14 +17,15 @@ class IndustrySection extends StatelessWidget {
 
     return SectionContainer(
       backgroundColor: DColors.secondaryBackground,
-      padding: EdgeInsets.only(left: s.paddingMd, top: s.spaceBtwSections, right: s.paddingMd),
+      padding: EdgeInsets.only(left: s.paddingMd, right: s.paddingMd, bottom: s.spaceBtwSections),
       child: Column(
         children: [
           // Section Header
           const SectionHeader(
             subtitle: 'Industries I Serve',
             title: 'Diverse Industry Experience',
-            description: 'Delivering tailored solutions across multiple industries with deep domain expertise',
+            description:
+                'Delivering tailored solutions across multiple industries with deep domain expertise',
           ),
           SizedBox(height: s.spaceBtwItems),
 

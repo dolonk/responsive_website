@@ -1,13 +1,12 @@
+import 'deliverable_item.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_website/common_function/style/custom_button.dart';
 import 'package:responsive_website/common_function/style/hoverable_card.dart';
 import 'package:responsive_website/data_layer/model/service_detail_model.dart';
-import 'package:responsive_website/features/services/widgets/service_cards/widgets/tech_badge.dart';
 import 'package:responsive_website/utility/constants/colors.dart';
 import 'package:responsive_website/utility/default_sizes/default_sizes.dart';
 import 'package:responsive_website/utility/default_sizes/font_size.dart';
 
-import 'deliverable_item.dart';
 
 class ServiceCardDetailed extends StatefulWidget {
   final ServiceDetailModel service;
@@ -60,13 +59,13 @@ class _ServiceCardDetailedState extends State<ServiceCardDetailed> {
           SizedBox(height: s.spaceBtwItems),
 
           // Tech Stack Badges
-          Wrap(
-            //spacing: s.paddingSm,
-            spacing: s.spaceBtwSections,
-            runSpacing: s.paddingSm,
-            children: widget.service.technologies!.map((tech) => TechBadge(techName: tech)).toList(),
-          ),
-          SizedBox(height: s.spaceBtwItems),
+          // Wrap(
+          //   spacing: s.paddingSm,
+          //   spacing: s.paddingSm,
+          //   runSpacing: s.paddingSm,
+          //   children: widget.service.technologies.map((tech) => TechBadge(techName: tech)).toList(),
+          // ),
+          // SizedBox(height: s.spaceBtwItems),
 
           // Divider
           Divider(color: DColors.cardBorder),
@@ -79,7 +78,10 @@ class _ServiceCardDetailedState extends State<ServiceCardDetailed> {
               // Price
               Text(
                 widget.service.pricing!,
-                style: fonts.headlineSmall.rajdhani(color: DColors.primaryButton, fontWeight: FontWeight.bold),
+                style: fonts.headlineSmall.rajdhani(
+                  color: DColors.primaryButton,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
 
               // Button
