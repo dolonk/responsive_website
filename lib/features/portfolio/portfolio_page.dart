@@ -1,66 +1,9 @@
-// lib/features/portfolio/portfolio_page.dart
-
-/*import 'package:flutter/material.dart';
-import 'package:responsive_website/common_function/base_screen/base_screen.dart';
-import 'package:responsive_website/utility/constants/colors.dart';
-import 'widgets/hero/portfolio_hero_section.dart';
-import 'widgets/filter_bar/filter_bar_section.dart';
-
-class PortfolioPage extends StatefulWidget {
-  const PortfolioPage({super.key});
-
-  @override
-  State<PortfolioPage> createState() => _PortfolioPageState();
-}
-
-class _PortfolioPageState extends State<PortfolioPage> {
-  String _selectedFilter = 'All'; // Track selected filter
-
-  @override
-  Widget build(BuildContext context) {
-    return BaseScreen(
-      backgroundColor: DColors.secondaryBackground,
-      child: Column(
-        children: [
-          // Section 1: Hero Section
-          const PortfolioHeroSection(),
-
-          // Section 2: Filter Bar (will be sticky with scroll listener)
-          FilterBarSection(
-            selectedFilter: _selectedFilter,
-            onFilterChanged: (filter) {
-              setState(() {
-                _selectedFilter = filter;
-              });
-              debugPrint('Filter changed to: $filter');
-            },
-          ),
-
-          // Section 3: Project Grid (Will add next)
-          Container(
-            height: 500, // Temporary placeholder
-            color: DColors.secondaryBackground,
-            child: Center(
-              child: Text(
-                'Selected Filter: $_selectedFilter\n\nProject Grid will be here',
-                textAlign: TextAlign.center,
-                style: const TextStyle(color: Colors.white, fontSize: 18),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
- */
-
 import 'package:flutter/material.dart';
+import 'widgets/load_more/load_more_section.dart';
 import 'widgets/hero/portfolio_hero_section.dart';
 import 'widgets/filter_bar/filter_bar_section.dart';
 import 'package:responsive_website/utility/constants/colors.dart';
-import 'package:responsive_website/utility/default_sizes/default_sizes.dart';
+import 'package:responsive_website/data_layer/model/project_model.dart';
 import 'package:responsive_website/common_function/base_screen/base_screen.dart';
 import 'package:responsive_website/features/portfolio/widgets/project_grid/project_grid_section.dart';
 
@@ -76,16 +19,18 @@ class _PortfolioPageState extends State<PortfolioPage> {
   bool _showStickyFilter = false;
   final GlobalKey _filterBarKey = GlobalKey();
 
+  // Load More state
+  int _displayedCount = 6;
+  bool _isLoading = false;
+
   @override
   void initState() {
     super.initState();
-    // Listen to scroll after first frame
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _setupScrollListener();
     });
   }
 
-  // Find the ScrollController from BaseScreen's SingleChildScrollView
   void _setupScrollListener() {
     final scrollController = PrimaryScrollController.of(context);
     scrollController.addListener(() {
@@ -94,14 +39,10 @@ class _PortfolioPageState extends State<PortfolioPage> {
   }
 
   void _onScroll(ScrollController controller) {
-    // Get filter bar position
     final RenderBox? renderBox = _filterBarKey.currentContext?.findRenderObject() as RenderBox?;
     if (renderBox != null) {
       final position = renderBox.localToGlobal(Offset.zero);
       final filterBarTop = position.dy;
-
-      // Show sticky filter when original filter bar scrolls past AppBar
-      // AppBar height is approximately 80-100px
       final shouldShowSticky = filterBarTop < 80;
 
       if (shouldShowSticky != _showStickyFilter) {
@@ -112,9 +53,41 @@ class _PortfolioPageState extends State<PortfolioPage> {
     }
   }
 
+  /// Get total count of filtered projects
+  int _getTotalProjectCount() {
+    final allProjects = ProjectModel.getAllProjects();
+    if (_selectedFilter == 'All') {
+      return allProjects.length;
+    }
+    return allProjects.where((project) => project.category == _selectedFilter).length;
+  }
+
+  /// Handle Load More action
+  void _handleLoadMore() {
+    setState(() {
+      _isLoading = true;
+    });
+
+    // Simulate network delay (remove in production if data is local)
+    Future.delayed(const Duration(milliseconds: 500), () {
+      setState(() {
+        _displayedCount += 6;
+        _isLoading = false;
+      });
+    });
+  }
+
+  /// Handle filter change - reset displayed count
+  void _handleFilterChange(String filter) {
+    setState(() {
+      _selectedFilter = filter;
+      _displayedCount = 6; // Reset to initial count when filter changes
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    final s = context.sizes;
+    final totalCount = _getTotalProjectCount();
 
     return Stack(
       children: [
@@ -126,27 +99,30 @@ class _PortfolioPageState extends State<PortfolioPage> {
               // Hero Section
               const PortfolioHeroSection(),
 
-              // Section 2: Original Filter Bar (with key for position tracking)
+              // Original Filter Bar
               Container(
                 key: _filterBarKey,
                 child: FilterBarSection(
                   selectedFilter: _selectedFilter,
-                  onFilterChanged: (filter) {
-                    setState(() {
-                      _selectedFilter = filter;
-                    });
-                    debugPrint('Filter changed to: $filter');
-                  },
+                  onFilterChanged: _handleFilterChange,
                 ),
               ),
 
-              // ✅ Section 3: Project Grid
-              ProjectGridSection(selectedFilter: _selectedFilter),
+              // Project Grid
+              ProjectGridSection(selectedFilter: _selectedFilter, displayedCount: _displayedCount),
+
+              // Load More
+              LoadMoreSection(
+                displayedCount: _displayedCount,
+                totalCount: totalCount,
+                isLoading: _isLoading,
+                onLoadMore: _handleLoadMore,
+              ),
             ],
           ),
         ),
 
-        // Sticky Filter Bar (appears on scroll)
+        // Sticky Filter Bar
         AnimatedPositioned(
           duration: const Duration(milliseconds: 300),
           curve: Curves.easeOut,
@@ -167,15 +143,7 @@ class _PortfolioPageState extends State<PortfolioPage> {
                   ),
                 ],
               ),
-              child: FilterBarSection(
-                selectedFilter: _selectedFilter,
-                onFilterChanged: (filter) {
-                  setState(() {
-                    _selectedFilter = filter;
-                  });
-                  debugPrint('Filter changed to: $filter (sticky)');
-                },
-              ),
+              child: FilterBarSection(selectedFilter: _selectedFilter, onFilterChanged: _handleFilterChange),
             ),
           ),
         ),

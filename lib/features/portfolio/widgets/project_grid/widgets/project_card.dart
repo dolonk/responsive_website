@@ -90,7 +90,10 @@ class _ProjectCardState extends State<ProjectCard> {
                           // Project Title
                           Text(
                             widget.project.title,
-                            style: fonts.headlineSmall.rajdhani(color: Colors.white, fontWeight: FontWeight.bold),
+                            style: fonts.headlineSmall.rajdhani(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                            ),
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
                           ),
@@ -165,7 +168,10 @@ class _ProjectCardState extends State<ProjectCard> {
                                     child: Center(
                                       child: Text(
                                         'View Case Study',
-                                        style: fonts.labelLarge.rubik(color: Colors.white, fontWeight: FontWeight.bold),
+                                        style: fonts.labelLarge.rubik(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold,
+                                        ),
                                       ),
                                     ),
                                   ),
