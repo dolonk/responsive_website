@@ -216,7 +216,7 @@ class WhyChooseMeSection extends StatelessWidget {
       BenefitModel(
         title: 'On-Time Delivery Guarantee',
         description:
-            'Milestone-based development with transparent communication. 95% of projects delivered on or before deadline.',
+            'Milestone-based development with transparent communication. 95% of portfolio delivered on or before deadline.',
         icon: Icons.schedule_rounded,
       ),
       BenefitModel(

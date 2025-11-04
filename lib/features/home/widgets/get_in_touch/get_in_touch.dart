@@ -41,11 +41,7 @@ class GetInTouchSection extends StatelessWidget {
         ),
         borderRadius: BorderRadius.circular(s.borderRadiusLg),
         boxShadow: [
-          BoxShadow(
-            color: Colors.black.withAlpha((255 * 0.3).round()),
-            blurRadius: 16,
-            offset: const Offset(0, 8),
-          ),
+          BoxShadow(color: Colors.black.withAlpha((255 * 0.3).round()), blurRadius: 16, offset: const Offset(0, 8)),
         ],
       ),
 
@@ -114,11 +110,7 @@ class GetInTouchSection extends StatelessWidget {
         ),
         borderRadius: BorderRadius.circular(s.borderRadiusLg),
         boxShadow: [
-          BoxShadow(
-            color: Colors.black.withAlpha((255 * 0.3).round()),
-            blurRadius: 16,
-            offset: const Offset(0, 8),
-          ),
+          BoxShadow(color: Colors.black.withAlpha((255 * 0.3).round()), blurRadius: 16, offset: const Offset(0, 8)),
         ],
       ),
       child: Stack(
@@ -177,11 +169,7 @@ class GetInTouchSection extends StatelessWidget {
         ),
         borderRadius: BorderRadius.circular(s.borderRadiusLg),
         boxShadow: [
-          BoxShadow(
-            color: Colors.black.withAlpha((255 * 0.3).round()),
-            blurRadius: 16,
-            offset: const Offset(0, 8),
-          ),
+          BoxShadow(color: Colors.black.withAlpha((255 * 0.3).round()), blurRadius: 16, offset: const Offset(0, 8)),
         ],
       ),
       child: Stack(

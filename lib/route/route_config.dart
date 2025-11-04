@@ -5,9 +5,9 @@ import '../features/blog/blog_page.dart';
 import 'package:go_router/go_router.dart';
 import '../features/about/about_page.dart';
 import '../features/contact/contact_page.dart';
-import '../features/projects/projects_page.dart';
 import '../features/services/services_page.dart';
 import 'package:responsive_website/features/home/home_page.dart';
+import 'package:responsive_website/features/portfolio/portfolio_page.dart';
 
 class RouteConfig {
   static final GlobalKey<NavigatorState> _rootNavigatorKey = GlobalKey<NavigatorState>();
@@ -41,7 +41,7 @@ class RouteConfig {
         path: RouteNames.projects,
         name: RouteNames.projectsName,
         pageBuilder: (context, state) =>
-            _buildPageWithTransition(context: context, state: state, child: const ProjectsPage()),
+            _buildPageWithTransition(context: context, state: state, child: const PortfolioPage()),
       ),
 
       GoRoute(

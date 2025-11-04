@@ -1,0 +1,62 @@
+import 'package:flutter/material.dart';
+import 'package:responsive_website/utility/constants/colors.dart';
+
+class PlatformBadge extends StatelessWidget {
+  final String platform;
+
+  const PlatformBadge({super.key, required this.platform});
+
+  @override
+  Widget build(BuildContext context) {
+    final platformData = _getPlatformData(platform);
+
+    return Container(
+      width: 32,
+      height: 32,
+      decoration: BoxDecoration(
+        color: platformData['color'].withAlpha((255 * 0.15).round()),
+        shape: BoxShape.circle,
+        border: Border.all(color: platformData['color'].withAlpha((255 * 0.3).round()), width: 1.5),
+      ),
+      child: Icon(platformData['icon'], size: 16, color: platformData['color']),
+    );
+  }
+
+  /// Get platform icon and color
+  Map<String, dynamic> _getPlatformData(String platform) {
+    switch (platform.toLowerCase()) {
+      case 'ios':
+        return {
+          'icon': Icons.apple,
+          'color': const Color(0xFF000000), // Black
+        };
+      case 'android':
+        return {
+          'icon': Icons.android_rounded,
+          'color': const Color(0xFF3DDC84), // Android green
+        };
+      case 'web':
+        return {
+          'icon': Icons.language_rounded,
+          'color': const Color(0xFF4285F4), // Blue
+        };
+      case 'windows':
+        return {
+          'icon': Icons.window_rounded,
+          'color': const Color(0xFF0078D4), // Windows blue
+        };
+      case 'macos':
+        return {
+          'icon': Icons.laptop_mac_rounded,
+          'color': const Color(0xFF000000), // Black
+        };
+      case 'linux':
+        return {
+          'icon': Icons.computer_rounded,
+          'color': const Color(0xFFFCC624), // Yellow
+        };
+      default:
+        return {'icon': Icons.devices_rounded, 'color': DColors.primaryButton};
+    }
+  }
+}
