@@ -31,37 +31,37 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 AppBarMenuItem(
-                  title: 'Home',
+                  title: RouteNames.homeName,
                   isActive: currentRoute == RouteNames.home,
                   onTap: () => context.go(RouteNames.home),
                 ),
 
                 AppBarMenuItem(
-                  title: 'Services',
+                  title: RouteNames.servicesName,
                   isActive: currentRoute == RouteNames.services,
                   onTap: () => context.go(RouteNames.services),
                 ),
 
                 AppBarMenuItem(
-                  title: 'Projects',
-                  isActive: currentRoute == RouteNames.projects,
-                  onTap: () => context.go(RouteNames.projects),
+                  title: RouteNames.portfoliosName,
+                  isActive: currentRoute == RouteNames.portfolio,
+                  onTap: () => context.go(RouteNames.portfolio),
                 ),
 
                 AppBarMenuItem(
-                  title: 'Blog',
+                  title: RouteNames.blogName,
                   isActive: currentRoute == RouteNames.blog,
                   onTap: () => context.go(RouteNames.blog),
                 ),
 
                 AppBarMenuItem(
-                  title: 'About',
+                  title: RouteNames.aboutName,
                   isActive: currentRoute == RouteNames.about,
                   onTap: () => context.go(RouteNames.about),
                 ),
 
                 AppBarMenuItem(
-                  title: 'Contact',
+                  title: RouteNames.contactName,
                   isActive: currentRoute == RouteNames.contact,
                   onTap: () => context.go(RouteNames.contact),
                 ),

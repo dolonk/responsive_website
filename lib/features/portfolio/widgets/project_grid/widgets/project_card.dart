@@ -1,3 +1,6 @@
+import 'package:go_router/go_router.dart';
+
+import '../../../../../route/route_name.dart';
 import 'tech_badge.dart';
 import 'platform_badge.dart';
 import 'package:flutter/material.dart';
@@ -26,130 +29,121 @@ class _ProjectCardState extends State<ProjectCard> {
     return MouseRegion(
       onEnter: (_) => setState(() => _isHovered = true),
       onExit: (_) => setState(() => _isHovered = false),
-      child: GestureDetector(
-        onTap: () {
-          // TODO: Navigate to project detail page
-          debugPrint('Project tapped: ${widget.project.title}');
-        },
-        child: AnimatedContainer(
-          duration: const Duration(milliseconds: 300),
-          curve: Curves.easeOut,
-          transform: Matrix4.identity()..scale(_isHovered ? 1.02 : 1.0),
-          child: AspectRatio(
-            aspectRatio: 4 / 3,
-            child: Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(16),
-                boxShadow: [
-                  if (_isHovered)
-                    BoxShadow(
-                      color: DColors.primaryButton.withAlpha((255 * 0.3).round()),
-                      blurRadius: 25,
-                      offset: const Offset(0, 10),
-                    ),
-                ],
-              ),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(16),
-                child: Stack(
-                  children: [
-                    // Background Image
-                    _buildProjectImage(),
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 300),
+        curve: Curves.easeOut,
+        transform: Matrix4.identity()..scale(_isHovered ? 1.02 : 1.0),
+        child: AspectRatio(
+          aspectRatio: 4 / 3,
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(16),
+              boxShadow: [
+                if (_isHovered)
+                  BoxShadow(
+                    color: DColors.primaryButton.withAlpha((255 * 0.3).round()),
+                    blurRadius: 25,
+                    offset: const Offset(0, 10),
+                  ),
+              ],
+            ),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(16),
+              child: Stack(
+                children: [
+                  // Background Image
+                  _buildProjectImage(),
 
-                    // Gradient Overlay (darker on hover)
-                    AnimatedContainer(
-                      duration: const Duration(milliseconds: 300),
-                      decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                          begin: Alignment.topCenter,
-                          end: Alignment.bottomCenter,
-                          colors: _isHovered
-                              ? [
-                                  Colors.black.withAlpha((255 * 0.7).round()),
-                                  Colors.black.withAlpha((255 * 0.9).round()),
-                                ]
-                              : [
-                                  Colors.black.withAlpha((255 * 0.3).round()),
-                                  Colors.black.withAlpha((255 * 0.7).round()),
-                                ],
-                        ),
+                  // Gradient Overlay (darker on hover)
+                  AnimatedContainer(
+                    duration: const Duration(milliseconds: 300),
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                        colors: _isHovered
+                            ? [Colors.black.withAlpha((255 * 0.7).round()), Colors.black.withAlpha((255 * 0.9).round())]
+                            : [
+                                Colors.black.withAlpha((255 * 0.3).round()),
+                                Colors.black.withAlpha((255 * 0.7).round()),
+                              ],
                       ),
                     ),
+                  ),
 
-                    // Content (slides up on hover)
-                    AnimatedPositioned(
-                      duration: const Duration(milliseconds: 300),
-                      curve: Curves.easeOut,
-                      bottom: _isHovered ? s.paddingLg : s.paddingMd,
-                      left: s.paddingLg,
-                      right: s.paddingLg,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          // Project Title
-                          Text(
-                            widget.project.title,
-                            style: fonts.headlineSmall.rajdhani(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
+                  // Content (slides up on hover)
+                  AnimatedPositioned(
+                    duration: const Duration(milliseconds: 300),
+                    curve: Curves.easeOut,
+                    bottom: _isHovered ? s.paddingLg : s.paddingMd,
+                    left: s.paddingLg,
+                    right: s.paddingLg,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        // Project Title
+                        Text(
+                          widget.project.title,
+                          style: fonts.headlineSmall.rajdhani(color: Colors.white, fontWeight: FontWeight.bold),
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                        SizedBox(height: s.paddingSm),
+
+                        // Tagline (visible on hover)
+                        AnimatedOpacity(
+                          duration: const Duration(milliseconds: 300),
+                          opacity: _isHovered ? 1.0 : 0.0,
+                          child: Text(
+                            widget.project.tagline,
+                            style: fonts.bodySmall.rubik(
+                              color: Colors.white.withAlpha((255 * 0.9).round()),
+                              height: 1.4,
                             ),
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
                           ),
-                          SizedBox(height: s.paddingSm),
+                        ),
+                        SizedBox(height: s.paddingMd),
 
-                          // Tagline (visible on hover)
-                          AnimatedOpacity(
+                        // Platform Badges
+                        if (widget.project.platforms.isNotEmpty)
+                          Wrap(
+                            spacing: s.paddingSm,
+                            runSpacing: s.paddingSm,
+                            children: widget.project.platforms
+                                .map((platform) => PlatformBadge(platform: platform))
+                                .toList(),
+                          ),
+
+                        // Tech Stack Badges (visible on hover)
+                        AnimatedContainer(
+                          duration: const Duration(milliseconds: 300),
+                          height: _isHovered ? null : 0,
+                          child: AnimatedOpacity(
                             duration: const Duration(milliseconds: 300),
                             opacity: _isHovered ? 1.0 : 0.0,
-                            child: Text(
-                              widget.project.tagline,
-                              style: fonts.bodySmall.rubik(
-                                color: Colors.white.withAlpha((255 * 0.9).round()),
-                                height: 1.4,
-                              ),
-                              maxLines: 2,
-                              overflow: TextOverflow.ellipsis,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                SizedBox(height: s.paddingMd),
+                                Wrap(
+                                  spacing: s.paddingSm,
+                                  runSpacing: s.paddingSm,
+                                  children: widget.project.techStack.map((tech) => TechBadge(techName: tech)).toList(),
+                                ),
+                              ],
                             ),
                           ),
-                          SizedBox(height: s.paddingMd),
+                        ),
 
-                          // Platform Badges
-                          if (widget.project.platforms.isNotEmpty)
-                            Wrap(
-                              spacing: s.paddingSm,
-                              runSpacing: s.paddingSm,
-                              children: widget.project.platforms
-                                  .map((platform) => PlatformBadge(platform: platform))
-                                  .toList(),
-                            ),
-
-                          // Tech Stack Badges (visible on hover)
-                          AnimatedContainer(
-                            duration: const Duration(milliseconds: 300),
-                            height: _isHovered ? null : 0,
-                            child: AnimatedOpacity(
-                              duration: const Duration(milliseconds: 300),
-                              opacity: _isHovered ? 1.0 : 0.0,
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  SizedBox(height: s.paddingMd),
-                                  Wrap(
-                                    spacing: s.paddingSm,
-                                    runSpacing: s.paddingSm,
-                                    children: widget.project.techStack
-                                        .map((tech) => TechBadge(techName: tech))
-                                        .toList(),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-
-                          // View Case Study Button (visible on hover)
-                          AnimatedContainer(
+                        // View Case Study Button (visible on hover)
+                        GestureDetector(
+                          onTap: () {
+                            context.go('${RouteNames.portfolio}/${widget.project.id}');
+                          },
+                          child: AnimatedContainer(
                             duration: const Duration(milliseconds: 300),
                             height: _isHovered ? null : 0,
                             child: AnimatedOpacity(
@@ -168,10 +162,7 @@ class _ProjectCardState extends State<ProjectCard> {
                                     child: Center(
                                       child: Text(
                                         'View Case Study',
-                                        style: fonts.labelLarge.rubik(
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.bold,
-                                        ),
+                                        style: fonts.labelLarge.rubik(color: Colors.white, fontWeight: FontWeight.bold),
                                       ),
                                     ),
                                   ),
@@ -179,11 +170,11 @@ class _ProjectCardState extends State<ProjectCard> {
                               ),
                             ),
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
           ),

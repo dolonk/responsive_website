@@ -1,3 +1,4 @@
+import '../features/project_detail/project_detail_page.dart';
 import 'error_page.dart';
 import 'route_name.dart';
 import 'package:flutter/material.dart';
@@ -25,7 +26,6 @@ class RouteConfig {
         name: RouteNames.homeName,
         pageBuilder: (context, state) =>
             _buildPageWithTransition(context: context, state: state, child: const HomePage()),
-        //_buildPageWithTransition(context: context, state: state, child: const ServicesPage()),
       ),
 
       // Services Route
@@ -38,12 +38,22 @@ class RouteConfig {
 
       // Projects Route
       GoRoute(
-        path: RouteNames.projects,
-        name: RouteNames.projectsName,
+        path: RouteNames.portfolio,
+        name: RouteNames.portfoliosName,
         pageBuilder: (context, state) =>
             _buildPageWithTransition(context: context, state: state, child: const PortfolioPage()),
       ),
 
+      // Project Detail Route
+      GoRoute(
+        path: '${RouteNames.portfolio}/:projectId',
+        builder: (context, state) {
+          final projectId = state.pathParameters['projectId']!;
+          return ProjectDetailPage(projectId: projectId);
+        },
+      ),
+
+      // Blog Route
       GoRoute(
         path: RouteNames.blog,
         name: RouteNames.blogName,

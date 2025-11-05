@@ -4,18 +4,19 @@ class RouteNames {
   // Main Route Paths
   static const String home = '/';
   static const String services = '/services';
-  static const String projects = '/portfolio';
+  static const String portfolio = '/portfolio';
   static const String blog = '/blog';
   static const String about = '/about';
   static const String contact = '/contact';
   static const String error = '/404';
 
   // Main Route Names (for go_router's 'name' property)
-  static const String homeName = 'home';
-  static const String servicesName = 'services';
-  static const String projectsName = 'portfolio';
-  static const String blogName = 'blog';
-  static const String aboutName = 'about';
-  static const String contactName = 'contact';
-  static const String errorName = 'error';
+  static const String homeName = 'Home';
+  static const String servicesName = 'Services';
+  static const String portfoliosName = 'Portfolio';
+  static const String projectDetailName = 'ProjectDetail';
+  static const String blogName = 'Blog';
+  static const String aboutName = 'About';
+  static const String contactName = 'Contact';
+  static const String errorName = 'Error';
 }

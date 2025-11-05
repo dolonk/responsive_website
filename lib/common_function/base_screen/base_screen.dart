@@ -1,7 +1,9 @@
+import '../../route/route_name.dart';
 import 'footer/custom_footer.dart';
 import 'app_bar/custom_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:responsive_website/utility/constants/colors.dart';
 import 'package:responsive_website/utility/default_sizes/font_size.dart';
 import 'package:responsive_website/utility/responsive/responsive_helper.dart';
@@ -76,37 +78,49 @@ class BaseScreen extends StatelessWidget {
           _buildDrawerItem(
             context: context,
             icon: Icons.home_rounded,
-            title: 'Home',
-            route: '/',
-            isActive: currentRoute == '/',
+            title: RouteNames.homeName,
+            route: RouteNames.home,
+            isActive: currentRoute == RouteNames.home,
           ),
-          _buildDrawerItem(
-            context: context,
-            icon: Icons.person_rounded,
-            title: 'About',
-            route: '/about',
-            isActive: currentRoute == '/about',
-          ),
+
           _buildDrawerItem(
             context: context,
             icon: Icons.work_rounded,
-            title: 'Services',
-            route: '/services',
-            isActive: currentRoute == '/services',
+            title: RouteNames.servicesName,
+            route: RouteNames.services,
+            isActive: currentRoute == RouteNames.services,
           ),
+
           _buildDrawerItem(
             context: context,
             icon: Icons.folder_rounded,
-            title: 'Projects',
-            route: '/portfolio',
-            isActive: currentRoute == '/portfolio',
+            title: RouteNames.portfoliosName,
+            route: RouteNames.portfolio,
+            isActive: currentRoute == RouteNames.portfolio,
           ),
+
+          _buildDrawerItem(
+            context: context,
+            icon: FontAwesomeIcons.blog,
+            title: RouteNames.blogName,
+            route: RouteNames.blog,
+            isActive: currentRoute == RouteNames.portfolio,
+          ),
+
+          _buildDrawerItem(
+            context: context,
+            icon: Icons.person_rounded,
+            title: RouteNames.aboutName,
+            route: RouteNames.about,
+            isActive: currentRoute == RouteNames.about,
+          ),
+
           _buildDrawerItem(
             context: context,
             icon: Icons.email_rounded,
-            title: 'Contact',
-            route: '/contact',
-            isActive: currentRoute == '/contact',
+            title: RouteNames.contactName,
+            route: RouteNames.contact,
+            isActive: currentRoute == RouteNames.contact,
           ),
 
           const Divider(color: DColors.cardBorder),
