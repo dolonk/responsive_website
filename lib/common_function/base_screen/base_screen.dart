@@ -6,8 +6,6 @@ import 'package:responsive_website/utility/constants/colors.dart';
 import 'package:responsive_website/utility/default_sizes/font_size.dart';
 import 'package:responsive_website/utility/responsive/responsive_helper.dart';
 
-
-
 class BaseScreen extends StatelessWidget {
   final Widget child;
   final bool? extendBody;
@@ -15,6 +13,7 @@ class BaseScreen extends StatelessWidget {
   final Color? backgroundColor;
   final FloatingActionButton? floatingActionButton;
   final FloatingActionButtonLocation? floatingActionButtonLocation;
+  final bool useCustomScrollView;
 
   const BaseScreen({
     super.key,
@@ -24,6 +23,7 @@ class BaseScreen extends StatelessWidget {
     this.backgroundColor,
     this.floatingActionButton,
     this.floatingActionButtonLocation,
+    this.useCustomScrollView = false,
   });
 
   @override
@@ -34,7 +34,9 @@ class BaseScreen extends StatelessWidget {
       extendBodyBehindAppBar: extendBodyBehindAppBar ?? false,
       appBar: const CustomAppBar(),
       drawer: context.isMobile ? _buildDrawer(context) : null,
-      body: SingleChildScrollView(child: Column(children: [child, const FooterSection()])),
+      body: useCustomScrollView
+          ? child
+          : SingleChildScrollView(child: Column(children: [child, const FooterSection()])),
       floatingActionButton: floatingActionButton,
       floatingActionButtonLocation: floatingActionButtonLocation,
     );
@@ -54,7 +56,7 @@ class BaseScreen extends StatelessWidget {
           DrawerHeader(
             decoration: BoxDecoration(
               gradient: LinearGradient(
-                colors: [DColors.primaryButton, DColors.primaryButton.withOpacity(0.7)],
+                colors: [DColors.primaryButton, DColors.primaryButton.withAlpha((255 * 0.7).round())],
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
               ),
@@ -112,10 +114,7 @@ class BaseScreen extends StatelessWidget {
           // Social Links Section
           Padding(
             padding: const EdgeInsets.all(16.0),
-            child: Text(
-              'Connect with us',
-              style: context.fonts.labelMedium.copyWith(color: DColors.textSecondary),
-            ),
+            child: Text('Connect with us', style: context.fonts.labelMedium.copyWith(color: DColors.textSecondary)),
           ),
         ],
       ),
@@ -140,13 +139,14 @@ class BaseScreen extends StatelessWidget {
         ),
       ),
       selected: isActive,
-      selectedTileColor: DColors.primaryButton.withOpacity(0.1),
+      selectedTileColor: DColors.primaryButton.withAlpha((255 * 0.1).round()),
       onTap: () {
         // Close drawer
         Navigator.of(context).pop();
 
         // Small delay for smooth animation
         Future.delayed(const Duration(milliseconds: 300), () {
+          if (!context.mounted) return;
           context.go(route);
         });
       },

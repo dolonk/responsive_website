@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:sliver_tools/sliver_tools.dart';
 import 'widgets/load_more/load_more_section.dart';
 import 'widgets/hero/portfolio_hero_section.dart';
 import 'widgets/filter_bar/filter_bar_section.dart';
 import 'package:responsive_website/utility/constants/colors.dart';
+import '../../common_function/base_screen/footer/custom_footer.dart';
 import 'package:responsive_website/data_layer/model/project_model.dart';
 import 'package:responsive_website/common_function/base_screen/base_screen.dart';
 import 'package:responsive_website/features/portfolio/widgets/project_grid/project_grid_section.dart';
@@ -16,49 +18,13 @@ class PortfolioPage extends StatefulWidget {
 
 class _PortfolioPageState extends State<PortfolioPage> {
   String _selectedFilter = 'All';
-  bool _showStickyFilter = false;
-  final GlobalKey _filterBarKey = GlobalKey();
-
-  // Load More state
   int _displayedCount = 6;
   bool _isLoading = false;
-
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      _setupScrollListener();
-    });
-  }
-
-  void _setupScrollListener() {
-    final scrollController = PrimaryScrollController.of(context);
-    scrollController.addListener(() {
-      _onScroll(scrollController);
-    });
-  }
-
-  void _onScroll(ScrollController controller) {
-    final RenderBox? renderBox = _filterBarKey.currentContext?.findRenderObject() as RenderBox?;
-    if (renderBox != null) {
-      final position = renderBox.localToGlobal(Offset.zero);
-      final filterBarTop = position.dy;
-      final shouldShowSticky = filterBarTop < 80;
-
-      if (shouldShowSticky != _showStickyFilter) {
-        setState(() {
-          _showStickyFilter = shouldShowSticky;
-        });
-      }
-    }
-  }
 
   /// Get total count of filtered projects
   int _getTotalProjectCount() {
     final allProjects = ProjectModel.getAllProjects();
-    if (_selectedFilter == 'All') {
-      return allProjects.length;
-    }
+    if (_selectedFilter == 'All') return allProjects.length;
     return allProjects.where((project) => project.category == _selectedFilter).length;
   }
 
@@ -68,12 +34,14 @@ class _PortfolioPageState extends State<PortfolioPage> {
       _isLoading = true;
     });
 
-    // Simulate network delay (remove in production if data is local)
+    // Simulate network delay
     Future.delayed(const Duration(milliseconds: 500), () {
-      setState(() {
-        _displayedCount += 6;
-        _isLoading = false;
-      });
+      if (mounted) {
+        setState(() {
+          _displayedCount += 6;
+          _isLoading = false;
+        });
+      }
     });
   }
 
@@ -81,57 +49,25 @@ class _PortfolioPageState extends State<PortfolioPage> {
   void _handleFilterChange(String filter) {
     setState(() {
       _selectedFilter = filter;
-      _displayedCount = 6; // Reset to initial count when filter changes
+      _displayedCount = 6;
     });
   }
 
   @override
   Widget build(BuildContext context) {
     final totalCount = _getTotalProjectCount();
+    final filterBar = FilterBarSection(selectedFilter: _selectedFilter, onFilterChanged: _handleFilterChange);
 
-    return Stack(
-      children: [
-        // Main content
-        BaseScreen(
-          backgroundColor: DColors.secondaryBackground,
-          child: Column(
-            children: [
-              // Hero Section
-              const PortfolioHeroSection(),
+    return BaseScreen(
+      useCustomScrollView: true,
+      backgroundColor: DColors.secondaryBackground,
+      child: CustomScrollView(
+        slivers: [
+          // Hero Section
+          const SliverToBoxAdapter(child: PortfolioHeroSection()),
 
-              // Original Filter Bar
-              Container(
-                key: _filterBarKey,
-                child: FilterBarSection(
-                  selectedFilter: _selectedFilter,
-                  onFilterChanged: _handleFilterChange,
-                ),
-              ),
-
-              // Project Grid
-              ProjectGridSection(selectedFilter: _selectedFilter, displayedCount: _displayedCount),
-
-              // Load More
-              LoadMoreSection(
-                displayedCount: _displayedCount,
-                totalCount: totalCount,
-                isLoading: _isLoading,
-                onLoadMore: _handleLoadMore,
-              ),
-            ],
-          ),
-        ),
-
-        // Sticky Filter Bar
-        AnimatedPositioned(
-          duration: const Duration(milliseconds: 300),
-          curve: Curves.easeOut,
-          top: _showStickyFilter ? 80 : -200,
-          left: 0,
-          right: 0,
-          child: AnimatedOpacity(
-            duration: const Duration(milliseconds: 300),
-            opacity: _showStickyFilter ? 1.0 : 0.0,
+          // Sticky Filter Bar
+          SliverPinnedHeader(
             child: Container(
               decoration: BoxDecoration(
                 color: DColors.background,
@@ -143,11 +79,28 @@ class _PortfolioPageState extends State<PortfolioPage> {
                   ),
                 ],
               ),
-              child: FilterBarSection(selectedFilter: _selectedFilter, onFilterChanged: _handleFilterChange),
+              child: filterBar,
             ),
           ),
-        ),
-      ],
+
+          // Project Grid
+          SliverToBoxAdapter(
+            child: ProjectGridSection(selectedFilter: _selectedFilter, displayedCount: _displayedCount),
+          ),
+
+          // Load More
+          SliverToBoxAdapter(
+            child: LoadMoreSection(
+              displayedCount: _displayedCount,
+              totalCount: totalCount,
+              isLoading: _isLoading,
+              onLoadMore: _handleLoadMore,
+            ),
+          ),
+
+          SliverToBoxAdapter(child: const FooterSection()),
+        ],
+      ),
     );
   }
 }
