@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'widgets/solution/solution_section.dart';
+import 'widgets/challenge/challenge_section.dart';
 import 'widgets/hero/project_hero_section.dart';
 import '../../data_layer/model/project_model.dart';
+import 'widgets/overview/widgets/project_overview_section.dart';
 import 'package:responsive_website/utility/constants/colors.dart';
 import 'package:responsive_website/common_function/base_screen/base_screen.dart';
+import 'package:responsive_website/features/project_detail/widgets/tech_stack/tech_stack_section.dart';
 
 class ProjectDetailPage extends StatelessWidget {
   final String projectId;
@@ -17,13 +21,20 @@ class ProjectDetailPage extends StatelessWidget {
       backgroundColor: DColors.secondaryBackground,
       child: Column(
         children: [
-          // ✅ Section 1: Hero Image
+          // Hero Image
           ProjectHeroSection(project: project),
 
-          // 🔜 Section 2: Project Overview
-          // 🔜 Section 3: The Challenge
-          // 🔜 Section 4: The Solution
-          // 🔜 Section 5: Tech Stack Used
+          // Project Overview
+          ProjectOverviewSection(project: project),
+
+          // The Challenge
+          ChallengeSection(project: project),
+
+          // The Solution
+          SolutionSection(project: project),
+
+          // ✅ Section 5: Tech Stack Used
+          TechStackSection(project: project),
           // 🔜 Section 6: Key Features
           // 🔜 Section 7: Results & Impact
           // 🔜 Section 8: Image Gallery

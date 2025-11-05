@@ -1,4 +1,5 @@
 import 'package:go_router/go_router.dart';
+import 'package:responsive_website/common_function/style/custom_button.dart';
 
 import '../../../../../route/route_name.dart';
 import 'tech_badge.dart';
@@ -62,7 +63,10 @@ class _ProjectCardState extends State<ProjectCard> {
                         begin: Alignment.topCenter,
                         end: Alignment.bottomCenter,
                         colors: _isHovered
-                            ? [Colors.black.withAlpha((255 * 0.7).round()), Colors.black.withAlpha((255 * 0.9).round())]
+                            ? [
+                                Colors.black.withAlpha((255 * 0.7).round()),
+                                Colors.black.withAlpha((255 * 0.9).round()),
+                              ]
                             : [
                                 Colors.black.withAlpha((255 * 0.3).round()),
                                 Colors.black.withAlpha((255 * 0.7).round()),
@@ -85,7 +89,10 @@ class _ProjectCardState extends State<ProjectCard> {
                         // Project Title
                         Text(
                           widget.project.title,
-                          style: fonts.headlineSmall.rajdhani(color: Colors.white, fontWeight: FontWeight.bold),
+                          style: fonts.headlineSmall.rajdhani(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                          ),
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
                         ),
@@ -131,46 +138,26 @@ class _ProjectCardState extends State<ProjectCard> {
                                 Wrap(
                                   spacing: s.paddingSm,
                                   runSpacing: s.paddingSm,
-                                  children: widget.project.techStack.map((tech) => TechBadge(techName: tech)).toList(),
+                                  children: widget.project.techStack
+                                      .map((tech) => TechBadge(techName: tech))
+                                      .toList(),
                                 ),
                               ],
                             ),
                           ),
                         ),
+                        SizedBox(height: s.paddingMd),
 
                         // View Case Study Button (visible on hover)
-                        GestureDetector(
-                          onTap: () {
-                            context.go('${RouteNames.portfolio}/${widget.project.id}');
-                          },
-                          child: AnimatedContainer(
-                            duration: const Duration(milliseconds: 300),
-                            height: _isHovered ? null : 0,
-                            child: AnimatedOpacity(
-                              duration: const Duration(milliseconds: 300),
-                              opacity: _isHovered ? 1.0 : 0.0,
-                              child: Column(
-                                children: [
-                                  SizedBox(height: s.paddingMd),
-                                  Container(
-                                    width: double.infinity,
-                                    padding: EdgeInsets.symmetric(vertical: s.paddingSm),
-                                    decoration: BoxDecoration(
-                                      color: DColors.primaryButton,
-                                      borderRadius: BorderRadius.circular(8),
-                                    ),
-                                    child: Center(
-                                      child: Text(
-                                        'View Case Study',
-                                        style: fonts.labelLarge.rubik(color: Colors.white, fontWeight: FontWeight.bold),
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
+                        _isHovered
+                            ? CustomButton(
+                                width: double.infinity,
+                                tittleText: 'View Case Study',
+                                onPressed: () {
+                                  context.go('${RouteNames.portfolio}/${widget.project.id}');
+                                },
+                              )
+                            : SizedBox.shrink(),
                       ],
                     ),
                   ),

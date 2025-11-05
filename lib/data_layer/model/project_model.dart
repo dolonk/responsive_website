@@ -15,6 +15,8 @@ class ProjectModel {
   final String clientName;
   final String launchDate;
   final String challenge;
+  final String requirements;
+  final String constraints;
   final String solution;
   final List<String> keyFeatures;
   final Map<String, String>? results;
@@ -42,6 +44,8 @@ class ProjectModel {
     this.clientName = '',
     this.launchDate = '',
     this.challenge = '',
+    this.requirements = '',
+    this.constraints = '',
     this.solution = '',
     this.keyFeatures = const [],
     this.results = const {},
@@ -207,6 +211,10 @@ class ProjectModel {
           'ShopEase is a modern e-commerce mobile application designed to provide seamless shopping experience across iOS and Android platforms. Built with Flutter for cross-platform consistency, the app integrates payment processing, real-time inventory management, and personalized recommendations.\n\nThe project was developed over 12 weeks following Agile methodology, with weekly sprints and continuous client feedback. The app successfully launched on both App Store and Play Store, receiving positive reviews for its intuitive UI and smooth performance.',
       challenge:
           'The client needed a scalable e-commerce solution that could handle high traffic during sales events while maintaining fast performance. Key challenges included implementing secure payment processing, managing complex product catalogs with variants, and ensuring smooth user experience across different device sizes and network conditions.',
+      requirements:
+          'The client required a scalable architecture that could handle concurrent users, secure payment processing with PCI compliance, real-time inventory synchronization across platforms, and seamless user experience with fast load times even on slower networks.',
+      constraints:
+          'Key constraints included a tight 12-week timeline for MVP delivery, limited backend infrastructure budget requiring cost-effective solutions, need for cross-platform consistency while maintaining native performance, and integration with existing legacy systems without disrupting current operations.',
       solution:
           'We implemented a clean MVVM architecture with BLoC for state management, ensuring separation of concerns and testability. Firebase was chosen for backend services due to its real-time capabilities and scalability. Stripe integration provided secure payment processing with support for multiple payment methods. The app uses efficient caching strategies and image optimization to maintain performance even on slower networks.',
       keyFeatures: [

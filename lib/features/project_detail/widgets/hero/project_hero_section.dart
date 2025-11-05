@@ -19,9 +19,9 @@ class ProjectHeroSection extends StatelessWidget {
     return SizedBox(
       width: double.infinity,
       height: context.responsiveValue(
-        mobile: MediaQuery.of(context).size.height * 0.2, // 40vh mobile
-        tablet: MediaQuery.of(context).size.height * 0.4, // 50vh tablet
-        desktop: MediaQuery.of(context).size.height * 0.4, // 50vh desktop
+        mobile: MediaQuery.of(context).size.height * 0.2,
+        tablet: MediaQuery.of(context).size.height * 0.3,
+        desktop: MediaQuery.of(context).size.height * 0.4,
       ),
       child: Stack(
         children: [
@@ -32,7 +32,7 @@ class ProjectHeroSection extends StatelessWidget {
           _buildGradientOverlay(),
 
           // Back Button (Top-Left)
-          Positioned(top: s.paddingLg, left: s.paddingLg, child: _buildBackButton(context, s)),
+          Positioned(top: 2, left: s.paddingLg, child: _buildBackButton(context, s)),
 
           // Platform Badges (Bottom-Left)
           if (project.platforms.isNotEmpty)

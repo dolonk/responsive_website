@@ -88,7 +88,12 @@ class TechStackSection extends StatelessWidget {
       // Category Title
       widgets.add(
         Padding(
-          padding: EdgeInsets.only(left:  s.spaceBtwItems, right: s.spaceBtwItems, bottom: s.spaceBtwItems, top: s.spaceBtwSections),
+          padding: EdgeInsets.only(
+            left: s.spaceBtwItems,
+            right: s.spaceBtwItems,
+            bottom: s.spaceBtwItems,
+            top: s.spaceBtwSections,
+          ),
           child: Text(
             category,
             style: fonts.headlineMedium.rajdhani(fontWeight: FontWeight.bold),
