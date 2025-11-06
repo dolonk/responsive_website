@@ -4,7 +4,6 @@ import 'package:responsive_website/utility/constants/colors.dart';
 import 'package:responsive_website/data_layer/model/project_model.dart';
 import 'package:responsive_website/utility/default_sizes/font_size.dart';
 import 'package:responsive_website/utility/default_sizes/default_sizes.dart';
-import 'package:responsive_website/utility/responsive/responsive_helper.dart';
 import 'package:responsive_website/utility/responsive/section_container.dart';
 
 class SolutionSection extends StatelessWidget {
@@ -17,24 +16,21 @@ class SolutionSection extends StatelessWidget {
     final s = context.sizes;
 
     return SectionContainer(
-      backgroundColor: DColors.background,
       padding: EdgeInsets.symmetric(horizontal: s.paddingMd, vertical: s.spaceBtwSections),
       child: Center(
-        child: Container(
-          constraints: BoxConstraints(
-            maxWidth: context.responsiveValue(mobile: double.infinity, tablet: 900, desktop: 1200),
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // Section Heading
-              _buildSectionHeading(context, s),
-              SizedBox(height: s.spaceBtwItems),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // Section Heading
+            _buildSectionHeading(context, s),
+            SizedBox(height: s.spaceBtwItems),
 
-              // Timeline Steps
-              _buildTimelineSteps(context),
-            ],
-          ),
+            // Timeline Steps
+            Padding(
+              padding: EdgeInsets.only(left: s.spaceBtwSections),
+              child: _buildTimelineSteps(context),
+            ),
+          ],
         ),
       ),
     );
@@ -47,21 +43,9 @@ class SolutionSection extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          'The Solution',
-          style: fonts.displaySmall.rajdhani(
-            fontSize: context.responsiveValue(mobile: 32, tablet: 40, desktop: 48),
-            fontWeight: FontWeight.bold,
-          ),
-        ),
+        Text('The Solution', style: fonts.displaySmall),
         SizedBox(height: s.paddingSm),
-        Text(
-          'How we solved the challenge',
-          style: fonts.bodyLarge.rubik(
-            color: DColors.textSecondary,
-            fontSize: context.responsiveValue(mobile: 15, tablet: 16, desktop: 17),
-          ),
-        ),
+        Text('How we solved the challenge', style: fonts.bodyMedium.rubik(color: DColors.textSecondary)),
       ],
     );
   }
@@ -84,7 +68,7 @@ class SolutionSection extends StatelessWidget {
             'Continuous integration pipeline',
           ],
           isLast: false,
-          stepColor: const Color(0xFF8B5CF6), // Purple
+          stepColor: const Color(0xFF8B5CF6),
         ),
 
         // Step 2: Architecture Decisions
@@ -101,7 +85,7 @@ class SolutionSection extends StatelessWidget {
             'Clear layer boundaries',
           ],
           isLast: false,
-          stepColor: const Color(0xFF3B82F6), // Blue
+          stepColor: const Color(0xFF3B82F6),
         ),
 
         // Step 3: State Management Choice
@@ -118,7 +102,7 @@ class SolutionSection extends StatelessWidget {
             'Separation of concerns',
           ],
           isLast: false,
-          stepColor: const Color(0xFF10B981), // Green
+          stepColor: const Color(0xFF10B981),
         ),
 
         // Step 4: Why This Tech Stack

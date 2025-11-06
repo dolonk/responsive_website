@@ -13,15 +13,14 @@ class CtaSection extends StatelessWidget {
 
     return Container(
       width: double.infinity,
-      margin: EdgeInsets.only(/*left: s.paddingMd, right: s.paddingMd,*/ bottom: s.spaceBtwSections),
-      padding: EdgeInsets.symmetric(horizontal: s.paddingMd, vertical: s.spaceBtwItems),
+      padding: EdgeInsets.symmetric(horizontal: s.paddingMd, vertical: s.spaceBtwSections),
       decoration: BoxDecoration(
         gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
           colors: [
-            const Color(0xFF1E293B), // Deep slate
-            const Color(0xFF0F172A), // Darker slate
+            const Color(0xFF1E293B),
+            const Color(0xFF0F172A),
             DColors.primaryButton.withAlpha((255 * 0.3).round()),
           ],
         ),

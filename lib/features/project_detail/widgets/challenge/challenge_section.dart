@@ -17,25 +17,17 @@ class ChallengeSection extends StatelessWidget {
     final s = context.sizes;
 
     return SectionContainer(
-      backgroundColor: DColors.secondaryBackground,
       padding: EdgeInsets.symmetric(horizontal: s.paddingMd),
-      child: Center(
-        child: Container(
-          constraints: BoxConstraints(
-            maxWidth: context.responsiveValue(mobile: double.infinity, tablet: 900, desktop: 1200),
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // Section Heading
-              _buildSectionHeading(context, s),
-              SizedBox(height: s.spaceBtwItems),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // Section Heading
+          _buildSectionHeading(context, s),
+          SizedBox(height: s.spaceBtwItems),
 
-              // Challenge Cards in Wrap Layout
-              _buildChallengeCards(context, s),
-            ],
-          ),
-        ),
+          // Challenge Cards in Wrap Layout
+          _buildChallengeCards(context, s),
+        ],
       ),
     );
   }
@@ -56,7 +48,7 @@ class ChallengeSection extends StatelessWidget {
 
   /// Challenge Cards with Wrap Layout
   Widget _buildChallengeCards(BuildContext context, DSizes s) {
-    final desktopCardWidth = context.isDesktop ? (1200 - (s.spaceBtwItems * 2)) / 3 : double.infinity;
+    final desktopCardWidth = context.isDesktop ? (1100 - (s.spaceBtwSections * 2)) / 3 : double.infinity;
 
     return Wrap(
       spacing: s.spaceBtwItems,
@@ -69,7 +61,7 @@ class ChallengeSection extends StatelessWidget {
             icon: Icons.lightbulb_outline_rounded,
             title: 'Problem Statement',
             content: project.challenge,
-            iconColor: const Color(0xFFF59E0B), // Amber/Yellow
+            iconColor: const Color(0xFFF59E0B),
           ),
         ),
 

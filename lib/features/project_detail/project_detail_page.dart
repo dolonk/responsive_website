@@ -1,4 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:responsive_website/features/project_detail/widgets/cta/cta_section.dart';
+import 'package:responsive_website/features/project_detail/widgets/related_projects/related_projects_section.dart';
+import 'package:responsive_website/utility/default_sizes/default_sizes.dart';
+import 'widgets/demo_links/demo_links_section.dart';
+import 'widgets/features/features_section.dart';
+import 'widgets/gallery/gallery_section.dart';
+import 'widgets/results/results_section.dart';
 import 'widgets/solution/solution_section.dart';
 import 'widgets/challenge/challenge_section.dart';
 import 'widgets/hero/project_hero_section.dart';
@@ -33,27 +40,27 @@ class ProjectDetailPage extends StatelessWidget {
           // The Solution
           SolutionSection(project: project),
 
-          // ✅ Section 5: Tech Stack Used
+          // Tech Stack Used
           TechStackSection(project: project),
-          // 🔜 Section 6: Key Features
-          // 🔜 Section 7: Results & Impact
-          // 🔜 Section 8: Image Gallery
-          // 🔜 Section 9: Demo & Links
-          // 🔜 Section 10: Related Projects
-          // 🔜 Section 11: CTA Section
 
-          // Temporary placeholder
-          Container(
-            height: 500,
-            color: DColors.secondaryBackground,
-            child: Center(
-              child: Text(
-                'Project: ${project.title}\n\nRemaining sections will be added next',
-                textAlign: TextAlign.center,
-                style: const TextStyle(color: Colors.white, fontSize: 18),
-              ),
-            ),
-          ),
+          // Key Features
+          FeaturesSection(project: project),
+
+          // Results & Impact
+          ResultsSection(project: project),
+
+          // Image Gallery
+          GallerySection(project: project),
+
+          // Demo & Links
+          DemoLinksSection(project: project),
+
+          // Related Projects
+          RelatedProjectsSection(project: project),
+
+          // CTA
+          const CtaSection(),
+          SizedBox(height: context.sizes.spaceBtwItems),
         ],
       ),
     );

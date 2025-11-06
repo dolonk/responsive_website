@@ -17,24 +17,18 @@ class ProjectOverviewSection extends StatelessWidget {
     final s = context.sizes;
 
     return SectionContainer(
-      backgroundColor: DColors.background, // Alternating color pattern starts here
       padding: EdgeInsets.symmetric(horizontal: s.paddingMd, vertical: s.spaceBtwSections),
       child: Center(
-        child: Container(
-          constraints: BoxConstraints(
-            maxWidth: context.responsiveValue(mobile: double.infinity, tablet: 900, desktop: 1200),
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // Project Name with Underline
-              _buildProjectName(context, s),
-              SizedBox(height: s.spaceBtwSections),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // Project Name with Underline
+            _buildProjectName(context, s),
+            SizedBox(height: s.spaceBtwSections),
 
-              // Two-Column Layout (Responsive)
-              context.isDesktop ? _buildDesktopLayout(context, s) : _buildMobileTabletLayout(context, s),
-            ],
-          ),
+            // Two-Column Layout (Responsive)
+            context.isDesktop ? _buildDesktopLayout(context, s) : _buildMobileTabletLayout(context, s),
+          ],
         ),
       ),
     );

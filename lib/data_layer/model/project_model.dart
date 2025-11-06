@@ -23,9 +23,9 @@ class ProjectModel {
   final String clientTestimonial;
   final List<String> galleryImages;
   final String demoVideoUrl;
-  final String liveUrl;
-  final String appStoreUrl;
-  final String playStoreUrl;
+  final String? liveUrl;
+  final String? appStoreUrl;
+  final String? playStoreUrl;
   final String githubUrl;
 
   ProjectModel({
@@ -52,9 +52,9 @@ class ProjectModel {
     this.clientTestimonial = '',
     this.galleryImages = const [],
     this.demoVideoUrl = '',
-    this.liveUrl = '',
-    this.appStoreUrl = '',
-    this.playStoreUrl = '',
+    this.liveUrl,
+    this.appStoreUrl,
+    this.playStoreUrl,
     this.githubUrl = '',
   });
 
@@ -231,7 +231,7 @@ class ProjectModel {
         'Downloads': '50,000+',
         'App Store Rating': '4.8/5.0',
         'Play Store Rating': '4.7/5.0',
-        'Average Session Time': '8.5 minutes',
+        'Average Session Time': '8.5 (m)',
       },
       clientTestimonial:
           'The team delivered an exceptional product that exceeded our expectations. The app performance is outstanding, and our customers love the user experience.',
@@ -241,9 +241,10 @@ class ProjectModel {
         'assets/home/projects/project_4.png',
         'assets/home/projects/project_5.png',
       ],
-      demoVideoUrl: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
-      appStoreUrl: 'https://apps.apple.com/app/example',
-      playStoreUrl: 'https://play.google.com/store/apps/details?id=example',
+      demoVideoUrl: 'https://www.youtube.com/watch?v=kPa7bsKwL-c&list=RDkPa7bsKwL-c&start_radio=1',
+      appStoreUrl: 'https://translate.google.com.bd/?hl=bn&sl=auto&tl=bn&op=translate',
+      playStoreUrl: 'https://translate.google.com.bd/?hl=bn&sl=auto&tl=bn&op=translate',
+      githubUrl: "https://github.com/dolonk/grozziie_desktop"
     );
   }
 }
