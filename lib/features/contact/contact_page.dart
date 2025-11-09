@@ -10,6 +10,8 @@ import 'package:responsive_website/features/contact/widgets/hero_section/contact
 
 import 'widgets/direct_info/direct_contact_section.dart';
 import 'widgets/social_links/social_links_section.dart';
+import 'widgets/testimonials/testimonials_section.dart';
+import 'widgets/timeline/timeline_section.dart';
 
 class ContactPage extends StatelessWidget {
   const ContactPage({super.key});
@@ -43,6 +45,11 @@ class ContactPage extends StatelessWidget {
 
           // Availability Status
           const AvailabilitySection(),
+
+          // What Happens Next (Timeline)
+          const TimelineSection(),
+
+          const TestimonialsSection(),
         ],
       ),
     );
