@@ -134,10 +134,7 @@ class _FaqItemState extends State<FaqItem> with SingleTickerProviderStateMixin {
                     SizedBox(height: s.paddingMd),
 
                     // Answer Text
-                    Text(
-                      widget.faq.answer,
-                      style: fonts.bodyMedium.rubik(color: DColors.textSecondary, height: 1.7),
-                    ),
+                    Text(widget.faq.answer, style: fonts.bodyMedium.rubik(color: DColors.textSecondary, height: 1.7)),
                   ],
                 ),
               ),

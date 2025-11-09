@@ -17,7 +17,6 @@ class ContactOptionsSection extends StatelessWidget {
     final s = context.sizes;
 
     return SectionContainer(
-      backgroundColor: DColors.secondaryBackground,
       padding: EdgeInsets.only(left: s.paddingMd, right: s.paddingMd, bottom: s.spaceBtwSections),
       child: Column(
         children: [
