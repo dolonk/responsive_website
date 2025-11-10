@@ -17,8 +17,7 @@ class TimelineSection extends StatelessWidget {
     final s = context.sizes;
 
     return SectionContainer(
-      backgroundColor: DColors.background,
-      padding: EdgeInsets.symmetric(horizontal: s.paddingMd, vertical: s.spaceBtwSections),
+      padding: EdgeInsets.only(left: s.paddingMd, right:s.paddingMd ),
       child: Center(
         child: Container(
           constraints: BoxConstraints(

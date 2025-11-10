@@ -244,7 +244,7 @@ class ProjectModel {
       demoVideoUrl: 'https://www.youtube.com/watch?v=kPa7bsKwL-c&list=RDkPa7bsKwL-c&start_radio=1',
       appStoreUrl: 'https://translate.google.com.bd/?hl=bn&sl=auto&tl=bn&op=translate',
       playStoreUrl: 'https://translate.google.com.bd/?hl=bn&sl=auto&tl=bn&op=translate',
-      githubUrl: "https://github.com/dolonk/grozziie_desktop"
+      githubUrl: "https://github.com/dolonk/grozziie_desktop",
     );
   }
 }

@@ -1,14 +1,14 @@
 import 'dart:async';
+import 'widgets/testimonial_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:responsive_website/utility/constants/colors.dart';
 import 'package:responsive_website/utility/default_sizes/font_size.dart';
+import 'package:responsive_website/data_layer/model/testimonial_model.dart';
 import 'package:responsive_website/utility/default_sizes/default_sizes.dart';
 import 'package:responsive_website/utility/responsive/responsive_helper.dart';
 import 'package:responsive_website/utility/responsive/section_container.dart';
-import 'package:responsive_website/data_layer/model/testimonial_model.dart';
-import 'widgets/testimonial_card.dart';
 
 class TestimonialsSection extends StatefulWidget {
   const TestimonialsSection({super.key});
@@ -77,11 +77,12 @@ class _TestimonialsSectionState extends State<TestimonialsSection> {
                     return TestimonialCard(testimonial: testimonials[index]);
                   },
                   options: CarouselOptions(
-                    height: context.responsiveValue(mobile: 400.0, tablet: 420.0, desktop: 450.0),
+                    height: context.responsiveValue(mobile: 400.0, tablet: 420.0, desktop: 400.0),
                     viewportFraction: context.responsiveValue(mobile: 0.9, tablet: 0.85, desktop: 0.7),
                     enlargeCenterPage: true,
                     enableInfiniteScroll: true,
                     autoPlay: false,
+                    scrollPhysics: NeverScrollableScrollPhysics(),
                     onPageChanged: (index, reason) {
                       setState(() => _currentIndex = index);
                     },

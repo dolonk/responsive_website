@@ -17,8 +17,7 @@ class AvailabilitySection extends StatelessWidget {
     final currentStatus = AvailabilityStatusModel.getCurrentStatus();
 
     return SectionContainer(
-      backgroundColor: DColors.secondaryBackground,
-      padding: EdgeInsets.symmetric(horizontal: s.paddingMd, vertical: s.spaceBtwSections),
+      padding: EdgeInsets.only(left: s.paddingMd, right: s.paddingMd, bottom: s.spaceBtwSections),
       child: Center(
         child: Container(
           constraints: BoxConstraints(
@@ -96,7 +95,11 @@ class AvailabilitySection extends StatelessWidget {
                 constraints: const BoxConstraints(maxWidth: 600),
                 child: Text(
                   status.description,
-                  style: fonts.bodyLarge.rubik(color: DColors.textPrimary, height: 1.6, fontWeight: FontWeight.w500),
+                  style: fonts.bodyLarge.rubik(
+                    color: DColors.textPrimary,
+                    height: 1.6,
+                    fontWeight: FontWeight.w500,
+                  ),
                   textAlign: TextAlign.center,
                 ),
               ),

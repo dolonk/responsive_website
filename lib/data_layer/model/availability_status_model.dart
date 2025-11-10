@@ -30,8 +30,8 @@ class AvailabilityStatusModel {
       status: AvailabilityStatus.available,
       statusText: 'Available for New Projects',
       description: 'I\'m currently accepting new projects and ready to start immediately',
-      nextAvailableDate: null, // No need to show date when fully available
-      statusColor: const Color(0xFF10B981), // Green
+      nextAvailableDate: null,
+      statusColor: const Color(0xFF10B981),
       icon: Icons.check_circle_rounded,
     );
   }
@@ -43,7 +43,7 @@ class AvailabilityStatusModel {
       statusText: 'Limited Availability',
       description: 'I have limited capacity for new projects at the moment',
       nextAvailableDate: nextDate ?? 'December 2025',
-      statusColor: const Color(0xFFF59E0B), // Orange
+      statusColor: const Color(0xFFF59E0B),
       icon: Icons.schedule_rounded,
     );
   }
@@ -55,7 +55,7 @@ class AvailabilityStatusModel {
       statusText: 'Currently Unavailable',
       description: 'My schedule is fully booked at the moment',
       nextAvailableDate: nextDate ?? 'January 2026',
-      statusColor: const Color(0xFFEF4444), // Red
+      statusColor: const Color(0xFFEF4444),
       icon: Icons.cancel_rounded,
     );
   }

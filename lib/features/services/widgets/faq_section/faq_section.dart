@@ -1,6 +1,5 @@
 import 'widgets/faq_item.dart';
 import 'package:flutter/material.dart';
-import 'package:responsive_website/utility/constants/colors.dart';
 import 'package:responsive_website/data_layer/model/faq_model.dart';
 import 'package:responsive_website/common_function/style/section_header.dart';
 import 'package:responsive_website/utility/default_sizes/default_sizes.dart';
@@ -15,7 +14,7 @@ class FaqSection extends StatefulWidget {
 }
 
 class _FaqSectionState extends State<FaqSection> {
-  int? _expandedIndex; // Track which FAQ is currently expanded
+  int? _expandedIndex;
 
   @override
   Widget build(BuildContext context) {
@@ -23,8 +22,7 @@ class _FaqSectionState extends State<FaqSection> {
     final faqs = FaqModel.getAllFaqs();
 
     return SectionContainer(
-      backgroundColor: DColors.secondaryBackground,
-      padding: EdgeInsets.only(left: s.paddingMd, right: s.paddingMd, top: s.spaceBtwSections),
+      padding: EdgeInsets.only(left: s.paddingMd, right: s.paddingMd, bottom: s.spaceBtwSections),
       child: Column(
         children: [
           // Section Header
@@ -48,7 +46,6 @@ class _FaqSectionState extends State<FaqSection> {
                     isExpanded: _expandedIndex == index,
                     onTap: () {
                       setState(() {
-                        // If same item clicked, collapse it; otherwise expand new one
                         _expandedIndex = _expandedIndex == index ? null : index;
                       });
                     },

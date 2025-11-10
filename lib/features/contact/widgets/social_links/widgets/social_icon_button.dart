@@ -52,7 +52,9 @@ class _SocialIconButtonState extends State<SocialIconButton> {
                 width: context.responsiveValue(mobile: 60, tablet: 65, desktop: 70),
                 height: context.responsiveValue(mobile: 60, tablet: 65, desktop: 70),
                 decoration: BoxDecoration(
-                  color: _isHovered ? widget.social.color.withAlpha((255 * 0.15).round()) : DColors.cardBackground,
+                  color: _isHovered
+                      ? widget.social.color.withAlpha((255 * 0.15).round())
+                      : DColors.cardBackground,
                   shape: BoxShape.circle,
                   border: Border.all(color: _isHovered ? widget.social.color : DColors.cardBorder, width: 2),
                 ),
