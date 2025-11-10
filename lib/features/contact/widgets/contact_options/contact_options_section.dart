@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import '../../../../data_layer/model/contact_info_model.dart';
+import '../../../../utility/url_launcher_service/url_launcher_service.dart';
+import 'widgets/phone_options_modal.dart';
 import 'widgets/contact_option_card.dart';
 import 'widgets/chat_options_modal.dart';
 import 'package:responsive_website/utility/constants/colors.dart';
@@ -6,7 +9,6 @@ import 'package:responsive_website/utility/default_sizes/font_size.dart';
 import 'package:responsive_website/utility/default_sizes/default_sizes.dart';
 import 'package:responsive_website/utility/responsive/responsive_helper.dart';
 import 'package:responsive_website/utility/responsive/section_container.dart';
-import 'package:responsive_website/data_layer/model/contact_option_model.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 
 class ContactOptionsSection extends StatelessWidget {
@@ -98,10 +100,11 @@ class ContactOptionsSection extends StatelessWidget {
   }
 
   /// Get Contact Options Data
-  List<ContactOptionModel> _getContactOptions(BuildContext context) {
+  List<ContactInfoModel> _getContactOptions(BuildContext context) {
+    final urlLauncher = UrlLauncherService();
     return [
-      // Option 1: Quick Message (Scroll to form)
-      ContactOptionModel(
+      // Quick Message (Scroll to form)
+      ContactInfoModel(
         title: 'Quick Message',
         description: 'Send me a message directly through the contact form',
         icon: Icons.email_rounded,
@@ -113,30 +116,60 @@ class ContactOptionsSection extends StatelessWidget {
         },
       ),
 
-      // Option 2: Schedule Call
-      ContactOptionModel(
-        title: 'Schedule Call',
-        description: 'Book a free 30-minute consultation at your convenience',
-        icon: Icons.calendar_today_rounded,
-        actionText: 'Pick a time',
-        accentColor: const Color(0xFF3B82F6), // Blue
-        onTap: () {
-          // TODO: Open Calendly or navigate to calendar section
-          debugPrint('Open Calendly / Navigate to calendar section');
-        },
-      ),
-
-      // Option 3: Instant Chat (Show modal)
-      ContactOptionModel(
+      // Instant Chat (Show modal)
+      ContactInfoModel(
         title: 'Instant Chat',
         description: 'Connect with me instantly via WhatsApp or Telegram',
         icon: Icons.chat_bubble_rounded,
         actionText: 'Start chat',
-        accentColor: const Color(0xFF10B981), // Green
+        accentColor: const Color(0xFF10B981),
         onTap: () {
-          // Show chat options modal
           showDialog(context: context, builder: (context) => const ChatOptionsModal());
         },
+      ),
+
+      // Email Address (Launch email app)
+      ContactInfoModel(
+        title: 'Email Address',
+        value: 'dolonk9@gmail.com',
+        description: 'For general inquiries',
+        icon: Icons.email_rounded,
+        accentColor: const Color(0xFF8B5CF6),
+        actionText: 'Send Email',
+        onTap: () {
+          urlLauncher.launchEmail(
+            email: "dolonk9@gmail.com",
+            subject: 'Inquiry from your Portfolio Website',
+            body: 'Hello, I would like to discuss...',
+          );
+        },
+      ),
+
+      // Phone/WhatsApp
+      ContactInfoModel(
+        title: 'Phone/WhatsApp',
+        value: '8801944893253',
+        description: 'Available 9 AM - 6 PM (GMT+6)',
+        icon: Icons.phone_rounded,
+        accentColor: const Color(0xFF3B82F6),
+        actionText: 'Call Now',
+        onTap: () {
+          showDialog(
+            context: context,
+            builder: (context) => PhoneOptionsModal(phoneNumber: '+8801944893253'),
+          );
+        },
+      ),
+
+      // Location
+      ContactInfoModel(
+        title: 'Location',
+        value: 'Dhaka, Bangladesh',
+        description: 'Available for remote work globally',
+        icon: Icons.location_on_rounded,
+        accentColor: const Color(0xFF10B981),
+        actionText: 'View Map',
+        onTap: null,
       ),
     ];
   }

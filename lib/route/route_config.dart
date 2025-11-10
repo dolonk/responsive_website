@@ -11,10 +11,10 @@ import 'package:responsive_website/features/home/home_page.dart';
 import 'package:responsive_website/features/portfolio/portfolio_page.dart';
 
 class RouteConfig {
-  static final GlobalKey<NavigatorState> _rootNavigatorKey = GlobalKey<NavigatorState>();
+  static final GlobalKey<NavigatorState> rootNavigatorKey = GlobalKey<NavigatorState>();
 
   static final GoRouter router = GoRouter(
-    navigatorKey: _rootNavigatorKey,
+    navigatorKey: rootNavigatorKey,
     debugLogDiagnostics: false,
     initialLocation: RouteNames.home,
 

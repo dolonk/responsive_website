@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+import '../../../../../data_layer/model/contact_info_model.dart';
 import 'package:responsive_website/utility/constants/colors.dart';
 import 'package:responsive_website/utility/default_sizes/font_size.dart';
 import 'package:responsive_website/utility/default_sizes/default_sizes.dart';
-import 'package:responsive_website/data_layer/model/contact_option_model.dart';
 
 class ContactOptionCard extends StatefulWidget {
-  final ContactOptionModel option;
+  final ContactInfoModel option;
 
   const ContactOptionCard({super.key, required this.option});
 
@@ -34,9 +34,7 @@ class _ContactOptionCardState extends State<ContactOptionCard> {
             color: DColors.cardBackground,
             borderRadius: BorderRadius.circular(s.borderRadiusLg),
             border: Border.all(
-              color: _isHovered
-                  ? widget.option.accentColor.withAlpha((255 * 0.5).round())
-                  : DColors.cardBorder,
+              color: _isHovered ? widget.option.accentColor.withAlpha((255 * 0.5).round()) : DColors.cardBorder,
               width: _isHovered ? 2 : 1.5,
             ),
             boxShadow: [
@@ -93,10 +91,7 @@ class _ContactOptionCardState extends State<ContactOptionCard> {
                   const SizedBox(width: 6),
                   Text(
                     widget.option.actionText,
-                    style: fonts.labelMedium.rubik(
-                      color: widget.option.accentColor,
-                      fontWeight: FontWeight.w600,
-                    ),
+                    style: fonts.labelMedium.rubik(color: widget.option.accentColor, fontWeight: FontWeight.w600),
                   ),
                 ],
               ),

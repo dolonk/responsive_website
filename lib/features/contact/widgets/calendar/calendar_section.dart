@@ -1,14 +1,14 @@
+import 'widgets/info_badge.dart';
+import 'widgets/calendly_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:responsive_website/utility/constants/colors.dart';
 import 'package:responsive_website/utility/default_sizes/font_size.dart';
 import 'package:responsive_website/utility/default_sizes/default_sizes.dart';
 import 'package:responsive_website/utility/responsive/responsive_helper.dart';
 import 'package:responsive_website/utility/responsive/section_container.dart';
 import 'package:responsive_website/data_layer/model/calendar_info_model.dart';
-import 'widgets/calendly_widget.dart';
-import 'widgets/info_badge.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 
 class CalendarSection extends StatelessWidget {
   const CalendarSection({super.key});
@@ -18,7 +18,7 @@ class CalendarSection extends StatelessWidget {
     final s = context.sizes;
 
     return SectionContainer(
-      padding: EdgeInsets.symmetric(horizontal: s.paddingMd, vertical: s.spaceBtwSections),
+      padding: EdgeInsets.only(left: s.paddingMd, right: s.paddingMd, bottom: s.spaceBtwSections),
       child: Center(
         child: Container(
           constraints: BoxConstraints(
@@ -31,10 +31,7 @@ class CalendarSection extends StatelessWidget {
               SizedBox(height: s.spaceBtwSections),
 
               // Calendly Widget
-              CalendlyWidget(
-                calendlyUrl: 'https://calendly.com/your-username/30min', // TODO: Replace with your Calendly URL
-                height: 700,
-              ),
+              CalendlyWidget(calendlyUrl: 'https://calendly.com/your-username/30min', height: 700),
 
               // Info Badges
               SizedBox(height: s.spaceBtwSections),

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class ResponsiveHelper {
   ResponsiveHelper._();
 
-  // 📱 Breakpoints (customize করতে পারবে)
+  // 📱 Breakpoints
   static const double mobileBreakpoint = 650;
   static const double tabletBreakpoint = 1100;
 
@@ -11,8 +11,7 @@ class ResponsiveHelper {
   static bool isMobile(BuildContext context) => MediaQuery.of(context).size.width < mobileBreakpoint;
 
   static bool isTablet(BuildContext context) =>
-      MediaQuery.of(context).size.width >= mobileBreakpoint &&
-      MediaQuery.of(context).size.width < tabletBreakpoint;
+      MediaQuery.of(context).size.width >= mobileBreakpoint && MediaQuery.of(context).size.width < tabletBreakpoint;
 
   static bool isDesktop(BuildContext context) => MediaQuery.of(context).size.width >= tabletBreakpoint;
 

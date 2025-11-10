@@ -58,7 +58,7 @@ class _ContactFormSectionState extends State<ContactFormSection> {
     final s = context.sizes;
 
     return SectionContainer(
-      padding: EdgeInsets.symmetric(horizontal: s.paddingMd, vertical: s.spaceBtwSections),
+      padding: EdgeInsets.only(left: s.paddingMd, right: s.paddingMd, bottom: s.spaceBtwSections),
       child: Center(
         child: Container(
           constraints: BoxConstraints(
