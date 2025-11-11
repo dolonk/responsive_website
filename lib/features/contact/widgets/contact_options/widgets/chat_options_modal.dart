@@ -4,8 +4,6 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:responsive_website/utility/constants/colors.dart';
 import 'package:responsive_website/utility/default_sizes/font_size.dart';
 import 'package:responsive_website/utility/default_sizes/default_sizes.dart';
-import 'package:url_launcher/url_launcher.dart';
-
 import '../../../../../utility/url_launcher_service/url_launcher_service.dart';
 import 'dialog_option_button.dart';
 
