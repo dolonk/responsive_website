@@ -17,7 +17,7 @@ class FilterBarSection extends StatelessWidget {
     return Container(
       width: double.infinity,
       color: DColors.background,
-      padding: EdgeInsets.symmetric(horizontal: s.paddingMd, vertical: s.spaceBtwSections),
+      padding: EdgeInsets.only(left: s.paddingMd, right: s.paddingMd, bottom: s.spaceBtwSections),
       child: Center(
         child: Wrap(
           spacing: s.paddingMd,

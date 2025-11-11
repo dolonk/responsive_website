@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:responsive_website/utility/default_sizes/default_sizes.dart';
 import 'package:sliver_tools/sliver_tools.dart';
 import 'widgets/load_more/load_more_section.dart';
 import 'widgets/hero/portfolio_hero_section.dart';
@@ -60,7 +61,7 @@ class _PortfolioPageState extends State<PortfolioPage> {
 
     return BaseScreen(
       useCustomScrollView: true,
-      backgroundColor: DColors.secondaryBackground,
+      backgroundColor: DColors.background,
       child: CustomScrollView(
         slivers: [
           // Hero Section

@@ -11,8 +11,25 @@ import 'package:responsive_website/utility/constants/colors.dart';
 import 'package:responsive_website/common_function/base_screen/base_screen.dart';
 import 'package:responsive_website/features/contact/widgets/hero_section/contact_hero_section.dart';
 
-class ContactPage extends StatelessWidget {
+class ContactPage extends StatefulWidget {
   const ContactPage({super.key});
+
+  @override
+  State<ContactPage> createState() => _ContactPageState();
+}
+
+class _ContactPageState extends State<ContactPage> {
+  final GlobalKey _contactFormKey = GlobalKey();
+
+  void _scrollToContactForm() {
+    if (_contactFormKey.currentContext != null) {
+      Scrollable.ensureVisible(
+        _contactFormKey.currentContext!,
+        duration: const Duration(milliseconds: 600),
+        curve: Curves.easeInOut,
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,10 +41,10 @@ class ContactPage extends StatelessWidget {
           const ContactHeroSection(),
 
           // Contact Options
-          const ContactOptionsSection(),
+          ContactOptionsSection(onScrollToForm: _scrollToContactForm),
 
           // Contact Form
-          const ContactFormSection(),
+          ContactFormSection(key: _contactFormKey),
 
           // Calendar Integration
           const CalendarSection(),

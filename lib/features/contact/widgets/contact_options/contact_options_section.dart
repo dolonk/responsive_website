@@ -12,7 +12,8 @@ import 'package:responsive_website/utility/responsive/section_container.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 
 class ContactOptionsSection extends StatelessWidget {
-  const ContactOptionsSection({super.key});
+  const ContactOptionsSection({super.key, required this.onScrollToForm});
+  final VoidCallback onScrollToForm;
 
   @override
   Widget build(BuildContext context) {
@@ -110,10 +111,7 @@ class ContactOptionsSection extends StatelessWidget {
         icon: Icons.email_rounded,
         actionText: 'Form below',
         accentColor: const Color(0xFF8B5CF6), // Purple
-        onTap: () {
-          // TODO: Implement smooth scroll to form section
-          debugPrint('Scroll to contact form');
-        },
+        onTap: onScrollToForm,
       ),
 
       // Instant Chat (Show modal)
