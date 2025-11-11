@@ -77,11 +77,12 @@ class _TestimonialsSectionState extends State<TestimonialsSection> {
                     return TestimonialCard(testimonial: testimonials[index]);
                   },
                   options: CarouselOptions(
-                    height: context.responsiveValue(mobile: 400.0, tablet: 420.0, desktop: 400.0),
-                    viewportFraction: context.responsiveValue(mobile: 0.9, tablet: 0.85, desktop: 0.7),
+                    height: context.responsiveValue(mobile: 300.0, tablet: 380.0, desktop: 400.0),
+                    viewportFraction: context.responsiveValue(mobile: 1, tablet: 0.7, desktop: 0.6),
                     enlargeCenterPage: true,
                     enableInfiniteScroll: true,
-                    autoPlay: false,
+                    autoPlay: true,
+                    autoPlayInterval: const Duration(seconds: 6),
                     scrollPhysics: NeverScrollableScrollPhysics(),
                     onPageChanged: (index, reason) {
                       setState(() => _currentIndex = index);

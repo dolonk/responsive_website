@@ -39,7 +39,12 @@ class ReviewsSection extends StatelessWidget {
     final s = context.sizes;
 
     return SectionContainer(
-      padding: EdgeInsets.only(top: s.spaceBtwSections, left: s.paddingMd, right: s.paddingMd, bottom: s.paddingLg),
+      padding: EdgeInsets.only(
+        top: s.spaceBtwSections,
+        left: s.paddingMd,
+        right: s.paddingMd,
+        bottom: s.paddingLg,
+      ),
       child: Container(
         decoration: BoxDecoration(gradient: DColors.reviewsSectionGradient),
         child: ResponsiveWidget(
@@ -129,7 +134,9 @@ class ReviewsSection extends StatelessWidget {
     final fonts = context.fonts;
 
     return Column(
-      crossAxisAlignment: context.isMobile || context.isTablet ? CrossAxisAlignment.center : CrossAxisAlignment.start,
+      crossAxisAlignment: context.isMobile || context.isTablet
+          ? CrossAxisAlignment.center
+          : CrossAxisAlignment.start,
       children: [
         // Subtitle
         Text("Reviews", style: fonts.headlineMedium.rajdhani(color: DColors.primaryButton)),
