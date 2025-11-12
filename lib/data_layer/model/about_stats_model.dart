@@ -25,7 +25,7 @@ class AboutStatsModel {
       ),
       AboutStatsModel(
         value: '2',
-        label: 'Live Apps',
+        label: 'Live Apps, play & app store',
         icon: Icons.smartphone_rounded,
         accentColor: const Color(0xFF10B981), // Green
       ),

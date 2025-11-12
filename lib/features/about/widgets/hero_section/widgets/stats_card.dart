@@ -67,20 +67,13 @@ class _StatsCardState extends State<StatsCard> {
             SizedBox(height: s.paddingSm),
 
             // Value with Counter Animation
-            AnimatedCounter(
-              value: widget.stat.value,
-              style: fonts.headlineMedium.rajdhani(
-                fontSize: context.responsiveValue(mobile: 24.0, tablet: 28.0, desktop: 32.0),
-                fontWeight: FontWeight.bold,
-                color: DColors.textPrimary,
-              ),
-            ),
+            AnimatedCounter(value: widget.stat.value),
             SizedBox(height: s.paddingSm * 0.5),
 
             // Label
             Text(
               widget.stat.label,
-              style: fonts.bodySmall.rubik(color: DColors.textSecondary, fontWeight: FontWeight.w500),
+              style: fonts.bodySmall.rubik(color: DColors.textSecondary),
               textAlign: TextAlign.center,
               maxLines: 2,
             ),
