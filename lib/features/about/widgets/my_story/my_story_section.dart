@@ -27,7 +27,7 @@ class MyStorySection extends StatelessWidget {
             children: [
               // Section Heading
               _buildSectionHeading(context, s),
-              SizedBox(height: s.spaceBtwSections),
+              SizedBox(height: s.spaceBtwItems),
 
               // Story Content (Two-Column on Desktop)
               _buildStoryContent(context, s),

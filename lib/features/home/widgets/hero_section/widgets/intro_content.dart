@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import '../../../../../utility/constants/colors.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../../../../common_function/style/custom_button.dart';
-import '../../../../../common_function/style/hoverable_social_icon.dart';
 import 'package:responsive_website/utility/default_sizes/font_size.dart';
 import 'package:responsive_website/utility/default_sizes/default_sizes.dart';
 import 'package:responsive_website/utility/responsive/responsive_helper.dart';
+import 'package:responsive_website/common_function/style/animation_social_icon.dart';
 
 class IntroContent extends StatefulWidget {
   const IntroContent({super.key});
@@ -71,7 +70,7 @@ class _IntroContentState extends State<IntroContent> {
         SizedBox(height: s.spaceBtwItems),
 
         // Social Icons
-        _buildSocialIcons(context),
+        AnimationSocialIcon(),
       ],
     );
   }
@@ -164,42 +163,6 @@ class _IntroContentState extends State<IntroContent> {
           ),
         ),
       ],
-    );
-  }
-
-  // 🌐 Social Icons - Improved responsive spacing
-  Widget _buildSocialIcons(BuildContext context) {
-    final s = context.sizes;
-
-    final socialIcons = [
-      FontAwesomeIcons.linkedin,
-      FontAwesomeIcons.github,
-      FontAwesomeIcons.youtube,
-      FontAwesomeIcons.instagram,
-      FontAwesomeIcons.facebook,
-    ];
-
-    // ✅ Fixed: Icon spacing based on device
-    final iconSpacing = context.responsiveValue(
-      mobile: s.paddingSm,
-      tablet: s.paddingMd,
-      desktop: s.paddingMd * 1.2,
-    );
-
-    return Wrap(
-      alignment: context.isDesktop ? WrapAlignment.start : WrapAlignment.center,
-      spacing: iconSpacing,
-      runSpacing: s.paddingSm,
-      children: socialIcons
-          .map(
-            (icon) => HoverableSocialIcon(
-              icon: icon,
-              onTap: () {
-                debugPrint("Tapped on: $icon");
-              },
-            ),
-          )
-          .toList(),
     );
   }
 }

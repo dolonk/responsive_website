@@ -14,10 +14,8 @@ class UrlLauncherService {
   void _handleFailure(UrlLaunchResult result) {
     debugPrint('URL Launch Error: ${result.errorMessage}');
 
-    // গ্লোবাল কী থেকে context নিন
     final context = RouteConfig.rootNavigatorKey.currentContext;
 
-    // context আছে কিনা তা নিশ্চিত করুন
     if (context != null && context.mounted) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
@@ -57,10 +55,17 @@ class UrlLauncherService {
         if (cc != null && cc.isNotEmpty) queryParams['cc'] = cc.join(',');
         if (bcc != null && bcc.isNotEmpty) queryParams['bcc'] = bcc.join(',');
 
-        final uri = Uri(scheme: 'mailto', path: email, queryParameters: queryParams.isEmpty ? null : queryParams);
+        final uri = Uri(
+          scheme: 'mailto',
+          path: email,
+          queryParameters: queryParams.isEmpty ? null : queryParams,
+        );
 
         if (!await launcher.canLaunchUrl(uri)) {
-          return UrlLaunchResult.failure(UrlType.email, 'Cannot launch email client. Is an email app installed?');
+          return UrlLaunchResult.failure(
+            UrlType.email,
+            'Cannot launch email client. Is an email app installed?',
+          );
         }
 
         final launched = await launcher.launchUrl(uri);

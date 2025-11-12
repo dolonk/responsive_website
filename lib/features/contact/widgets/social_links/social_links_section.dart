@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
-import 'widgets/social_icon_button.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:responsive_website/utility/constants/colors.dart';
+import '../../../../common_function/style/animation_social_icon.dart';
 import 'package:responsive_website/utility/default_sizes/font_size.dart';
 import 'package:responsive_website/utility/default_sizes/default_sizes.dart';
 import 'package:responsive_website/utility/responsive/responsive_helper.dart';
 import 'package:responsive_website/utility/responsive/section_container.dart';
-import 'package:responsive_website/data_layer/model/social_link_model.dart';
-import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 
 class SocialLinksSection extends StatelessWidget {
   const SocialLinksSection({super.key});
@@ -25,7 +23,7 @@ class SocialLinksSection extends StatelessWidget {
           SizedBox(height: s.spaceBtwSections),
 
           // Social Icons Grid
-          _buildSocialIconsGrid(context, s),
+          AnimationSocialIcon(),
         ],
       ),
     );
@@ -59,29 +57,5 @@ class SocialLinksSection extends StatelessWidget {
         ),
       ],
     ).animate().fadeIn(duration: 600.ms).slideY(begin: 0.1, duration: 600.ms);
-  }
-
-  /// Social Icons Grid with Staggered Animation
-  Widget _buildSocialIconsGrid(BuildContext context, DSizes s) {
-    final socialLinks = SocialLinkModel.getSocialLinks();
-    final spacing = context.responsiveValue(mobile: s.paddingMd, tablet: s.paddingLg, desktop: s.paddingLg);
-
-    return AnimationLimiter(
-      child: Wrap(
-        spacing: spacing,
-        runSpacing: spacing,
-        alignment: WrapAlignment.center,
-        children: List.generate(socialLinks.length, (index) {
-          return AnimationConfiguration.staggeredList(
-            position: index,
-            duration: const Duration(milliseconds: 400),
-            child: ScaleAnimation(
-              scale: 0.5,
-              child: FadeInAnimation(child: SocialIconButton(social: socialLinks[index])),
-            ),
-          );
-        }),
-      ),
-    ).animate(delay: 300.ms).fadeIn(duration: 600.ms);
   }
 }

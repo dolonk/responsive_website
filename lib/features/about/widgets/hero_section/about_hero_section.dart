@@ -19,7 +19,7 @@ class AboutHeroSection extends StatelessWidget {
     final s = context.sizes;
 
     return SectionContainer(
-      padding: EdgeInsets.symmetric(horizontal: s.paddingMd, vertical: s.spaceBtwSections),
+      padding: EdgeInsets.only(left: s.paddingMd, right: s.paddingMd, bottom: s.spaceBtwSections),
       child: Column(
         children: [
           // Profile Photo
@@ -55,7 +55,7 @@ class AboutHeroSection extends StatelessWidget {
 
     return Container(
       width: photoSize + 10,
-      height: photoSize + 10,
+      height: photoSize,
       decoration: BoxDecoration(
         shape: BoxShape.circle,
         gradient: const LinearGradient(
@@ -80,10 +80,9 @@ class AboutHeroSection extends StatelessWidget {
         decoration: BoxDecoration(shape: BoxShape.circle, color: DColors.background),
         child: ClipOval(
           child: Image.asset(
-            'assets/images/profile.jpg',
+            'assets/home/hero_section/dk.png',
             width: photoSize,
             height: photoSize,
-            fit: BoxFit.cover,
             errorBuilder: (context, error, stackTrace) => Container(
               width: photoSize,
               height: photoSize,
