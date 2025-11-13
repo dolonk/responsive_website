@@ -1,6 +1,6 @@
-// lib/features/blog/blog_page.dart (New File)
-
 import 'package:flutter/material.dart';
+import 'widgets/featured_post/featured_post_section.dart';
+import 'widgets/hero_section/blog_hero_section.dart';
 import 'package:responsive_website/common_function/base_screen/base_screen.dart';
 
 class BlogPage extends StatelessWidget {
@@ -8,13 +8,15 @@ class BlogPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // You can wrap this with BaseScreen if you have a common layout
-    return const BaseScreen(
-      child: Center(
-        child: Text(
-          'Blog Page',
-          style: TextStyle(fontSize: 32, color: Colors.white),
-        ),
+    return BaseScreen(
+      child: Column(
+        children: [
+          // Hero Section
+          BlogHeroSection(onSearch: (query) => print('Searching: $query')),
+
+          // Featured Post Section
+          FeaturedPostSection(),
+        ],
       ),
     );
   }
