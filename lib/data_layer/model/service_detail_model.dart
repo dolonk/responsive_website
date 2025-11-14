@@ -46,7 +46,7 @@ class ServiceDetailModel {
         icon: Icons.phone_android_rounded,
         deliverables: [
           'Native iOS & Android apps',
-          'Material Design + Cupertino category_badge',
+          'Material Design + Cupertino',
           'State management implementation',
           'API integration',
           'App store deployment',

@@ -125,36 +125,40 @@ class _CommentsSectionState extends State<CommentsSection> {
 
     return SectionContainer(
       padding: EdgeInsets.symmetric(horizontal: s.paddingMd, vertical: s.spaceBtwSections),
-      child: Center(
-        child: Container(
-          constraints: BoxConstraints(
-            maxWidth: context.responsiveValue(mobile: double.infinity, tablet: 700, desktop: 800),
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // Header with count and sort
-              _buildHeader(context, s),
-              SizedBox(height: s.spaceBtwItems),
+      child:
+          Center(
+                child: Container(
+                  constraints: BoxConstraints(
+                    maxWidth: context.responsiveValue(mobile: double.infinity, tablet: 700, desktop: 800),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      // Header with count and sort
+                      _buildHeader(context, s),
+                      SizedBox(height: s.spaceBtwItems),
 
-              // Twitter Discuss Button
-              _buildTwitterDiscussButton(context, s),
-              SizedBox(height: s.spaceBtwItems),
+                      // Twitter Discuss Button
+                      _buildTwitterDiscussButton(context, s),
+                      SizedBox(height: s.spaceBtwItems),
 
-              // Divider
-              Divider(color: DColors.cardBorder),
-              SizedBox(height: s.spaceBtwItems),
+                      // Divider
+                      Divider(color: DColors.cardBorder),
+                      SizedBox(height: s.spaceBtwItems),
 
-              // Add Comment Form
-              _buildAddCommentForm(context, s),
-              SizedBox(height: s.spaceBtwItems),
+                      // Add Comment Form
+                      _buildAddCommentForm(context, s),
+                      SizedBox(height: s.spaceBtwItems),
 
-              // Comments List
-              _buildCommentsList(context, s),
-            ],
-          ),
-        ),
-      ).animate().fadeIn(duration: 600.ms, delay: 1000.ms).slideY(begin: 0.1, duration: 600.ms, delay: 1000.ms),
+                      // Comments List
+                      _buildCommentsList(context, s),
+                    ],
+                  ),
+                ),
+              )
+              .animate()
+              .fadeIn(duration: 600.ms, delay: 1000.ms)
+              .slideY(begin: 0.1, duration: 600.ms, delay: 1000.ms),
     );
   }
 
@@ -202,6 +206,7 @@ class _CommentsSectionState extends State<CommentsSection> {
 
     return PopupMenuButton<CommentSort>(
       initialValue: _sortBy,
+      color: DColors.cardBackground,
       onSelected: (value) {
         setState(() {
           _sortBy = value;
@@ -345,7 +350,10 @@ class _CommentsSectionState extends State<CommentsSection> {
             style: fonts.titleMedium.rajdhani(fontWeight: FontWeight.bold, color: DColors.textPrimary),
           ),
           SizedBox(height: s.paddingSm),
-          Text('Be the first to share your thoughts!', style: fonts.bodyMedium.rubik(color: DColors.textSecondary)),
+          Text(
+            'Be the first to share your thoughts!',
+            style: fonts.bodyMedium.rubik(color: DColors.textSecondary),
+          ),
         ],
       ),
     );
@@ -495,7 +503,10 @@ class _CommentCard extends StatelessWidget {
                 SizedBox(height: s.paddingSm),
 
                 // Reply Content
-                Text(reply.content, style: context.fonts.bodySmall.rubik(color: DColors.textSecondary, height: 1.6)),
+                Text(
+                  reply.content,
+                  style: context.fonts.bodySmall.rubik(color: DColors.textSecondary, height: 1.6),
+                ),
                 SizedBox(height: s.paddingSm),
 
                 // Reply Actions
@@ -604,7 +615,9 @@ class _SubmitCommentButtonState extends State<_SubmitCommentButton> {
           duration: const Duration(milliseconds: 200),
           padding: EdgeInsets.symmetric(horizontal: s.paddingLg, vertical: s.paddingMd),
           decoration: BoxDecoration(
-            gradient: _isHovered ? const LinearGradient(colors: [DColors.primaryButton, Color(0xFFD4003D)]) : null,
+            gradient: _isHovered
+                ? const LinearGradient(colors: [DColors.primaryButton, Color(0xFFD4003D)])
+                : null,
             color: _isHovered ? null : DColors.primaryButton,
             borderRadius: BorderRadius.circular(s.borderRadiusMd),
             boxShadow: _isHovered
@@ -665,7 +678,9 @@ class _DiscussOnTwitterButtonState extends State<_DiscussOnTwitterButton> {
           width: double.infinity,
           padding: EdgeInsets.symmetric(horizontal: s.paddingLg, vertical: s.paddingMd),
           decoration: BoxDecoration(
-            gradient: _isHovered ? const LinearGradient(colors: [Color(0xFF1DA1F2), Color(0xFF0C85D0)]) : null,
+            gradient: _isHovered
+                ? const LinearGradient(colors: [Color(0xFF1DA1F2), Color(0xFF0C85D0)])
+                : null,
             color: _isHovered ? null : const Color(0xFF1DA1F2).withAlpha((255 * 0.1).round()),
             borderRadius: BorderRadius.circular(s.borderRadiusMd),
             border: Border.all(color: _isHovered ? const Color(0xFF1DA1F2) : DColors.cardBorder, width: 2),
@@ -673,7 +688,11 @@ class _DiscussOnTwitterButtonState extends State<_DiscussOnTwitterButton> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Icon(FontAwesomeIcons.xTwitter, color: _isHovered ? Colors.white : const Color(0xFF1DA1F2), size: 20),
+              Icon(
+                FontAwesomeIcons.xTwitter,
+                color: _isHovered ? Colors.white : const Color(0xFF1DA1F2),
+                size: 20,
+              ),
               SizedBox(width: s.paddingSm),
               Text(
                 'Discuss on Twitter',

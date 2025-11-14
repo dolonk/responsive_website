@@ -24,7 +24,7 @@ class BlogDetailHero extends StatelessWidget {
       height: context.responsiveValue(
         mobile: ResponsiveHelper.getHeight(context) * 0.4,
         tablet: ResponsiveHelper.getHeight(context) * 0.28,
-        desktop: ResponsiveHelper.getHeight(context) * 0.4,
+        desktop: ResponsiveHelper.getHeight(context) * 0.5,
       ),
       child: Stack(
         children: [
@@ -34,7 +34,8 @@ class BlogDetailHero extends StatelessWidget {
           PostHeaderSection(post: post),
 
           context.isDesktop
-              ? Positioned(top: 2, left: s.paddingLg, child: _buildBackButton(context, s)) : SizedBox.shrink(),
+              ? Positioned(top: 2, left: s.paddingLg, child: _buildBackButton(context, s))
+              : SizedBox.shrink(),
 
           // Category Badge (Top Left)
           context.isDesktop
@@ -64,7 +65,10 @@ class BlogDetailHero extends StatelessWidget {
               children: [
                 Icon(Icons.image_not_supported_outlined, size: 80, color: DColors.textSecondary),
                 SizedBox(height: 16),
-                Text('Image not available', style: context.fonts.bodyMedium.rubik(color: DColors.textSecondary)),
+                Text(
+                  'Image not available',
+                  style: context.fonts.bodyMedium.rubik(color: DColors.textSecondary),
+                ),
               ],
             ),
           ),

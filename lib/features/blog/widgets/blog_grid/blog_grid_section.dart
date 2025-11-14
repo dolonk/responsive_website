@@ -1,12 +1,12 @@
 import 'widgets/blog_post_card.dart';
 import 'widgets/load_more_button.dart';
 import 'package:flutter/material.dart';
+import '../sidebar/blog_sidebar.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:responsive_website/utility/default_sizes/default_sizes.dart';
 import 'package:responsive_website/utility/responsive/responsive_helper.dart';
 import 'package:responsive_website/utility/responsive/section_container.dart';
 import 'package:responsive_website/data_layer/model/blog_post_model.dart';
-import '../sidebar/blog_sidebar.dart';
 
 class BlogGridSection extends StatefulWidget {
   const BlogGridSection({super.key});
@@ -92,7 +92,8 @@ class _BlogGridSectionState extends State<BlogGridSection> {
     return LayoutBuilder(
       builder: (context, constraints) {
         final double desiredHeight = context.isMobile ? 424 : 530;
-        final double itemWidth = (constraints.maxWidth - (crossAxisCount - 1) * s.spaceBtwItems) / crossAxisCount;
+        final double itemWidth =
+            (constraints.maxWidth - (crossAxisCount - 1) * s.spaceBtwItems) / crossAxisCount;
         final double finalAspectRatio = itemWidth / desiredHeight;
 
         return Column(

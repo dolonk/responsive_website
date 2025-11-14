@@ -30,9 +30,7 @@ class _IndustryCardState extends State<IndustryCard> {
         curve: Curves.easeOut,
         transform: Matrix4.identity()..scale(_isHovered ? 1.05 : 1.0),
         child: Container(
-          padding: EdgeInsets.all(
-            context.responsiveValue(mobile: s.paddingMd, tablet: s.paddingLg, desktop: s.paddingLg),
-          ),
+          padding: EdgeInsets.all(s.paddingMd),
           decoration: BoxDecoration(
             color: DColors.cardBackground,
             borderRadius: BorderRadius.circular(16),
@@ -73,7 +71,7 @@ class _IndustryCardState extends State<IndustryCard> {
                 widget.industry.description,
                 style: fonts.bodySmall.rubik(color: DColors.textSecondary, height: 1.5),
                 textAlign: TextAlign.center,
-                maxLines: 3,
+                maxLines: 2,
                 overflow: TextOverflow.ellipsis,
               ),
             ],
@@ -81,7 +79,6 @@ class _IndustryCardState extends State<IndustryCard> {
         ),
       ),
     );
-
   }
 
   /// Icon Circle with accent color background

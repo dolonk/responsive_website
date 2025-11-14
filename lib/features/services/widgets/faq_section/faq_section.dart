@@ -22,7 +22,7 @@ class _FaqSectionState extends State<FaqSection> {
     final faqs = FaqModel.getAllFaqs();
 
     return SectionContainer(
-      padding: EdgeInsets.only(left: s.paddingMd, right: s.paddingMd, bottom: s.spaceBtwSections),
+      padding: EdgeInsets.symmetric(horizontal: s.paddingMd, vertical: s.spaceBtwSections),
       child: Column(
         children: [
           // Section Header
