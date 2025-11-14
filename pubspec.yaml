@@ -27,6 +27,7 @@ dependencies:
   google_fonts: ^6.3.2
   url_launcher: ^6.3.2
   file_picker: ^10.3.3
+  youtube_player_iframe: ^5.2.2
 
   # State management
   provider: ^6.1.5+1

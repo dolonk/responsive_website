@@ -30,18 +30,15 @@ class SocialLinksWidget extends StatelessWidget {
             children: [
               Icon(Icons.share_rounded, color: DColors.primaryButton, size: 20),
               SizedBox(width: s.paddingSm),
-              Text(
-                'Follow Me',
-                style: fonts.titleMedium.rajdhani(fontWeight: FontWeight.bold, color: DColors.textPrimary),
-              ),
+              Text('Follow Me', style: fonts.titleMedium),
             ],
           ),
           SizedBox(height: s.paddingMd),
 
           // Social Icons Grid
           Wrap(
-            spacing: s.paddingMd,
-            runSpacing: s.paddingMd,
+            spacing: s.paddingSm,
+            runSpacing: s.paddingSm,
             children: socialLinks.map((social) => _SocialIcon(social: social)).toList(),
           ),
         ],
@@ -94,11 +91,7 @@ class _SocialIconState extends State<_SocialIcon> {
                   ]
                 : null,
           ),
-          child: Icon(
-            widget.social.icon,
-            color: _isHovered ? DColors.primaryButton : DColors.textSecondary,
-            size: 24,
-          ),
+          child: Icon(widget.social.icon, color: _isHovered ? DColors.primaryButton : DColors.textSecondary, size: 24),
         ),
       ),
     );

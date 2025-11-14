@@ -50,7 +50,7 @@ class ProjectDetailPage extends StatelessWidget {
           ResultsSection(project: project),
 
           // Image Gallery
-          GallerySection(project: project),
+          GallerySection(imagesGallery: project.galleryImages),
 
           // Demo & Links
           DemoLinksSection(project: project),

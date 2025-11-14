@@ -43,7 +43,7 @@ class ExperienceModel {
           'Developed and maintained multiple cross-platform applications using Flutter for mobile, web, and desktop',
           'Implemented complex state management solutions using Provider, GetX, and Bloc patterns for scalable architecture',
           'Integrated RESTful APIs and WebSocket communication for real-time features and seamless data synchronization',
-          'Built custom animations and widgets to enhance user experience and brand identity',
+          'Built custom animations and category_badge to enhance user experience and brand identity',
           'Utilized native code integration (FFI) for performance-critical features and platform-specific optimizations',
           'Implemented CI/CD pipelines using GitHub Actions, reducing deployment time by 60%',
           'Conducted comprehensive testing (Unit, Widget, Integration tests) ensuring 95%+ code coverage',

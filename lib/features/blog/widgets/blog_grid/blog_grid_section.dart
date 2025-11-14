@@ -89,38 +89,46 @@ class _BlogGridSectionState extends State<BlogGridSection> {
   Widget _buildBlogGrid(DSizes s) {
     final crossAxisCount = context.responsiveValue(mobile: 1, tablet: 2, desktop: 2);
 
-    return Column(
-      children: [
-        // Grid
-        GridView.builder(
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: crossAxisCount,
-            crossAxisSpacing: s.spaceBtwItems,
-            mainAxisSpacing: s.spaceBtwItems,
-            childAspectRatio: context.responsiveValue(mobile: 0.85, tablet: 0.75, desktop: 0.8),
-          ),
-          itemCount: _displayedPosts.length,
-          itemBuilder: (context, index) {
-            return BlogPostCard(post: _displayedPosts[index])
-                .animate()
-                .fadeIn(duration: 400.ms, delay: (100 * index).ms)
-                .slideY(begin: 0.1, duration: 400.ms, delay: (100 * index).ms);
-          },
-        ),
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final double desiredHeight = context.isMobile ? 424 : 530;
+        final double itemWidth = (constraints.maxWidth - (crossAxisCount - 1) * s.spaceBtwItems) / crossAxisCount;
+        final double finalAspectRatio = itemWidth / desiredHeight;
 
-        // Load More Button
-        if (_displayedPosts.length < _allPosts.length) ...[
-          SizedBox(height: s.spaceBtwSections),
-          LoadMoreButton(
-            onPressed: _loadMorePosts,
-            currentCount: _displayedPosts.length,
-            totalCount: _allPosts.length,
-            isLoading: _isLoading,
-          ),
-        ],
-      ],
+        return Column(
+          children: [
+            // Grid
+            GridView.builder(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: crossAxisCount,
+                crossAxisSpacing: s.spaceBtwItems,
+                mainAxisSpacing: s.spaceBtwItems,
+                childAspectRatio: finalAspectRatio,
+              ),
+              itemCount: _displayedPosts.length,
+              itemBuilder: (context, index) {
+                return BlogPostCard(post: _displayedPosts[index])
+                    .animate()
+                    .fadeIn(duration: 400.ms, delay: (100 * index).ms)
+                    .slideY(begin: 0.1, duration: 400.ms, delay: (100 * index).ms);
+              },
+            ),
+
+            // Load More Button
+            if (_displayedPosts.length < _allPosts.length) ...[
+              SizedBox(height: s.spaceBtwSections),
+              LoadMoreButton(
+                onPressed: _loadMorePosts,
+                currentCount: _displayedPosts.length,
+                totalCount: _allPosts.length,
+                isLoading: _isLoading,
+              ),
+            ],
+          ],
+        );
+      },
     );
   }
 }

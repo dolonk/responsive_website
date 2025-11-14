@@ -1,3 +1,4 @@
+import '../features/blog_detail/blog_detail_page.dart';
 import '../features/project_detail/project_detail_page.dart';
 import 'error_page.dart';
 import 'route_name.dart';
@@ -59,6 +60,15 @@ class RouteConfig {
         name: RouteNames.blogName,
         pageBuilder: (context, state) =>
             _buildPageWithTransition(context: context, state: state, child: const BlogPage()),
+      ),
+
+      // In route_config.dart
+      GoRoute(
+        path: '${RouteNames.blog}/:postId',
+        builder: (context, state) {
+          final postId = state.pathParameters['postId']!;
+          return BlogDetailPage(postId: postId);
+        },
       ),
 
       // About Route

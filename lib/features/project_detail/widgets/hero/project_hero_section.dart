@@ -19,9 +19,9 @@ class ProjectHeroSection extends StatelessWidget {
     return SizedBox(
       width: double.infinity,
       height: context.responsiveValue(
-        mobile: MediaQuery.of(context).size.height * 0.2,
-        tablet: MediaQuery.of(context).size.height * 0.3,
-        desktop: MediaQuery.of(context).size.height * 0.4,
+        mobile: ResponsiveHelper.getHeight(context) * 0.2,
+        tablet: ResponsiveHelper.getHeight(context) * 0.3,
+        desktop: ResponsiveHelper.getHeight(context) * 0.4,
       ),
       child: Stack(
         children: [

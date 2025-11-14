@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:responsive_website/utility/constants/colors.dart';
 import 'package:responsive_website/utility/default_sizes/font_size.dart';
 import 'package:responsive_website/utility/default_sizes/default_sizes.dart';
 import 'package:responsive_website/utility/responsive/responsive_helper.dart';
 import 'package:responsive_website/data_layer/model/blog_post_model.dart';
+
+import '../../../../../route/route_name.dart';
 
 class BlogPostCard extends StatefulWidget {
   final BlogPostModel post;
@@ -26,9 +29,7 @@ class _BlogPostCardState extends State<BlogPostCard> {
       onExit: (_) => setState(() => _isHovered = false),
       child: GestureDetector(
         onTap: () {
-          // TODO: Navigate to blog detail page
-          // context.go('/blog/${widget.post.id}');
-          print('Navigate to: ${widget.post.id}');
+          context.go('${RouteNames.blog}/${widget.post.id}');
         },
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 300),
@@ -146,10 +147,7 @@ class _BlogPostCardState extends State<BlogPostCard> {
                 ),
                 child: Text(
                   widget.post.category,
-                  style: context.fonts.labelSmall.rubik(
-                    color: DColors.textPrimary,
-                    fontWeight: FontWeight.bold,
-                  ),
+                  style: context.fonts.labelSmall.rubik(color: DColors.textPrimary, fontWeight: FontWeight.bold),
                 ),
               ),
             ),
@@ -265,10 +263,7 @@ class _BlogPostCardState extends State<BlogPostCard> {
             borderRadius: BorderRadius.circular(s.borderRadiusSm),
             border: Border.all(color: DColors.primaryButton.withAlpha((255 * 0.3).round()), width: 1),
           ),
-          child: Text(
-            '#$tag',
-            style: context.fonts.labelSmall.rubik(color: DColors.textSecondary, fontSize: 11),
-          ),
+          child: Text('#$tag', style: context.fonts.labelSmall.rubik(color: DColors.textSecondary, fontSize: 11)),
         );
       }).toList(),
     );
@@ -286,11 +281,7 @@ class _BlogPostCardState extends State<BlogPostCard> {
           ),
         ),
         SizedBox(width: 4),
-        Icon(
-          Icons.arrow_forward_rounded,
-          color: _isHovered ? DColors.primaryButton : DColors.textSecondary,
-          size: 16,
-        ),
+        Icon(Icons.arrow_forward_rounded, color: _isHovered ? DColors.primaryButton : DColors.textSecondary, size: 16),
       ],
     );
   }

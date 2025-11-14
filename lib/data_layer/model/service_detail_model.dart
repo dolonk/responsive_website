@@ -42,11 +42,11 @@ class ServiceDetailModel {
         id: 'mobile-development',
         title: 'Mobile App Development',
         description:
-        'Native iOS & Android apps with Material Design and Cupertino widgets, state management, and seamless API integration.',
+        'Native iOS & Android apps with Material Design and Cupertino category_badge, state management, and seamless API integration.',
         icon: Icons.phone_android_rounded,
         deliverables: [
           'Native iOS & Android apps',
-          'Material Design + Cupertino widgets',
+          'Material Design + Cupertino category_badge',
           'State management implementation',
           'API integration',
           'App store deployment',

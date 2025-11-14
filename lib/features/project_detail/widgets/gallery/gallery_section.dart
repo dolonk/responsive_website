@@ -2,16 +2,15 @@ import 'widgets/gallery_image.dart';
 import 'widgets/image_lightbox.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_website/utility/constants/colors.dart';
-import 'package:responsive_website/data_layer/model/project_model.dart';
 import 'package:responsive_website/utility/default_sizes/font_size.dart';
 import 'package:responsive_website/utility/default_sizes/default_sizes.dart';
 import 'package:responsive_website/utility/responsive/responsive_helper.dart';
 import 'package:responsive_website/utility/responsive/section_container.dart';
 
 class GallerySection extends StatelessWidget {
-  final ProjectModel project;
+  final List<String> imagesGallery;
 
-  const GallerySection({super.key, required this.project});
+  const GallerySection({super.key, required this.imagesGallery});
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +51,7 @@ class GallerySection extends StatelessWidget {
 
   /// Gallery Grid with Wrap Layout
   Widget _buildGalleryGrid(BuildContext context, DSizes s) {
-    final images = project.galleryImages;
+    final images = imagesGallery;
     final captions = _getImageCaptions();
 
     final cardWidth = context.responsiveValue(
@@ -85,7 +84,7 @@ class GallerySection extends StatelessWidget {
       context: context,
       barrierColor: Colors.transparent,
       builder: (context) => ImageLightbox(
-        images: project.galleryImages,
+        images: imagesGallery,
         initialIndex: initialIndex,
         captions: captions.isNotEmpty ? captions : null,
       ),

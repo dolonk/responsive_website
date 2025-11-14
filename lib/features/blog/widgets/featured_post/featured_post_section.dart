@@ -1,3 +1,6 @@
+import 'package:go_router/go_router.dart';
+
+import '../../../../route/route_name.dart';
 import 'widgets/post_tags.dart';
 import 'widgets/featured_badge.dart';
 import 'widgets/post_meta_info.dart';
@@ -34,54 +37,48 @@ class _FeaturedPostSectionState extends State<FeaturedPostSection> {
           constraints: BoxConstraints(
             maxWidth: context.responsiveValue(mobile: double.infinity, tablet: 900, desktop: 1200),
           ),
-          child:
-              MouseRegion(
-                    onEnter: (_) => setState(() => _isHovered = true),
-                    onExit: (_) => setState(() => _isHovered = false),
-                    child: GestureDetector(
-                      onTap: () {
-                        // TODO: Navigate to blog detail page
-                        // context.go('/blog/${post.id}');
-                        print('Navigate to: ${post.id}');
-                      },
-                      child: AnimatedContainer(
-                        duration: const Duration(milliseconds: 300),
-                        transform: Matrix4.identity()..scale(_isHovered ? 1.02 : 1.0),
-                        decoration: BoxDecoration(
-                          color: DColors.cardBackground,
-                          borderRadius: BorderRadius.circular(s.borderRadiusLg),
-                          border: Border.all(
-                            color: _isHovered ? DColors.primaryButton : DColors.cardBorder,
-                            width: _isHovered ? 2 : 1,
+          child: MouseRegion(
+            onEnter: (_) => setState(() => _isHovered = true),
+            onExit: (_) => setState(() => _isHovered = false),
+            child: GestureDetector(
+              onTap: () {
+                context.go('${RouteNames.blog}/${post.id}');
+              },
+              child: AnimatedContainer(
+                duration: const Duration(milliseconds: 300),
+                transform: Matrix4.identity()..scale(_isHovered ? 1.02 : 1.0),
+                decoration: BoxDecoration(
+                  color: DColors.cardBackground,
+                  borderRadius: BorderRadius.circular(s.borderRadiusLg),
+                  border: Border.all(
+                    color: _isHovered ? DColors.primaryButton : DColors.cardBorder,
+                    width: _isHovered ? 2 : 1,
+                  ),
+                  boxShadow: _isHovered
+                      ? [
+                          BoxShadow(
+                            color: DColors.primaryButton.withAlpha((255 * 0.3).round()),
+                            blurRadius: 24,
+                            offset: const Offset(0, 8),
                           ),
-                          boxShadow: _isHovered
-                              ? [
-                                  BoxShadow(
-                                    color: DColors.primaryButton.withAlpha((255 * 0.3).round()),
-                                    blurRadius: 24,
-                                    offset: const Offset(0, 8),
-                                  ),
-                                ]
-                              : [
-                                  BoxShadow(
-                                    color: Colors.black.withAlpha((255 * 0.3).round()),
-                                    blurRadius: 12,
-                                    offset: const Offset(0, 4),
-                                  ),
-                                ],
-                        ),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(s.borderRadiusLg),
-                          child: context.isMobile
-                              ? _buildMobileLayout(context, post, s)
-                              : _buildDesktopLayout(context, post, s),
-                        ),
-                      ),
-                    ),
-                  )
-                  .animate()
-                  .fadeIn(duration: 600.ms, delay: 200.ms)
-                  .slideY(begin: 0.1, duration: 600.ms, delay: 200.ms),
+                        ]
+                      : [
+                          BoxShadow(
+                            color: Colors.black.withAlpha((255 * 0.3).round()),
+                            blurRadius: 12,
+                            offset: const Offset(0, 4),
+                          ),
+                        ],
+                ),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(s.borderRadiusLg),
+                  child: context.isMobile
+                      ? _buildMobileLayout(context, post, s)
+                      : _buildDesktopLayout(context, post, s),
+                ),
+              ),
+            ),
+          ).animate().fadeIn(duration: 600.ms, delay: 200.ms).slideY(begin: 0.1, duration: 600.ms, delay: 200.ms),
         ),
       ),
     );
@@ -165,9 +162,7 @@ class _FeaturedPostSectionState extends State<FeaturedPostSection> {
     final fonts = context.fonts;
 
     return Padding(
-      padding: EdgeInsets.all(
-        context.responsiveValue(mobile: s.paddingMd, tablet: s.paddingLg, desktop: s.paddingXl),
-      ),
+      padding: EdgeInsets.all(context.responsiveValue(mobile: s.paddingMd, tablet: s.paddingLg, desktop: s.paddingXl)),
       child: Column(
         crossAxisAlignment: context.isMobile ? CrossAxisAlignment.center : CrossAxisAlignment.start,
         children: [
