@@ -5,6 +5,7 @@ class RouteNames {
   static const String home = '/';
   static const String services = '/services';
   static const String portfolio = '/portfolio';
+  static const String price = '/price';
   static const String blog = '/blog';
   static const String about = '/about';
   static const String contact = '/contact';
@@ -14,7 +15,7 @@ class RouteNames {
   static const String homeName = 'Home';
   static const String servicesName = 'Services';
   static const String portfoliosName = 'Portfolio';
-  static const String projectDetailName = 'ProjectDetail';
+  static const String priceName = 'Price';
   static const String blogName = 'Blog';
   static const String aboutName = 'About';
   static const String contactName = 'Contact';

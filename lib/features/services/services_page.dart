@@ -39,7 +39,6 @@ class ServicesPage extends StatelessWidget {
 
           // CTA Section
           const CtaSection(),
-          SizedBox(height: context.sizes.spaceBtwItems),
         ],
       ),
     );

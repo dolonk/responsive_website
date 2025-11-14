@@ -49,6 +49,12 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                 ),
 
                 AppBarMenuItem(
+                  title: RouteNames.priceName,
+                  isActive: currentRoute == RouteNames.price,
+                  onTap: () => context.go(RouteNames.price),
+                ),
+
+                AppBarMenuItem(
                   title: RouteNames.blogName,
                   isActive: currentRoute == RouteNames.blog,
                   onTap: () => context.go(RouteNames.blog),

@@ -1,4 +1,5 @@
 import '../features/blog_detail/blog_detail_page.dart';
+import '../features/pricing/pricing_page.dart';
 import '../features/project_detail/project_detail_page.dart';
 import 'error_page.dart';
 import 'route_name.dart';
@@ -52,6 +53,13 @@ class RouteConfig {
           final projectId = state.pathParameters['projectId']!;
           return ProjectDetailPage(projectId: projectId);
         },
+      ),
+
+      GoRoute(
+        path: RouteNames.price,
+        name: RouteNames.priceName,
+        pageBuilder: (context, state) =>
+            _buildPageWithTransition(context: context, state: state, child: const PricingPage()),
       ),
 
       // Blog Route
