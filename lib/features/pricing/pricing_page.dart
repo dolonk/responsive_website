@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
+import 'widgets/pricing/pricing_intro_section.dart';
+import 'widgets/hero_section/pricing_hero_section.dart';
+import 'widgets/custom_cta_section/custom_cta_section.dart';
 import 'package:responsive_website/utility/constants/colors.dart';
 import 'package:responsive_website/common_function/base_screen/base_screen.dart';
-import 'widgets/hero_section/pricing_hero_section.dart';
+import 'package:responsive_website/features/pricing/widgets/addons_section/addons_section.dart';
+import 'package:responsive_website/features/pricing/widgets/comparison_section/comparison_section.dart';
+import 'package:responsive_website/features/pricing/widgets/pricing/pricing_cards/pricing_cards_section.dart';
+import 'package:responsive_website/features/pricing/widgets/payment_terms_section/payment_terms_section.dart';
 
 class PricingPage extends StatelessWidget {
   const PricingPage({super.key});
@@ -12,17 +18,26 @@ class PricingPage extends StatelessWidget {
       backgroundColor: DColors.background,
       child: Column(
         children: [
-          // Section 1: Hero Section
+          // Hero Section
           PricingHeroSectionD(),
-          PricingHeroSection(isYearly: true, onBillingChanged: (bool p1) {}),
 
-          // Section 2: Intro paragraph (coming next)
-          // PricingIntroSection(),
+          // Intro
+          PricingIntroSection(),
 
-          // Section 3: Pricing cards (coming next)
-          // PricingCardsSection(),
+          // Pricing Cards
+          PricingCardsSection(),
 
-          // More sections...
+          // Comparison Table
+          ComparisonSection(),
+
+          // Custom CTA
+          PriceCustomCtaSection(),
+
+          // Add-on Services
+          PriceAddonsSection(),
+
+          // Payment Terms
+          PaymentTermsSection(),
         ],
       ),
     );

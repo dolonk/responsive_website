@@ -29,10 +29,10 @@ class BlogDetailPage extends StatelessWidget {
           // Author Bio
           AuthorBioSection(post: post),
 
-          // Section 9: Comments ✅ NEW
+          // Comments
           CommentsSection(post: post),
 
-          // Section 10: Newsletter CTA ✅ NEW
+          // Newsletter CTA
           const NewsletterCtaSection(),
         ],
       ),

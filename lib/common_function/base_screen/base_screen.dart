@@ -101,6 +101,14 @@ class BaseScreen extends StatelessWidget {
 
           _buildDrawerItem(
             context: context,
+            icon: FontAwesomeIcons.dollarSign,
+            title: RouteNames.priceName,
+            route: RouteNames.price,
+            isActive: currentRoute == RouteNames.price,
+          ),
+
+          _buildDrawerItem(
+            context: context,
             icon: FontAwesomeIcons.blog,
             title: RouteNames.blogName,
             route: RouteNames.blog,

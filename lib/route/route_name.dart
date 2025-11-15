@@ -15,7 +15,7 @@ class RouteNames {
   static const String homeName = 'Home';
   static const String servicesName = 'Services';
   static const String portfoliosName = 'Portfolio';
-  static const String priceName = 'Price';
+  static const String priceName = 'Pricing';
   static const String blogName = 'Blog';
   static const String aboutName = 'About';
   static const String contactName = 'Contact';
